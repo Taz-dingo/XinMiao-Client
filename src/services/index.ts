@@ -1,6 +1,6 @@
 // 请求封装文件
 
-import axios, { AxiosInstance, AxiosRequestConfig, AxiosResponse, AxiosError, InternalAxiosRequestConfig } from 'axios';
+import axios, { AxiosInstance, AxiosResponse, AxiosError, InternalAxiosRequestConfig } from 'axios';
 import { baseURL, timeout } from './config';
 
 // 创建一个自定义的 Axios 实例

@@ -4,8 +4,8 @@
  * @returns 校验结果
  */
 export function validateUsername(username: string): boolean {
-    // 用户名必须为字母开头，允许5-16字节，允许字母数字下划线
-    const re = /^[a-zA-Z]\w{4,15}$/;
+    // 用户名必须全为数字，以“21”开头，并且总长度和“2162810215”一致。
+    const re = /^21\d{8}$/;
     return re.test(username);
 }
 
@@ -15,7 +15,7 @@ export function validateUsername(username: string): boolean {
  * @returns 校验结果
  */
 export function validatePassword(password: string): boolean {
-    // 密码长度至少为6，且必须包含至少一个数字和一个字母
-    const re = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{6,}$/;
+    // 字符串只包含大小写字母和数字，且长度在 6 到 15 之间。
+    const re = /^[a-zA-Z0-9]{6,15}$/;
     return re.test(password);
 }

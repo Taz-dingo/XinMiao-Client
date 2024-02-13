@@ -31,9 +31,14 @@ const LoginScreen = ({navigation}: any) => {
       account : username,
       password : password,
     });
-
+    // 处理登录成功后的逻辑
+    if(response.code === 0){
+      Alert.alert('登录成功');
+      navigation.navigate('Home');
+    }else if(response.code === 1){
+      Alert.alert('错误', '用户名或密码错误');
+    }
     
-
     console.log(response);
   };
 

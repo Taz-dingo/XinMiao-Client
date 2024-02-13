@@ -6,18 +6,12 @@ import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import IndexScreen from './screens/IndexScreen';
 import TestScreen from './screens/TestScreen';
 
-// 只在非生产环境下引入 Mock.js
-if (process.env.NODE_ENV !== 'production') {
-  require('./services/mock');
-  console.log('Mock is imported');
-}
-
 const Stack = createNativeStackNavigator();
 
 function App() {
   return (
     <NavigationContainer>
-      <Stack.Navigator initialRouteName="Test">
+      <Stack.Navigator initialRouteName="Login">
         <Stack.Screen name="Test" component={TestScreen} />
         <Stack.Screen name="Login" component={LoginScreen} />
         <Stack.Screen name="Home" component={IndexScreen} />
