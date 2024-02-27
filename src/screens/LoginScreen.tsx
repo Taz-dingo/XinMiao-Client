@@ -1,6 +1,5 @@
 import {
   Alert,
-  Button,
   SafeAreaView,
   StyleSheet,
   Text,
@@ -10,6 +9,7 @@ import {
 import React, {Component, useState} from 'react';
 import {validateUsername, validatePassword} from '../utils/validationUtils';
 import {login} from '../services/api/userService';
+import {Button} from '@rneui/base';
 
 const LoginScreen = ({navigation}: any) => {
   const [username, setUsername] = useState('');
@@ -28,17 +28,19 @@ const LoginScreen = ({navigation}: any) => {
     }
 
     const response = await login({
-      account : username,
-      password : password,
+      account: username,
+      password: password,
     });
-    // 处理登录成功后的逻辑
-    if(response.code === 0){
+    if (response.code === 0) {
+      // 登录成功
+      // 1. 跳转页面
+      // 2. 设置token
       Alert.alert('登录成功');
       navigation.navigate('Home');
-    }else if(response.code === 1){
+    } else if (response.code === 1) {
       Alert.alert('错误', '用户名或密码错误');
     }
-    
+
     console.log(response);
   };
 

@@ -7,7 +7,8 @@ export interface LoginData {
 }
 
 // 登录请求
-export const login = (data: LoginData) => {
+// 发送账号、密码；接受data内容
+export const login = (data: LoginData): any => {
   return instance({
     url: '/login',
     method: 'post',
