@@ -36,7 +36,8 @@ const LoginScreen = ({navigation}: any) => {
       // 1. 跳转页面
       // 2. 设置token
       Alert.alert('登录成功');
-      navigation.navigate('Home');
+      // 跳转认证界面
+      navigation.navigate('Auth');
     } else if (response.code === 1) {
       Alert.alert('错误', '用户名或密码错误');
     }

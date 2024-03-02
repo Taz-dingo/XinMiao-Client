@@ -111,7 +111,6 @@ dependencies {
     implementation(project(':react-native-amap-geolocation')) {
         exclude group: 'com.amap.api', module: 'location'
     }
-
     if (hermesEnabled.toBoolean()) {
         implementation("com.facebook.react:hermes-android")
     } else {

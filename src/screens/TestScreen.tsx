@@ -1,6 +1,10 @@
 import {View, Text, Button} from 'react-native';
 import React from 'react';
-import {getMockTestFun, getTestFun, postTestFun} from '../services/api/TestService';
+import {
+  getMockTestFun,
+  getTestFun,
+  postTestFun,
+} from '../services/api/TestService';
 
 export default function TestScreen() {
   const getTest = async () => {
@@ -18,11 +22,9 @@ export default function TestScreen() {
   };
 
   const MockTest = async () => {
-    const response = await getMockTestFun({
-        
-    });
-    console.log(response); 
-  }
+    const response = await getMockTestFun({});
+    console.log(response);
+  };
 
   return (
     <View>
@@ -31,7 +33,6 @@ export default function TestScreen() {
       <Button title="get测试" onPress={getTest} />
       <Button title="post测试" onPress={postTest} />
       <Button title="Mock测试" onPress={MockTest} />
-      
     </View>
   );
 }

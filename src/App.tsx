@@ -3,9 +3,10 @@ import React, {Component} from 'react';
 import LoginScreen from './screens/LoginScreen';
 import {NavigationContainer} from '@react-navigation/native';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
-import IndexScreen from './screens/IndexScreen';
+import IndexScreen from './screens/Home/Index';
 import TestScreen from './screens/TestScreen';
 import {SafeAreaProvider} from 'react-native-safe-area-context';
+import AuthScreen from './screens/AuthScreen';
 
 const Stack = createNativeStackNavigator();
 
@@ -16,6 +17,7 @@ function App() {
         <Stack.Navigator initialRouteName="Home">
           <Stack.Screen name="Test" component={TestScreen} />
           <Stack.Screen name="Login" component={LoginScreen} />
+          <Stack.Screen name="Auth" component={AuthScreen} />
           <Stack.Screen name="Home" component={IndexScreen} />
         </Stack.Navigator>
       </NavigationContainer>
