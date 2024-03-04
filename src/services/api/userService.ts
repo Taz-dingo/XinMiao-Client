@@ -16,3 +16,32 @@ export const login = (data: LoginData): any => {
   })
 }
 
+
+// 发送验证码，传入tel，code为null
+interface sendMsgData {
+  tel: string
+}
+export const sendMsg = (data: sendMsgData): any => {
+  return instance({
+    url: '/sendMsg',
+    method: 'post',
+    data: {
+      ...data,
+      code: null
+    }
+  })
+}
+
+interface msgLoginData {
+  tel: string,
+  code: string
+}
+export const msgLogin = (data: msgLoginData): any => {
+  return instance({
+    url: '/login',
+    method: 'post',
+    data: data
+  })
+}
+
+

@@ -29,39 +29,7 @@ Geolocation.watchPosition(({coords}) => {
   Location.longitude = coords.longitude;
 });
 
-const line1 = [
-  {latitude: 40.006901, longitude: 116.097972},
-  {latitude: 40.006901, longitude: 116.597972},
-];
 
-const line2 = [
-  {latitude: 39.906901, longitude: 116.097972},
-  {latitude: 39.906901, longitude: 116.597972},
-];
-
-const line3 = [
-  {latitude: 39.806901, longitude: 116.097972},
-  {latitude: 39.806901, longitude: 116.257972},
-  {latitude: 39.806901, longitude: 116.457972},
-  {latitude: 39.806901, longitude: 116.457972},
-  {latitude: 39.80901, longitude: 116.457972},
-  {latitude: 39.806901, longitude: 116.4579723},
-  {latitude: 49.80901, longitude: 116.597972},
-];
-
-const line4 = [
-  {latitude: 31.240326, longitude: 121.432648},
-  {latitude: 31.240017, longitude: 121.433585},
-  {latitude: 31.240017, longitude: 121.433585},
-  {latitude: 31.239931, longitude: 121.433841},
-  {latitude: 31.239931, longitude: 121.433841},
-  {latitude: 31.239809, longitude: 121.434201},
-  {latitude: 31.239809, longitude: 121.434201},
-  {latitude: 31.239731, longitude: 121.434371},
-  {latitude: 31.239731, longitude: 121.434371},
-  {latitude: 31.239714, longitude: 121.434401},
-  {latitude: 31.239627, longitude: 121.434566},
-];
 
 type line = {latitude: number; longitude: number}[];
 export default function Amap({children}: any) {
