@@ -14,7 +14,7 @@ instance.interceptors.request.use(
   (config: InternalAxiosRequestConfig) => {
     // 在发送请求之前做一些处理，例如添加请求头信息
     // config.headers.Authorization = 'Bearer token123';
-    console.log("请求配置", config);
+    // console.log("请求配置", config);
     return config;
   },
   (error: AxiosError) => {
@@ -31,6 +31,7 @@ instance.interceptors.response.use(
     const data = response.data;
     const status = response.status;
     console.log("status: " + status);
+    console.log("data: " + JSON.stringify(data));
     // 处理自己的业务逻辑，比如判断 token 是否过期等等
     // 返回response.data 
     return data;
@@ -84,6 +85,7 @@ instance.interceptors.response.use(
           break;
       }
     }
+    console.log(error);
     return Promise.reject(message);
   }
 );

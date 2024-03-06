@@ -1,16 +1,15 @@
 import instance from '..';
 
-// 定义请求的数据类型
-export interface LoginData {
-  account: string;
-  password: string;
-}
 
-// 登录请求
+// 账号密码登录
 // 发送账号、密码；接受data内容
+export interface LoginData {
+  id: string;
+  pwd: string;
+}
 export const login = (data: LoginData): any => {
   return instance({
-    url: '/login',
+    url: '/login_idpwd',
     method: 'post',
     data: data
   })
@@ -32,15 +31,18 @@ export const sendMsg = (data: sendMsgData): any => {
   })
 }
 
+// 短信登录
 interface msgLoginData {
   tel: string,
   code: string
 }
 export const msgLogin = (data: msgLoginData): any => {
   return instance({
-    url: '/login',
+    url: '/login_sms',
     method: 'post',
-    data: data
+    data: {
+      ...data,
+    }
   })
 }
 

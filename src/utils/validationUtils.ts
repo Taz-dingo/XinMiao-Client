@@ -31,5 +31,5 @@ export function validateTelNum(telNum: string): boolean {
 
 // 校验验证码
 export function validateCodeNum(codeNum: string): boolean {
-    return /^d{4}$/.test(codeNum);
+    return /\b\d{4}\b/.test(codeNum);
 }
