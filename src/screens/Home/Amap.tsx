@@ -1,118 +1,233 @@
-import {View, Text, PermissionsAndroid, Button} from 'react-native';
+import {View, Text, PermissionsAndroid} from 'react-native';
 import React, {useState} from 'react';
 import {init, Geolocation} from 'react-native-amap-geolocation';
-import {MapView, MapType, Marker, Polyline} from 'react-native-amap3d';
+import {MapView, MapType, Marker, Polyline, Cluster} from 'react-native-amap3d';
 import {Alert} from 'react-native';
 import {StyleSheet} from 'react-native';
 import {getPathPlaning} from '../../services/api/mapService';
+import TaskScreen from './TaskScreen/Index';
+import {useSubScreenStore} from '../../store';
+import MenuButtons from './MenuButtons';
+import InfoBar from './InfoBar';
+import {getTaskCoords} from '../../services/api/taskService';
+import {ClusterPoint} from 'react-native-amap3d/lib/src/cluster';
+import {Button} from '@rneui/base';
 
-import responseExample from './responseExample.json';
-// 对于 Android 需要自行根据需要申请权限
-PermissionsAndroid.requestMultiple([
-  PermissionsAndroid.PERMISSIONS.ACCESS_FINE_LOCATION,
-  PermissionsAndroid.PERMISSIONS.ACCESS_COARSE_LOCATION,
-]);
+type point = {latitude: number; longitude: number}[];
 
-// 使用自己申请的高德 App Key 进行初始化
-init({
-  ios: 'f019fb81b5b31eb6b752adae968cea64',
-  android: 'f019fb81b5b31eb6b752adae968cea64',
-});
+export default function Amap({children, navigation}: any) {
+  const markers = Array(1000)
+    .fill(0)
+    .map((_, i) => ({
+      position: {
+        latitude: 39.5 + Math.random(),
+        longitude: 116 + Math.random(),
+      },
+      properties: {key: `Marker${i}`},
+    }));
+  // 对于 Android 需要自行根据需要申请权限
+  PermissionsAndroid.requestMultiple([
+    PermissionsAndroid.PERMISSIONS.ACCESS_FINE_LOCATION,
+    PermissionsAndroid.PERMISSIONS.ACCESS_COARSE_LOCATION,
+  ]);
 
-const Location = {
-  latitude: 0,
-  longitude: 0,
-};
+  // 使用自己申请的高德 App Key 进行初始化
+  init({
+    ios: 'f019fb81b5b31eb6b752adae968cea64',
+    android: 'f019fb81b5b31eb6b752adae968cea64',
+  });
+  const Location = {
+    latitude: 0,
+    longitude: 0,
+  };
 
-Geolocation.watchPosition(({coords}) => {
-  Location.latitude = coords.latitude;
-  Location.longitude = coords.longitude;
-});
+  Geolocation.watchPosition(({coords}) => {
+    Location.latitude = coords.latitude;
+    Location.longitude = coords.longitude;
+    // console.log(Location);
+  });
 
+  const [lineData, setLineData] = useState<point>([]);
 
+  const [markerData, setMarkerData] = useState<ClusterPoint[]>([]);
 
-type line = {latitude: number; longitude: number}[];
-export default function Amap({children}: any) {
-  const [lineData, setLineData] = useState<line>([]);
+  const [screenState, setScreenState, clearScreenState] = useSubScreenStore(
+    store => [store.screenState, store.setScreenState, store.clearScreenState],
+  );
+  // 步行路径规划
   const pathPlaning = async () => {
     const response: any = await getPathPlaning({
       origin: `${Location.longitude},${Location.latitude}`,
-      destination: '121.43464,31.239541',
+      destination: '119.580577,31.67414',
     });
     console.log('response: ');
     console.log(JSON.stringify(response));
 
-    response.route.paths[0].steps.forEach(step => {
-      const locArr = step.polyline.split(';'); // 分割成N个坐标
-      console.log('locArr :');
-      console.log(locArr);
-      const locs = locArr.map(loc => {
-        const locArr = loc.split(','); // 坐标分割成经、纬度数组
-        return {longitude: +locArr[0], latitude: +locArr[1]}; // 第一个是经度longtitude、第二个是维度latitude
+    // 提取经纬度点和提示信息
+    const steps = response.route.paths[0].steps;
+    const points = [];
+
+    steps.forEach(step => {
+      const polyline = step.polyline.split(';');
+      // 遍历所有经纬度点
+      polyline.forEach(point => {
+        const [longitude, latitude] = point.split(',');
+        // 创建包含经纬度点和提示信息的对象
+        const pointObj = {
+          longitude: Number(longitude),
+          latitude: Number(latitude),
+          instruction: step.instruction,
+        };
+        points.push(pointObj);
       });
-      console.log('locs :');
-      console.log(locs);
-      setLineData(locs);
     });
-    console.log(lineData);
-    console.log('--------------------');
-    // console.log(line3);
+    setLineData(points);
+
+    console.log(points);
   };
+  // 获取并设置任务点
+  const putMarker = async () => {
+    const response = await getTaskCoords({userid: '1111111111'});
+    console.log(response.data);
+    const extractedData = response.data.map(
+      (item: {
+        lngLat: {split: (arg0: string) => [string, string]};
+        id: string;
+        name: string;
+      }) => {
+        const [longitude, latitude] = item.lngLat.split(',');
+        const lngLatObj = {
+          longitude: parseFloat(longitude),
+          latitude: parseFloat(latitude),
+        };
+
+        return {
+          position: lngLatObj,
+          properties: {
+            id: item.id,
+            name: item.name,
+          },
+        };
+      },
+    );
+    console.log(extractedData);
+    setMarkerData([...extractedData]);
+    console.log(markerData);
+  };
+
+  const styles = StyleSheet.create({
+    subScreens: {
+      // 各种悬浮窗的容器
+      justifyContent: 'center', // 居中
+      alignItems: 'center',
+      width: '100%',
+      height: '100%',
+      position: 'absolute',
+      zIndex: 10,
+      pointerEvents: 'box-none', // 让上层view不遮挡交互
+    },
+    /* ------------------------------------------- */
+    topContainer: {
+      width: '100%',
+      height: '100%',
+      position: 'absolute',
+      zIndex: 10,
+      pointerEvents: 'box-none', // 让上层view不遮挡交互
+      alignItems: 'center',
+    },
+    leftContainer: {
+      width: '1%',
+      height: '100%',
+      position: 'absolute',
+      zIndex: 10,
+      pointerEvents: 'box-none', // 让上层view不遮挡交互
+      left: 0,
+      justifyContent: 'center',
+    },
+    rightContainer: {
+      width: '100%',
+      height: '100%',
+      position: 'absolute',
+      zIndex: 10,
+      pointerEvents: 'box-none', // 让上层view不遮挡交互
+      right: -300,
+      justifyContent: 'center',
+    },
+    iconsContainer: {
+      flexDirection: 'row',
+    },
+  });
 
   return (
     <View style={StyleSheet.absoluteFill}>
-      <View>
-        <Text>{Location.latitude}</Text>
-        <Button title="getPath" onPress={pathPlaning}></Button>
+      {/* 上边栏 */}
+      <View style={styles.topContainer}>
+        <InfoBar />
       </View>
+      {/* 左边栏 */}
+      <View style={styles.leftContainer}>
+        <MenuButtons pathPlaning={pathPlaning} />
+      </View>
+      {/* 右边栏 */}
+      <View style={styles.rightContainer}></View>
+
+      {/* 悬浮窗容器（子屏幕） */}
+      <View style={styles.subScreens}>
+        {screenState === 'TaskScreen' && <TaskScreen />}
+      </View>
+
       <MapView
+        buildingsEnabled={true}
         myLocationEnabled={true}
         myLocationButtonEnabled={true}
+        zoomControlsEnabled={false}
         onLoad={() => {
           console.log('onLoad');
-          Geolocation.watchPosition(({coords}) => {
-            console.log(coords.longitude, coords.latitude);
-          });
+          putMarker();
         }}
         mapType={MapType.Navi}
         initialCameraPosition={{
           target: {
-            latitude: Location.latitude,
-            longitude: Location.longitude,
+            latitude: 31.674473,
+            longitude: 119.5759852,
           },
-          zoom: 8,
+          zoom: 16,
         }}>
-        <Marker
-          position={{latitude: 39.806901, longitude: 116.397972}}
-          icon={require('../../assets/fish.jpg')}
-          onPress={() => {
-            Alert.alert('onPress');
-          }}
-        />
-        <Marker
-          position={{latitude: 39.806901, longitude: 116.297972}}
-          icon={{
-            uri: 'https://reactnative.dev/img/pwa/manifest-icon-512.png',
-            width: 64,
-            height: 64,
-          }}
-        />
-        <Marker position={{latitude: 39.906901, longitude: 116.397972}}>
-          <Text
-            style={{
-              color: '#fff',
-              backgroundColor: '#009688',
-              alignItems: 'center',
-              borderRadius: 5,
-              padding: 5,
-            }}>
-            {new Date().toLocaleString()}
-          </Text>
-        </Marker>
-        <Polyline
-          width={5}
-          color="rgba(255, 0, 0, 0.5)"
-          points={lineData}></Polyline>
+        {/* <Cluster
+          points={markerData}
+          renderMarker={item => (
+            <Marker
+              key={item.properties.id}
+              icon={require('../../assets/fish.jpg')}
+              position={item.position}
+            />
+          )}
+        /> */}
+
+        {markerData.map(item => {
+          return (
+            <View key={item.properties.id}>
+              <Text
+                style={{
+                  color: '#fff',
+                  backgroundColor: '#009688',
+                  alignItems: 'center',
+                  borderRadius: 5,
+                  padding: 5,
+                }}>
+                {item.properties.name}
+              </Text>
+              <Marker
+                icon={require('../../assets/fish.jpg')}
+                position={{
+                  latitude: item.position.latitude,
+                  longitude: item.position.longitude,
+                }}></Marker>
+            </View>
+          );
+        })}
+
+        <Polyline width={5} color="rgba(255, 0, 0, 0.5)" points={lineData} />
       </MapView>
     </View>
   );

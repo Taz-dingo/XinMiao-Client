@@ -30,8 +30,8 @@ instance.interceptors.response.use(
     // 对响应数据进行处理，例如解析返回的数据
     const data = response.data;
     const status = response.status;
-    console.log("status: " + status);
-    console.log("data: " + JSON.stringify(data));
+    console.log("响应拦截|status: " + status);
+    console.log("响应拦截|data: " + JSON.stringify(data));
     // 处理自己的业务逻辑，比如判断 token 是否过期等等
     // 返回response.data 
     return data;

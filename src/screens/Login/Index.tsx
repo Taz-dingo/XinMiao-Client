@@ -15,10 +15,14 @@ import {
 } from '../../utils/validationUtils';
 import {login, msgLogin, sendMsg} from '../../services/api/userService';
 import {Button, Divider, Image, defaultSpacing} from '@rneui/base';
+import {NavigationProp} from '@react-navigation/native';
 
 // 目前登录方式有两种：default - 账号密码  msg - 短信
 type State = 'default' | 'msg';
-export default function LoginScreen({navigation}: any): any {
+type LoginScreenProps = {
+  navigation: NavigationProp<ReactNavigation.RootParamList>;
+};
+export default function LoginScreen({navigation}: LoginScreenProps) {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
 
