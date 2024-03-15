@@ -14,7 +14,7 @@ instance.interceptors.request.use(
   (config: InternalAxiosRequestConfig) => {
     // 在发送请求之前做一些处理，例如添加请求头信息
     // config.headers.Authorization = 'Bearer token123';
-    // console.log("请求配置", config);
+    console.log("请求配置", JSON.stringify(config));
     return config;
   },
   (error: AxiosError) => {

@@ -1,0 +1,425 @@
+--------- beginning of system
+03-13 14:28:45.220  1913 23286 W ActivityTaskManager: MANAGE_ACTIVITY_STACKS is deprecated, please use alternative permission: MANAGE_ACTIVITY_TASKS
+--------- beginning of main
+03-13 14:28:45.667  1083  5346 E NxpTml  : _>>>>> Empty packet recieved !!
+03-13 14:28:45.668  4902  5332 E libnfc_nci: [ERROR:nci_hrcv.cc(335)] unknown opcode:0x21
+03-13 14:28:46.222  1913  2340 W ActivityTaskManager: MANAGE_ACTIVITY_STACKS is deprecated, please use alternative permission: MANAGE_ACTIVITY_TASKS
+03-13 14:28:46.313  1083  5346 E NxpTml  : _>>>>> Empty packet recieved !!
+03-13 14:28:46.314  4902  5332 E libnfc_nci: [ERROR:nci_hrcv.cc(335)] unknown opcode:0x21
+03-13 14:28:46.966  1083  5346 E NxpTml  : _>>>>> Empty packet recieved !!
+03-13 14:28:46.967  4902  5332 E libnfc_nci: [ERROR:nci_hrcv.cc(335)] unknown opcode:0x21
+03-13 14:28:47.223  1913 23286 W ActivityTaskManager: MANAGE_ACTIVITY_STACKS is deprecated, please use alternative permission: MANAGE_ACTIVITY_TASKS
+03-13 14:28:47.614  1083  5346 E NxpTml  : _>>>>> Empty packet recieved !!
+03-13 14:28:47.614  4902  5332 E libnfc_nci: [ERROR:nci_hrcv.cc(335)] unknown opcode:0x21
+03-13 14:28:48.225  1913 23286 W ActivityTaskManager: MANAGE_ACTIVITY_STACKS is deprecated, please use alternative permission: MANAGE_ACTIVITY_TASKS
+03-13 14:28:48.266  1083  5346 E NxpTml  : _>>>>> Empty packet recieved !!
+03-13 14:28:48.267  4902  5332 E libnfc_nci: [ERROR:nci_hrcv.cc(335)] unknown opcode:0x21
+03-13 14:28:48.912  1083  5346 E NxpTml  : _>>>>> Empty packet recieved !!
+03-13 14:28:48.913  4902  5332 E libnfc_nci: [ERROR:nci_hrcv.cc(335)] unknown opcode:0x21
+03-13 14:28:49.227  1913  2340 W ActivityTaskManager: MANAGE_ACTIVITY_STACKS is deprecated, please use alternative permission: MANAGE_ACTIVITY_TASKS
+03-13 14:28:49.563  1083  5346 E NxpTml  : _>>>>> Empty packet recieved !!
+03-13 14:28:49.563  4902  5332 E libnfc_nci: [ERROR:nci_hrcv.cc(335)] unknown opcode:0x21
+03-13 14:28:49.651  1125  1375 E ANDR-PERF-LM: MetaMeter: handleAsync() 166: AdaptLaunch Invalid Async
+03-13 14:28:49.651  1125  1375 E ANDR-PERF-LM: MetaMeter: handleAsync() 166: AdaptLaunch Invalid Async
+03-13 14:28:49.652  1913 23286 E ANDR-PERF-JNI: com_qualcomm_qtiperformance_native_perf_io_prefetch_start
+03-13 14:28:49.653  1913 23286 W ActivityTaskManager: Can't find TaskDisplayArea to determine support for multi window. Task id=6602 attached=false
+03-13 14:28:49.653  1121  4214 E ANDR-IOP: io prefetch is disabled
+03-13 14:28:49.667  1913  1929 W ActivityTaskManager: MANAGE_ACTIVITY_STACKS is deprecated, please use alternative permission: MANAGE_ACTIVITY_TASKS
+03-13 14:28:49.667  1125  1375 W ANDR-PERF-LM: MetaMeter: handlePrimaryAsync() 118: AdaptLaunch MetaMeter. No MeterMgr Available to handle this Primary Async. !!!!
+03-13 14:28:49.667  1125  1375 W ANDR-PERF-LM: MetaMeter: handlePrimaryAsync() 118: AdaptLaunch MetaMeter. No MeterMgr Available to handle this Primary Async. !!!!
+03-13 14:28:49.671  1913  1929 W ActivityTaskManager: MANAGE_ACTIVITY_STACKS is deprecated, please use alternative permission: MANAGE_ACTIVITY_TASKS
+03-13 14:28:49.677  1913 23286 W ActivityTaskManager: MANAGE_ACTIVITY_STACKS is deprecated, please use alternative permission: MANAGE_ACTIVITY_TASKS
+03-13 14:28:49.710  1125  1375 E ANDR-PERF-LM: MetaMeter: handleAsync() 166: AdaptLaunch Invalid Async
+03-13 14:28:49.717  1913  2340 W ActivityTaskManager: MANAGE_ACTIVITY_STACKS is deprecated, please use alternative permission: MANAGE_ACTIVITY_TASKS
+03-13 14:28:49.718  6130 22355 E ActivityThread: Failed to find provider info for com.sony.songpal.mdr.application.mdr_info
+03-13 14:28:49.725  1913 23286 W ActivityTaskManager: MANAGE_ACTIVITY_STACKS is deprecated, please use alternative permission: MANAGE_ACTIVITY_TASKS
+03-13 14:28:49.730  1913  2340 W ActivityTaskManager: MANAGE_ACTIVITY_STACKS is deprecated, please use alternative permission: MANAGE_ACTIVITY_TASKS
+03-13 14:28:49.984  1913  5273 W ServiceManager: Permission failure: android.permission.HIGH_SAMPLING_RATE_SENSORS from uid=10342 pid=11709
+03-13 14:28:49.987  1913  5273 W ServiceManager: Permission failure: android.permission.HIGH_SAMPLING_RATE_SENSORS from uid=10342 pid=11709
+03-13 14:28:49.987  1913  5273 W ServiceManager: Permission failure: android.permission.HIGH_SAMPLING_RATE_SENSORS from uid=10342 pid=11709
+03-13 14:28:50.002  1913  5273 W ServiceManager: Permission failure: android.permission.HIGH_SAMPLING_RATE_SENSORS from uid=1001 pid=32692
+03-13 14:28:50.018 11709 11709 W com.xinmiao: Accessing hidden field Landroid/view/View;->mKeyedTags:Landroid/util/SparseArray; (unsupported, reflection, allowed)
+03-13 14:28:50.018 11709 11709 W com.xinmiao: Accessing hidden field Landroid/view/View;->mListenerInfo:Landroid/view/View$ListenerInfo; (unsupported, reflection, allowed)
+03-13 14:28:50.018 11709 11709 W com.xinmiao: Accessing hidden field Landroid/view/View$ListenerInfo;->mOnClickListener:Landroid/view/View$OnClickListener; (unsupported, reflection, allowed)
+03-13 14:28:50.043 11709 11744 W System.err: SLF4J: Failed to load class "org.slf4j.impl.StaticLoggerBinder".
+03-13 14:28:50.043 11709 11744 W System.err: SLF4J: Defaulting to no-operation (NOP) logger implementation
+03-13 14:28:50.043 11709 11744 W System.err: SLF4J: See http://www.slf4j.org/codes.html#StaticLoggerBinder for further details.
+03-13 14:28:50.065  1913  2340 W ActivityTaskManager: MANAGE_ACTIVITY_STACKS is deprecated, please use alternative permission: MANAGE_ACTIVITY_TASKS
+03-13 14:28:50.067  1913  2340 W ActivityTaskManager: MANAGE_ACTIVITY_STACKS is deprecated, please use alternative permission: MANAGE_ACTIVITY_TASKS
+03-13 14:28:50.088 11709 11709 W com.xinmiao: Accessing hidden method Landroid/view/View;->computeFitSystemWindows(Landroid/graphics/Rect;Landroid/graphics/Rect;)Z (unsupported, reflection, allowed)
+03-13 14:28:50.088 11709 11709 W com.xinmiao: Accessing hidden method Landroid/view/ViewGroup;->makeOptionalFitsSystemWindows()V (unsupported, reflection, allowed)
+03-13 14:28:50.115 11709 11709 W unknown:ReactNative: Packager connection already open, nooping.
+03-13 14:28:50.202  6130  6291 E ActivityThread: Failed to find provider info for com.sony.songpal.mdr.application.mdr_info
+03-13 14:28:50.212  1083  5346 E NxpTml  : _>>>>> Empty packet recieved !!
+03-13 14:28:50.212  4902  5332 E libnfc_nci: [ERROR:nci_hrcv.cc(335)] unknown opcode:0x21
+03-13 14:28:50.453  1913  1929 W InputManager-JNI: Input channel object '98b1bf2 PopupWindow:3a92b96 (client)' was disposed without first being removed with the input manager!
+03-13 14:28:50.472  1496  1496 W ServiceManager: Permission failure: android.permission.CAMERA_OPEN_CLOSE_LISTENER from uid=10342 pid=11709
+03-13 14:28:50.481 11709 11709 W unknown:ReactNative: Packager connection already open, nooping.
+03-13 14:28:50.501 11709 11824 W unknown:ViewManagerPropertyUpdater: Could not find generated setter for class com.facebook.react.views.traceupdateoverlay.TraceUpdateOverlayManager
+03-13 14:28:50.506 11709 11824 W unknown:ViewManagerPropertyUpdater: Could not find generated setter for class com.facebook.react.uimanager.LayoutShadowNode
+03-13 14:28:50.507  1913 23286 W InputManager-JNI: Input channel object '110f70f Splash Screen com.xinmiao (client)' was disposed without first being removed with the input manager!
+03-13 14:28:50.508 11709 11824 W unknown:ViewManagerPropertyUpdater: Could not find generated setter for class com.facebook.react.views.drawer.ReactDrawerLayoutManager
+03-13 14:28:50.510 11709 11824 W unknown:ViewManagerPropertyUpdater: Could not find generated setter for class com.facebook.react.views.scroll.ReactHorizontalScrollViewManager
+03-13 14:28:50.512 11709 11824 W unknown:ViewManagerPropertyUpdater: Could not find generated setter for class com.facebook.react.views.scroll.ReactHorizontalScrollContainerViewManager
+03-13 14:28:50.512 11709 11824 W unknown:ViewManagerPropertyUpdater: Could not find generated setter for class com.facebook.react.views.progressbar.ReactProgressBarViewManager
+03-13 14:28:50.513 11709 11824 W unknown:ViewManagerPropertyUpdater: Could not find generated setter for class com.facebook.react.views.progressbar.ProgressBarShadowNode
+03-13 14:28:50.514 11709 11824 W unknown:ViewManagerPropertyUpdater: Could not find generated setter for class com.facebook.react.views.scroll.ReactScrollViewManager
+03-13 14:28:50.516 11709 11824 W unknown:ViewManagerPropertyUpdater: Could not find generated setter for class com.facebook.react.views.switchview.ReactSwitchManager
+03-13 14:28:50.517 11709 11824 W unknown:ViewManagerPropertyUpdater: Could not find generated setter for class com.facebook.react.views.switchview.ReactSwitchManager$ReactSwitchShadowNode
+03-13 14:28:50.517 11709 11824 W unknown:ViewManagerPropertyUpdater: Could not find generated setter for class com.facebook.react.views.swiperefresh.SwipeRefreshLayoutManager
+03-13 14:28:50.519 11709 11824 W unknown:ViewManagerPropertyUpdater: Could not find generated setter for class com.facebook.react.views.text.frescosupport.FrescoBasedReactTextInlineImageViewManager
+03-13 14:28:50.519 11709 11824 W unknown:ViewManagerPropertyUpdater: Could not find generated setter for class com.facebook.react.views.text.frescosupport.FrescoBasedReactTextInlineImageShadowNode
+03-13 14:28:50.520 11709 11824 W unknown:ViewManagerPropertyUpdater: Could not find generated setter for class com.facebook.react.views.image.ReactImageManager
+03-13 14:28:50.521 11709 11824 W unknown:ViewManagerPropertyUpdater: Could not find generated setter for class com.facebook.react.views.modal.ReactModalHostManager
+03-13 14:28:50.522 11709 11824 W unknown:ViewManagerPropertyUpdater: Could not find generated setter for class com.facebook.react.views.modal.ModalHostShadowNode
+03-13 14:28:50.523 11709 11824 W unknown:ViewManagerPropertyUpdater: Could not find generated setter for class com.facebook.react.views.text.ReactRawTextManager
+03-13 14:28:50.523 11709 11824 W unknown:ViewManagerPropertyUpdater: Could not find generated setter for class com.facebook.react.views.text.ReactRawTextShadowNode
+03-13 14:28:50.523 11709 11824 W unknown:ViewManagerPropertyUpdater: Could not find generated setter for class com.facebook.react.views.textinput.ReactTextInputManager
+03-13 14:28:50.525 11709 11824 W unknown:ViewManagerPropertyUpdater: Could not find generated setter for class com.facebook.react.views.textinput.ReactTextInputShadowNode
+03-13 14:28:50.527 11709 11824 W unknown:ViewManagerPropertyUpdater: Could not find generated setter for class com.facebook.react.views.text.ReactTextViewManager
+03-13 14:28:50.528 11709 11824 W unknown:ViewManagerPropertyUpdater: Could not find generated setter for class com.facebook.react.views.text.ReactTextShadowNode
+03-13 14:28:50.529 11709 11824 W unknown:ViewManagerPropertyUpdater: Could not find generated setter for class com.facebook.react.views.view.ReactViewManager
+03-13 14:28:50.530 11709 11824 W unknown:ViewManagerPropertyUpdater: Could not find generated setter for class com.facebook.react.views.text.ReactVirtualTextViewManager
+03-13 14:28:50.530 11709 11824 W unknown:ViewManagerPropertyUpdater: Could not find generated setter for class com.facebook.react.views.text.ReactVirtualTextShadowNode
+03-13 14:28:50.531 11709 11824 W unknown:ViewManagerPropertyUpdater: Could not find generated setter for class com.facebook.react.views.unimplementedview.ReactUnimplementedViewManager
+03-13 14:28:50.532 11709 11824 W unknown:ViewManagerPropertyUpdater: Could not find generated setter for class qiuxiang.amap3d.map_view.MapViewManager
+03-13 14:28:50.533 11709 11824 W unknown:ViewManagerPropertyUpdater: Could not find generated setter for class qiuxiang.amap3d.map_view.MarkerManager
+03-13 14:28:50.533 11709 11824 W unknown:ViewManagerPropertyUpdater: Could not find generated setter for class qiuxiang.amap3d.map_view.PolylineManager
+03-13 14:28:50.534 11709 11824 W unknown:ViewManagerPropertyUpdater: Could not find generated setter for class qiuxiang.amap3d.map_view.PolygonManager
+03-13 14:28:50.534 11709 11824 W unknown:ViewManagerPropertyUpdater: Could not find generated setter for class qiuxiang.amap3d.map_view.CircleManager
+03-13 14:28:50.535 11709 11824 W unknown:ViewManagerPropertyUpdater: Could not find generated setter for class qiuxiang.amap3d.map_view.HeatMapManager
+03-13 14:28:50.535 11709 11824 W unknown:ViewManagerPropertyUpdater: Could not find generated setter for class qiuxiang.amap3d.map_view.MultiPointManager
+03-13 14:28:50.535 11709 11824 W unknown:ViewManagerPropertyUpdater: Could not find generated setter for class com.th3rdwave.safeareacontext.SafeAreaProviderManager
+03-13 14:28:50.536 11709 11824 W unknown:ViewManagerPropertyUpdater: Could not find generated setter for class com.th3rdwave.safeareacontext.SafeAreaViewManager
+03-13 14:28:50.536 11709 11824 W unknown:ViewManagerPropertyUpdater: Could not find generated setter for class com.th3rdwave.safeareacontext.SafeAreaViewShadowNode
+03-13 14:28:50.537 11709 11824 W unknown:ViewManagerPropertyUpdater: Could not find generated setter for class com.swmansion.rnscreens.ScreenContainerViewManager
+03-13 14:28:50.537 11709 11824 E unknown:UIManagerModuleConstantsHelper: Direct event name for 'RNSScreen' doesn't correspond to the naming convention, expected 'topEventName'->'onEventName', got 'topHeaderBackButtonClickedEvent'->'onHeaderBackButtonClicked'
+03-13 14:28:50.537 11709 11824 W unknown:ViewManagerPropertyUpdater: Could not find generated setter for class com.swmansion.rnscreens.ScreenViewManager
+03-13 14:28:50.538 11709 11824 W unknown:ViewManagerPropertyUpdater: Could not find generated setter for class com.swmansion.rnscreens.ScreenStackViewManager
+03-13 14:28:50.539 11709 11824 W unknown:ViewManagerPropertyUpdater: Could not find generated setter for class com.swmansion.rnscreens.ScreenStackHeaderConfigViewManager
+03-13 14:28:50.539 11709 11824 W unknown:ViewManagerPropertyUpdater: Could not find generated setter for class com.swmansion.rnscreens.ScreenStackHeaderSubviewManager
+03-13 14:28:50.540 11709 11824 W unknown:ViewManagerPropertyUpdater: Could not find generated setter for class com.swmansion.rnscreens.SearchBarManager
+03-13 14:28:50.540 11709 11824 W unknown:ViewManagerPropertyUpdater: Could not find generated setter for class com.mrousavy.camera.CameraViewManager
+03-13 14:28:50.546 11709 11824 W com.xinmiao: Accessing hidden field Ljava/lang/reflect/Field;->accessFlags:I (unsupported, reflection, allowed)
+03-13 14:28:50.600  1913 23286 W ContextImpl: Calling a method in the system process without a qualified user: android.app.ContextImpl.sendBroadcast:1173 com.sonymobile.server.cta.CtaRecorder.recordInternal:123 com.sonymobile.server.cta.CtaRecorder.record:96 com.android.server.pm.PackageManagerService.checkCanGetPackageListAndShowNotfication:29198 com.android.server.pm.PackageManagerService.checkCanGetPackageListAndShowNotfication:29161 
+03-13 14:28:50.663  1125  4209 E ANDR-PERF-LM: VmRssMeter:: start() 447: Could not find pid, can not collect vmrss data
+03-13 14:28:50.663  1125  4209 E ANDR-PERF-LM: AdaptiveLaunch: writeToDataBase() 64: Meter aborted or could not get meter data for this run
+03-13 14:28:50.664  1125  4208 E ANDR-PERF-LM: VmRssMeter:: start() 447: Could not find pid, can not collect vmrss data
+03-13 14:28:50.718  1913 23286 W ActivityTaskManager: MANAGE_ACTIVITY_STACKS is deprecated, please use alternative permission: MANAGE_ACTIVITY_TASKS
+03-13 14:28:50.732 11709 11824 W com.xinmiao: Entry not found
+03-13 14:28:50.862  1083  5346 E NxpTml  : _>>>>> Empty packet recieved !!
+03-13 14:28:50.862  4902  5332 E libnfc_nci: [ERROR:nci_hrcv.cc(335)] unknown opcode:0x21
+03-13 14:28:51.421  1913  1929 W ActivityTaskManager: MANAGE_ACTIVITY_STACKS is deprecated, please use alternative permission: MANAGE_ACTIVITY_TASKS
+03-13 14:28:51.422  1496  1496 W ServiceManager: Permission failure: android.permission.CAMERA_OPEN_CLOSE_LISTENER from uid=10108 pid=2336
+03-13 14:28:51.423  1496  2834 W ServiceManager: Permission failure: android.permission.CAMERA from uid=10108 pid=2336
+03-13 14:28:51.423  1496  2834 W ServiceManager: Permission failure: android.permission.CAMERA from uid=10108 pid=2336
+03-13 14:28:51.424  1496  2834 W ServiceManager: Permission failure: android.permission.CAMERA from uid=10108 pid=2336
+03-13 14:28:51.425  1496  2834 W ServiceManager: Permission failure: android.permission.CAMERA from uid=10108 pid=2336
+03-13 14:28:51.425  1496  2834 W ServiceManager: Permission failure: android.permission.CAMERA from uid=10108 pid=2336
+03-13 14:28:51.513  1083  5346 E NxpTml  : _>>>>> Empty packet recieved !!
+03-13 14:28:51.513  4902  5332 E libnfc_nci: [ERROR:nci_hrcv.cc(335)] unknown opcode:0x21
+03-13 14:28:51.515  1913 23286 W ActivityTaskManager: MANAGE_ACTIVITY_STACKS is deprecated, please use alternative permission: MANAGE_ACTIVITY_TASKS
+03-13 14:28:51.879 11709 11823 E unknown:UIManagerModuleConstantsHelper: Direct event name for 'RNSScreen' doesn't correspond to the naming convention, expected 'topEventName'->'onEventName', got 'topHeaderBackButtonClickedEvent'->'onHeaderBackButtonClicked'
+03-13 14:28:51.890 11709 11824 W unknown:ViewManagerPropertyUpdater: Could not find generated setter for class com.swmansion.rnscreens.ScreensShadowNode
+03-13 14:28:51.943 11709 11859 W libc    : Access denied finding property "persist.vendor.camera.privapp.list"
+03-13 14:28:51.957  1173  2576 E FMQ     : grantorIdx must be less than 3
+03-13 14:28:51.958  1173  2576 E FMQ     : grantorIdx must be less than 3
+03-13 14:28:51.959  1496  1496 W ServiceManager: Permission failure: android.permission.CAMERA from uid=1001 pid=32692
+03-13 14:28:51.965  1496  1496 W ServiceManager: Permission failure: android.permission.CAMERA from uid=1001 pid=32692
+03-13 14:28:51.969  1496  2834 W cameraserver: createSurfaceFromGbp: Camera 1 with consumer usage flag: 256: Forcing asynchronous mode forstream
+03-13 14:28:51.986  1173 11940 W campf   : 4015709352997 excal_depth_comp.cpp               (214) 11940 W [EXC] [COMP] [DepthComp       806] NotFound TOF Sensor
+03-13 14:28:52.035  1173 12000 W campf   : 4015758687476 cammw_camera_client.cpp           (3372) 12000 W [CMW] [CLI] bufInfo format=536870912, size={1382400,1}, stride=1384448, scanline=1, color_space=0, grallocUsage=0
+03-13 14:28:52.165  1083  5346 E NxpTml  : _>>>>> Empty packet recieved !!
+03-13 14:28:52.165  4902  5332 E libnfc_nci: [ERROR:nci_hrcv.cc(335)] unknown opcode:0x21
+03-13 14:28:52.443  1086  1086 E Diag_Lib:  Diag_LSM_Init: Failed to open handle to diag driver, error = 13
+03-13 14:28:52.443  1086  1086 E Diag_Lib:  Diag_LSM_Init: Failed to open handle to diag driver, error = 13
+03-13 14:28:52.456  1173 11880 E libsonyec: InvalidArg AeStats. multiResult[0][0].count(0) sum(0).
+03-13 14:28:52.456  1173 11880 E libsonyec: InvalidArg AeStats. multiResult[0][1].count(0) sum(0).
+03-13 14:28:52.456  1173 11880 E libsonyec: InvalidArg AeStats. multiResult[0][2].count(0) sum(0).
+03-13 14:28:52.456  1173 11880 E libsonyec: InvalidArg AeStats. multiResult[0][3].count(0) sum(0).
+03-13 14:28:52.456  1173 11880 E libsonyec: InvalidArg AeStats. multiResult[0][4].count(0) sum(0).
+03-13 14:28:52.456  1173 11880 E libsonyec: InvalidArg AeStats. multiResult[0][5].count(0) sum(0).
+03-13 14:28:52.456  1173 11880 E libsonyec: InvalidArg AeStats. multiResult[0][6].count(0) sum(0).
+03-13 14:28:52.456  1173 11880 E libsonyec: InvalidArg AeStats. multiResult[0][7].count(0) sum(0).
+03-13 14:28:52.456  1173 11880 E libsonyec: InvalidArg AeStats. multiResult[0][8].count(0) sum(0).
+03-13 14:28:52.456  1173 11880 E libsonyec: InvalidArg AeStats. multiResult[0][9].count(0) sum(0).
+03-13 14:28:52.456  1173 11880 E libsonyec: InvalidArg AeStats. multiResult[0][10].count(0) sum(0).
+03-13 14:28:52.456  1173 11880 E libsonyec: InvalidArg AeStats. multiResult[1][0].count(0) sum(0).
+03-13 14:28:52.456  1173 11880 E libsonyec: InvalidArg AeStats. multiResult[1][1].count(0) sum(0).
+03-13 14:28:52.456  1173 11880 E libsonyec: InvalidArg AeStats. multiResult[1][2].count(0) sum(0).
+03-13 14:28:52.456  1173 11880 E libsonyec: InvalidArg AeStats. multiResult[1][3].count(0) sum(0).
+03-13 14:28:52.456  1173 11880 E libsonyec: InvalidArg AeStats. multiResult[1][4].count(0) sum(0).
+03-13 14:28:52.456  1173 11880 E libsonyec: InvalidArg AeStats. multiResult[1][5].count(0) sum(0).
+03-13 14:28:52.456  1173 11880 E libsonyec: InvalidArg AeStats. multiResult[1][6].count(0) sum(0).
+03-13 14:28:52.456  1173 11880 E libsonyec: InvalidArg AeStats. multiResult[1][7].count(0) sum(0).
+03-13 14:28:52.456  1173 11880 E libsonyec: InvalidArg AeStats. multiResult[1][8].count(0) sum(0).
+03-13 14:28:52.456  1173 11880 E libsonyec: InvalidArg AeStats. multiResult[1][9].count(0) sum(0).
+03-13 14:28:52.456  1173 11880 E libsonyec: InvalidArg AeStats. multiResult[1][10].count(0) sum(0).
+03-13 14:28:52.456  1173 11880 E libsonyec: InvalidArg AeStats. multiResult[2][0].count(0) sum(0).
+03-13 14:28:52.456  1173 11880 E libsonyec: InvalidArg AeStats. multiResult[2][1].count(0) sum(0).
+03-13 14:28:52.456  1173 11880 E libsonyec: InvalidArg AeStats. multiResult[2][2].count(0) sum(0).
+03-13 14:28:52.456  1173 11880 E libsonyec: InvalidArg AeStats. multiResult[2][3].count(0) sum(0).
+03-13 14:28:52.456  1173 11880 E libsonyec: InvalidArg AeStats. multiResult[2][4].count(0) sum(0).
+03-13 14:28:52.456  1173 11880 E libsonyec: InvalidArg AeStats. multiResult[2][5].count(0) sum(0).
+03-13 14:28:52.456  1173 11880 E libsonyec: InvalidArg AeStats. multiResult[2][6].count(0) sum(0).
+03-13 14:28:52.456  1173 11880 E libsonyec: InvalidArg AeStats. multiResult[2][7].count(0) sum(0).
+03-13 14:28:52.456  1173 11880 E libsonyec: InvalidArg AeStats. multiResult[2][8].count(0) sum(0).
+03-13 14:28:52.456  1173 11880 E libsonyec: InvalidArg AeStats. multiResult[2][9].count(0) sum(0).
+03-13 14:28:52.456  1173 11880 E libsonyec: InvalidArg AeStats. multiResult[2][10].count(0) sum(0).
+03-13 14:28:52.456  1173 11880 E libsonyec: InvalidArg AeStats. multiResult[3][0].count(0) sum(0).
+03-13 14:28:52.456  1173 11880 E libsonyec: InvalidArg AeStats. multiResult[3][1].count(0) sum(0).
+03-13 14:28:52.456  1173 11880 E libsonyec: InvalidArg AeStats. multiResult[3][2].count(0) sum(0).
+03-13 14:28:52.456  1173 11880 E libsonyec: InvalidArg AeStats. multiResult[3][3].count(0) sum(0).
+03-13 14:28:52.456  1173 11880 E libsonyec: InvalidArg AeStats. multiResult[3][4].count(0) sum(0).
+03-13 14:28:52.456  1173 11880 E libsonyec: InvalidArg AeStats. multiResult[3][5].count(0) sum(0).
+03-13 14:28:52.456  1173 11880 E libsonyec: InvalidArg AeStats. multiResult[3][6].count(0) sum(0).
+03-13 14:28:52.456  1173 11880 E libsonyec: InvalidArg AeStats. multiResult[3][7].count(0) sum(0).
+03-13 14:28:52.456  1173 11880 E libsonyec: InvalidArg AeStats. multiResult[3][8].count(0) sum(0).
+03-13 14:28:52.456  1173 11880 E libsonyec: InvalidArg AeStats. multiResult[3][9].count(0) sum(0).
+03-13 14:28:52.456  1173 11880 E libsonyec: InvalidArg AeStats. multiResult[3][10].count(0) sum(0).
+03-13 14:28:52.456  1173 11880 E libsonyec: InvalidArg AeStats. multiResult[4][0].count(0) sum(0).
+03-13 14:28:52.456  1173 11880 E libsonyec: InvalidArg AeStats. multiResult[4][1].count(0) sum(0).
+03-13 14:28:52.456  1173 11880 E libsonyec: InvalidArg AeStats. multiResult[4][2].count(0) sum(0).
+03-13 14:28:52.456  1173 11880 E libsonyec: InvalidArg AeStats. multiResult[4][3].count(0) sum(0).
+03-13 14:28:52.456  1173 11880 E libsonyec: InvalidArg AeStats. multiResult[4][4].count(0) sum(0).
+03-13 14:28:52.456  1173 11880 E libsonyec: InvalidArg AeStats. multiResult[4][5].count(0) sum(0).
+03-13 14:28:52.456  1173 11880 E libsonyec: InvalidArg AeStats. multiResult[4][6].count(0) sum(0).
+03-13 14:28:52.456  1173 11880 E libsonyec: InvalidArg AeStats. multiResult[4][7].count(0) sum(0).
+03-13 14:28:52.456  1173 11880 E libsonyec: InvalidArg AeStats. multiResult[4][8].count(0) sum(0).
+03-13 14:28:52.456  1173 11880 E libsonyec: InvalidArg AeStats. multiResult[4][9].count(0) sum(0).
+03-13 14:28:52.456  1173 11880 E libsonyec: InvalidArg AeStats. multiResult[4][10].count(0) sum(0).
+03-13 14:28:52.456  1173 11880 E libsonyec: InvalidArg AeStats. multiResult[5][0].count(0) sum(0).
+03-13 14:28:52.456  1173 11880 E libsonyec: InvalidArg AeStats. multiResult[5][1].count(0) sum(0).
+03-13 14:28:52.456  1173 11880 E libsonyec: InvalidArg AeStats. multiResult[5][2].count(0) sum(0).
+03-13 14:28:52.456  1173 11880 E libsonyec: InvalidArg AeStats. multiResult[5][3].count(0) sum(0).
+03-13 14:28:52.456  1173 11880 E libsonyec: InvalidArg AeStats. multiResult[5][4].count(0) sum(0).
+03-13 14:28:52.456  1173 11880 E libsonyec: InvalidArg AeStats. multiResult[5][5].count(0) sum(0).
+03-13 14:28:52.456  1173 11880 E libsonyec: InvalidArg AeStats. multiResult[5][6].count(0) sum(0).
+03-13 14:28:52.456  1173 11880 E libsonyec: InvalidArg AeStats. multiResult[5][7].count(0) sum(0).
+03-13 14:28:52.456  1173 11880 E libsonyec: InvalidArg AeStats. multiResult[5][8].count(0) sum(0).
+03-13 14:28:52.456  1173 11880 E libsonyec: InvalidArg AeStats. multiResult[5][9].count(0) sum(0).
+03-13 14:28:52.456  1173 11880 E libsonyec: InvalidArg AeStats. multiResult[5][10].count(0) sum(0).
+03-13 14:28:52.456  1173 11880 E libsonyec: InvalidArg AeStats. multiResult[6][0].count(0) sum(0).
+03-13 14:28:52.456  1173 11880 E libsonyec: InvalidArg AeStats. multiResult[6][1].count(0) sum(0).
+03-13 14:28:52.456  1173 11880 E libsonyec: InvalidArg AeStats. multiResult[6][2].count(0) sum(0).
+03-13 14:28:52.456  1173 11880 E libsonyec: InvalidArg AeStats. multiResult[6][3].count(0) sum(0).
+03-13 14:28:52.456  1173 11880 E libsonyec: InvalidArg AeStats. multiResult[6][4].count(0) sum(0).
+03-13 14:28:52.456  1173 11880 E libsonyec: InvalidArg AeStats. multiResult[6][5].count(0) sum(0).
+03-13 14:28:52.456  1173 11880 E libsonyec: InvalidArg AeStats. multiResult[6][6].count(0) sum(0).
+03-13 14:28:52.456  1173 11880 E libsonyec: InvalidArg AeStats. multiResult[6][7].count(0) sum(0).
+03-13 14:28:52.456  1173 11880 E libsonyec: InvalidArg AeStats. multiResult[6][8].count(0) sum(0).
+03-13 14:28:52.456  1173 11880 E libsonyec: InvalidArg AeStats. multiResult[6][9].count(0) sum(0).
+03-13 14:28:52.456  1173 11880 E libsonyec: InvalidArg AeStats. multiResult[6][10].count(0) sum(0).
+03-13 14:28:52.456  1173 11880 E libsonyec: InvalidArg AeStats. multiResult[7][0].count(0) sum(0).
+03-13 14:28:52.456  1173 11880 E libsonyec: InvalidArg AeStats. multiResult[7][1].count(0) sum(0).
+03-13 14:28:52.456  1173 11880 E libsonyec: InvalidArg AeStats. multiResult[7][2].count(0) sum(0).
+03-13 14:28:52.456  1173 11880 E libsonyec: InvalidArg AeStats. multiResult[7][3].count(0) sum(0).
+03-13 14:28:52.456  1173 11880 E libsonyec: InvalidArg AeStats. multiResult[7][4].count(0) sum(0).
+03-13 14:28:52.456  1173 11880 E libsonyec: InvalidArg AeStats. multiResult[7][5].count(0) sum(0).
+03-13 14:28:52.456  1173 11880 E libsonyec: InvalidArg AeStats. multiResult[7][6].count(0) sum(0).
+03-13 14:28:52.456  1173 11880 E libsonyec: InvalidArg AeStats. multiResult[7][7].count(0) sum(0).
+03-13 14:28:52.456  1173 11880 E libsonyec: InvalidArg AeStats. multiResult[7][8].count(0) sum(0).
+03-13 14:28:52.456  1173 11880 E libsonyec: InvalidArg AeStats. multiResult[7][9].count(0) sum(0).
+03-13 14:28:52.456  1173 11880 E libsonyec: InvalidArg AeStats. multiResult[7][10].count(0) sum(0).
+03-13 14:28:52.456  1173 11880 E libsonyec: InvalidArg AeStats. multiResult[8][0].count(0) sum(0).
+03-13 14:28:52.456  1173 11880 E libsonyec: InvalidArg AeStats. multiResult[8][1].count(0) sum(0).
+03-13 14:28:52.456  1173 11880 E libsonyec: InvalidArg AeStats. multiResult[8][2].count(0) sum(0).
+03-13 14:28:52.456  1173 11880 E libsonyec: InvalidArg AeStats. multiResult[8][3].count(0) sum(0).
+03-13 14:28:52.456  1173 11880 E libsonyec: InvalidArg AeStats. multiResult[8][4].count(0) sum(0).
+03-13 14:28:52.456  1173 11880 E libsonyec: InvalidArg AeStats. multiResult[8][5].count(0) sum(0).
+03-13 14:28:52.456  1173 11880 E libsonyec: InvalidArg AeStats. multiResult[8][6].count(0) sum(0).
+03-13 14:28:52.456  1173 11880 E libsonyec: InvalidArg AeStats. multiResult[8][7].count(0) sum(0).
+03-13 14:28:52.456  1173 11880 E libsonyec: InvalidArg AeStats. multiResult[8][8].count(0) sum(0).
+03-13 14:28:52.456  1173 11880 E libsonyec: InvalidArg AeStats. multiResult[8][9].count(0) sum(0).
+03-13 14:28:52.456  1173 11880 E libsonyec: InvalidArg AeStats. multiResult[8][10].count(0) sum(0).
+03-13 14:28:52.456  1173 11965 W campf   : 4016179928726 cammw_camera_client.cpp           (3092) 11965 W [CMW] [CLI] PORT[ 8]: open reg=0, que=0, gralloc=0x0
+03-13 14:28:52.456  1173 11965 W campf   : 4016179973101 cammw_camera_client.cpp           (3092) 11965 W [CMW] [CLI] PORT[ 1]: open reg=0, que=0, gralloc=0x0
+03-13 14:28:52.456  1173 11965 W campf   : 4016180038309 cammw_camera_client.cpp           (3092) 11965 W [CMW] [CLI] PORT[ 5]: open reg=0, que=0, gralloc=0x0
+03-13 14:28:52.456  1173 11965 W campf   : 4016180072840 cammw_camera_client.cpp           (3092) 11965 W [CMW] [CLI] PORT[ 4]: open reg=0, que=0, gralloc=0x0
+03-13 14:28:52.456  1173 11965 W campf   : 4016180145705 cammw_camera_client.cpp           (3092) 11965 W [CMW] [CLI] PORT[ 0]: open reg=0, que=0, gralloc=0x0
+03-13 14:28:52.459  1173 11965 W campf   : 4016182822945 cammw_camera_client.cpp           (3092) 11965 W [CMW] [CLI] PORT[26]: open reg=0, que=0, gralloc=0x0
+03-13 14:28:52.459  1173 11965 W campf   : 4016182922580 cammw_camera_client.cpp           (3092) 11965 W [CMW] [CLI] PORT[ 3]: open reg=0, que=0, gralloc=0x0
+03-13 14:28:52.459  1173 11965 W campf   : 4016183042007 cammw_camera_client.cpp           (3372) 11965 W [CMW] [CLI] bufInfo format=536870912, size={4096,1}, stride=4096, scanline=1, color_space=0, grallocUsage=0
+03-13 14:28:52.459  1173 11965 W campf   : 4016183062007 cammw_camera_client.cpp           (3372) 11965 W [CMW] [CLI] bufInfo format=536870912, size={1382400,1}, stride=1384448, scanline=1, color_space=0, grallocUsage=0
+03-13 14:28:52.459  1173 11965 W campf   : 4016183072215 cammw_camera_client.cpp           (3372) 11965 W [CMW] [CLI] bufInfo format=536870912, size={294912,1}, stride=294912, scanline=1, color_space=0, grallocUsage=0
+03-13 14:28:52.459  1173 11965 W campf   : 4016183081226 cammw_camera_client.cpp           (3372) 11965 W [CMW] [CLI] bufInfo format=536870912, size={65536,1}, stride=65536, scanline=1, color_space=0, grallocUsage=0
+03-13 14:28:52.466  1173 11965 E qdgralloc: GetSize: Buffers with HAL_PIXEL_FORMAT_BLOB must have height 1 
+03-13 14:28:52.516  1913  2257 W ActivityTaskManager: MANAGE_ACTIVITY_STACKS is deprecated, please use alternative permission: MANAGE_ACTIVITY_TASKS
+03-13 14:28:52.551  1173 11880 W libsonyec: Limit Long Iris2. Type(0) Min(0x1000) Current(0x0)
+03-13 14:28:52.551  1173 11880 W libsonyec: Limit Long Iris2. Type(1) Min(0x1000) Current(0x0)
+03-13 14:28:52.603 11709 11811 E BufferQueueProducer: [ImageReader-1920x1440f22m3-11709-0](id:2dbd00000004,api:4,p:1496,c:11709) dequeueBuffer: BufferQueue has been abandoned
+03-13 14:28:52.603  1496 11885 E Camera3-OutputStream: getBufferLockedCommon: Stream 0: Can't dequeue next output buffer: No such device (-19)
+03-13 14:28:52.657  1496  2834 W cameraserver: createSurfaceFromGbp: Camera 1 with consumer usage flag: 256: Forcing asynchronous mode forstream
+03-13 14:28:52.658  1496  2834 W cameraserver: createSurfaceFromGbp: Camera 1 with consumer usage flag: 2304: Forcing asynchronous mode forstream
+03-13 14:28:52.659  1496  2834 W cameraserver: createSurfaceFromGbp: Camera 1: Overriding format 0x4 to IMPLEMENTATION_DEFINED
+03-13 14:28:52.661  4902  5332 E libnfc_nci: [ERROR:nfa_ce_act.cc(1716)] nfa_ce_api_dereg_listen (): cannot find listen_info for UICC/ESE
+03-13 14:28:52.661  4902  5332 E libnfc_nci: [ERROR:nfa_ce_act.cc(1716)] nfa_ce_api_dereg_listen (): cannot find listen_info for UICC/ESE
+03-13 14:28:52.662  4902  4932 E com.android.nf: NfcAdaptation::setNfcServicePid mHalNxpNfcLegacy completed
+03-13 14:28:52.671  1083  5346 E NxpTml  : _>>>>> Empty packet recieved !!
+03-13 14:28:52.671  4902  5332 E libnfc_nci: [ERROR:nci_hrcv.cc(335)] unknown opcode:0x21
+03-13 14:28:52.674  1086  1086 E Diag_Lib: diag: Diag_LSM_DeInit: invoked for pid: 1086
+03-13 14:28:52.674  1086  1086 E Diag_Lib: diag: Diag_LSM_DeInit: done for pid: 1086
+03-13 14:28:52.674  1086  1086 E Diag_Lib: diag: Diag_LSM_DeInit: invoked for pid: 1086
+03-13 14:28:52.674  1086  1086 E Diag_Lib: diag: Diag_LSM_DeInit: done for pid: 1086
+03-13 14:28:52.681  1086  1086 E Diag_Lib:  Diag_LSM_Init: Failed to open handle to diag driver, error = 13
+03-13 14:28:52.681  1173 11965 W campf   : 4016404780340 cammw_camera_client.cpp           (3092) 11965 W [CMW] [CLI] PORT[ 8]: open reg=0, que=0, gralloc=0x0
+03-13 14:28:52.681  1173 11965 W campf   : 4016404829142 cammw_camera_client.cpp           (3092) 11965 W [CMW] [CLI] PORT[ 1]: open reg=0, que=0, gralloc=0x0
+03-13 14:28:52.681  1173 11965 W campf   : 4016404895028 cammw_camera_client.cpp           (3092) 11965 W [CMW] [CLI] PORT[ 5]: open reg=0, que=0, gralloc=0x0
+03-13 14:28:52.681  1173 11965 W campf   : 4016404932997 cammw_camera_client.cpp           (3092) 11965 W [CMW] [CLI] PORT[ 4]: open reg=0, que=0, gralloc=0x0
+03-13 14:28:52.681  1173 11965 W campf   : 4016404972580 cammw_camera_client.cpp           (3092) 11965 W [CMW] [CLI] PORT[ 0]: open reg=0, que=0, gralloc=0x0
+03-13 14:28:52.681  1086  1086 E Diag_Lib:  Diag_LSM_Init: Failed to open handle to diag driver, error = 13
+03-13 14:28:52.684  1173 11965 W campf   : 4016407783465 cammw_camera_client.cpp           (3092) 11965 W [CMW] [CLI] PORT[26]: open reg=0, que=0, gralloc=0x0
+03-13 14:28:52.684  1173 11965 W campf   : 4016407973101 cammw_camera_client.cpp           (3092) 11965 W [CMW] [CLI] PORT[ 3]: open reg=0, que=0, gralloc=0x0
+03-13 14:28:52.684  1173 11965 W campf   : 4016408216226 cammw_camera_client.cpp           (3372) 11965 W [CMW] [CLI] bufInfo format=536870912, size={4096,1}, stride=4096, scanline=1, color_space=0, grallocUsage=0
+03-13 14:28:52.684  1173 11965 W campf   : 4016408228882 cammw_camera_client.cpp           (3372) 11965 W [CMW] [CLI] bufInfo format=536870912, size={1382400,1}, stride=1384448, scanline=1, color_space=0, grallocUsage=0
+03-13 14:28:52.684  1173 11965 W campf   : 4016408238569 cammw_camera_client.cpp           (3372) 11965 W [CMW] [CLI] bufInfo format=536870912, size={294912,1}, stride=294912, scanline=1, color_space=0, grallocUsage=0
+03-13 14:28:52.684  1173 11965 W campf   : 4016408247892 cammw_camera_client.cpp           (3372) 11965 W [CMW] [CLI] bufInfo format=536870912, size={65536,1}, stride=65536, scanline=1, color_space=0, grallocUsage=0
+03-13 14:28:52.703  1173 11965 E qdgralloc: GetSize: Buffers with HAL_PIXEL_FORMAT_BLOB must have height 1 
+--------- beginning of crash
+03-13 14:28:52.930 11709 11860 E AndroidRuntime: FATAL EXCEPTION: mrousavy/VisionCamera.video
+03-13 14:28:52.930 11709 11860 E AndroidRuntime: Process: com.xinmiao, PID: 11709
+03-13 14:28:52.930 11709 11860 E AndroidRuntime: com.facebook.jni.CppException: Compiling JS failed: 1:1:invalid empty parentheses '( )' Buffer size 3 starts with: 280a29
+03-13 14:28:52.930 11709 11860 E AndroidRuntime: 	at com.mrousavy.camera.frameprocessor.FrameProcessor.call(Native Method)
+03-13 14:28:52.930 11709 11860 E AndroidRuntime: 	at com.mrousavy.camera.core.VideoPipeline._init_$lambda$0(VideoPipeline.kt:115)
+03-13 14:28:52.930 11709 11860 E AndroidRuntime: 	at com.mrousavy.camera.core.VideoPipeline.$r8$lambda$EMriwS_FKhtjTFtppM84Z5V8tiI(Unknown Source:0)
+03-13 14:28:52.930 11709 11860 E AndroidRuntime: 	at com.mrousavy.camera.core.VideoPipeline$$ExternalSyntheticLambda0.onImageAvailable(Unknown Source:2)
+03-13 14:28:52.930 11709 11860 E AndroidRuntime: 	at android.media.ImageReader$1.run(ImageReader.java:837)
+03-13 14:28:52.930 11709 11860 E AndroidRuntime: 	at android.os.Handler.handleCallback(Handler.java:938)
+03-13 14:28:52.930 11709 11860 E AndroidRuntime: 	at android.os.Handler.dispatchMessage(Handler.java:99)
+03-13 14:28:52.930 11709 11860 E AndroidRuntime: 	at android.os.Looper.loopOnce(Looper.java:346)
+03-13 14:28:52.930 11709 11860 E AndroidRuntime: 	at android.os.Looper.loop(Looper.java:475)
+03-13 14:28:52.930 11709 11860 E AndroidRuntime: 	at android.os.HandlerThread.run(HandlerThread.java:67)
+03-13 14:28:52.933  1913  2257 W ActivityTaskManager:   Force finishing activity com.xinmiao/.MainActivity
+03-13 14:28:52.939  1520  1578 W JavaDumper:JavaDumper: Could not init dump dir: Unknown error -95
+03-13 14:28:52.939  1520  1578 W JavaDumper:FW:  utils.c(408): Memfree 1758MB bavail=450180 bfree=482948 bsize=4096
+03-13 14:28:52.939  1520  1578 E JavaDumper:FW:  utils.c(272): mkdir (/data/crashdata) failed. File exists
+03-13 14:28:52.939  1520  1578 W JavaDumper:FW:  utils.c(616): chmod failed : Operation not permitted
+03-13 14:28:52.939  1520  1578 W JavaDumper:FW:  utils.c(620): chown failed : Operation not permitted
+03-13 14:28:52.939  1520  1578 W JavaDumper:FW:  utils.c(648): chmod failed : Operation not permitted
+03-13 14:28:52.939  1520  1578 W JavaDumper:FW:  utils.c(653): chown failed : Operation not permitted
+03-13 14:28:52.939  1520  1578 W JavaDumper:FW:  utils.c(648): chmod failed : Operation not permitted
+03-13 14:28:52.939  1520  1578 W JavaDumper:FW:  utils.c(653): chown failed : Operation not permitted
+03-13 14:28:52.939  1520  1578 W JavaDumper:FW:  utils.c(648): chmod failed : Operation not permitted
+03-13 14:28:52.939  1520  1578 W JavaDumper:FW:  utils.c(653): chown failed : Operation not permitted
+03-13 14:28:52.939  1520  1578 W JavaDumper:FW:  utils.c(648): chmod failed : Operation not permitted
+03-13 14:28:52.939  1520  1578 W JavaDumper:FW:  utils.c(653): chown failed : Operation not permitted
+03-13 14:28:52.939  1520  1578 W JavaDumper:FW:  utils.c(648): chmod failed : Operation not permitted
+03-13 14:28:52.939  1520  1578 W JavaDumper:FW:  utils.c(653): chown failed : Operation not permitted
+03-13 14:28:52.939  1520  1578 W JavaDumper:FW:  utils.c(648): chmod failed : Operation not permitted
+03-13 14:28:52.939  1520  1578 W JavaDumper:FW:  utils.c(653): chown failed : Operation not permitted
+03-13 14:28:52.939  1520  1578 W JavaDumper:FW:  utils.c(648): chmod failed : Operation not permitted
+03-13 14:28:52.939  1520  1578 W JavaDumper:FW:  utils.c(653): chown failed : Operation not permitted
+03-13 14:28:52.939  1520  1578 W JavaDumper:FW:  utils.c(648): chmod failed : Operation not permitted
+03-13 14:28:52.939  1520  1578 W JavaDumper:FW:  utils.c(653): chown failed : Operation not permitted
+03-13 14:28:52.939  1520  1578 W JavaDumper:FW:  utils.c(648): chmod failed : Operation not permitted
+03-13 14:28:52.939  1520  1578 W JavaDumper:FW:  utils.c(653): chown failed : Operation not permitted
+03-13 14:28:52.939  1520  1578 W JavaDumper:FW:  utils.c(648): chmod failed : Operation not permitted
+03-13 14:28:52.939  1520  1578 W JavaDumper:FW:  utils.c(653): chown failed : Operation not permitted
+03-13 14:28:52.945  1520  1578 W JavaDumper:FW:  ramdump_framework.c(2051): crashinfo.done not created
+03-13 14:28:52.957  1913  1948 W BroadcastQueue: Background execution not allowed: receiving Intent { act=android.intent.action.DROPBOX_ENTRY_ADDED flg=0x10 (has extras) } to com.google.android.gms/.chimera.GmsIntentOperationService$PersistentTrustedReceiver
+03-13 14:28:52.957  1913  1948 W BroadcastQueue: Background execution not allowed: receiving Intent { act=android.intent.action.DROPBOX_ENTRY_ADDED flg=0x10 (has extras) } to com.google.android.gms/.stats.service.DropBoxEntryAddedReceiver
+03-13 14:28:52.962  6130  6290 E ActivityThread: Failed to find provider info for com.sony.songpal.mdr.application.mdr_info
+03-13 14:28:53.009  1913  2257 W ServiceManager: Permission failure: android.permission.HIGH_SAMPLING_RATE_SENSORS from uid=1001 pid=32692
+03-13 14:28:53.016  2543  2563 W System  : A resource failed to call release. 
+03-13 14:28:53.016  2543  2563 W System  : A resource failed to call close. 
+03-13 14:28:53.017  1496  1763 E Surface : queueBuffer: error queuing buffer, -32
+03-13 14:28:53.017  1496  1763 E Camera3-OutputStream: returnBufferCheckedLocked: Stream 2: Error queueing buffer to native window: Broken pipe (-32)
+03-13 14:28:53.018  1496  1763 E Surface : queueBuffer: error queuing buffer, -32
+03-13 14:28:53.018  1496  1763 E Camera3-OutputStream: returnBufferCheckedLocked: Stream 1: Error queueing buffer to native window: Broken pipe (-32)
+03-13 14:28:53.018  1496 11885 E Camera3-OutputStream: getBufferLockedCommon: Stream 2: Can't dequeue next output buffer: Broken pipe (-32)
+03-13 14:28:53.019  1913  5287 W ActivityTaskManager: MANAGE_ACTIVITY_STACKS is deprecated, please use alternative permission: MANAGE_ACTIVITY_TASKS
+03-13 14:28:53.020  1913 26772 W InputManager-JNI: Input channel object 'db6dcaf com.xinmiao/com.xinmiao.MainActivity (client)' was disposed without first being removed with the input manager!
+03-13 14:28:53.023  1496  1763 E Surface : queueBuffer: error queuing buffer, -32
+03-13 14:28:53.025  1496  1763 E Surface : queueBuffer: error queuing buffer, -32
+03-13 14:28:53.025  1496  1763 E Camera3-OutputStream: returnBufferCheckedLocked: Stream 1: Error queueing buffer to native window: Broken pipe (-32)
+03-13 14:28:53.025  5215  6569 W CTA_AAM : SecurityGuardService calling App=null, callingUid=1041, not exist!
+03-13 14:28:53.029  2543  2563 W System  : A resource failed to call close. 
+03-13 14:28:53.031  2543  2563 W System  : A resource failed to call release. 
+03-13 14:28:53.038  1246  1246 E BpTransactionCompletedListener: Failed to transact (-32)
+03-13 14:28:53.038  1246  1246 E BpTransactionCompletedListener: Failed to transact (-32)
+03-13 14:28:53.040  1913  5273 W ActivityTaskManager: Can't find TaskDisplayArea to determine support for multi window. Task id=6602 attached=false
+03-13 14:28:53.040  1913  5273 W ActivityTaskManager: Can't find TaskDisplayArea to determine support for multi window. Task id=6602 attached=false
+03-13 14:28:53.044  1913  1941 W ActivityManager: setHasOverlayUi called on unknown pid: 11709
+03-13 14:28:53.046  1913  5287 W ActivityTaskManager: MANAGE_ACTIVITY_STACKS is deprecated, please use alternative permission: MANAGE_ACTIVITY_TASKS
+03-13 14:28:53.047  1913 26772 W ActivityManager: Unable to start service Intent { act=com.android.launcher3.WINDOW_OVERLAY dat=app://com.sonymobile.launcher:10219?v=9&cv=14 pkg=com.google.android.googlequicksearchbox } U=0: not found
+03-13 14:28:53.049  1913  2257 W ActivityTaskManager: MANAGE_ACTIVITY_STACKS is deprecated, please use alternative permission: MANAGE_ACTIVITY_TASKS
+03-13 14:28:53.051  1913  2257 W ActivityTaskManager: MANAGE_ACTIVITY_STACKS is deprecated, please use alternative permission: MANAGE_ACTIVITY_TASKS
+03-13 14:28:53.060  1913  2257 W ActivityTaskManager: MANAGE_ACTIVITY_STACKS is deprecated, please use alternative permission: MANAGE_ACTIVITY_TASKS
+03-13 14:28:53.062  1913  2257 W ActivityTaskManager: MANAGE_ACTIVITY_STACKS is deprecated, please use alternative permission: MANAGE_ACTIVITY_TASKS
+03-13 14:28:53.063  4902  5332 E libnfc_nci: [ERROR:nfa_ce_act.cc(1716)] nfa_ce_api_dereg_listen (): cannot find listen_info for UICC/ESE
+03-13 14:28:53.063  4902  5332 E libnfc_nci: [ERROR:nfa_ce_act.cc(1716)] nfa_ce_api_dereg_listen (): cannot find listen_info for UICC/ESE
+03-13 14:28:53.064  4902  4932 E com.android.nf: NfcAdaptation::setNfcServicePid mHalNxpNfcLegacy completed
+03-13 14:28:53.067  1913  2257 W ActivityTaskManager: MANAGE_ACTIVITY_STACKS is deprecated, please use alternative permission: MANAGE_ACTIVITY_TASKS
+03-13 14:28:53.068  1913  2257 W ActivityTaskManager: MANAGE_ACTIVITY_STACKS is deprecated, please use alternative permission: MANAGE_ACTIVITY_TASKS
+03-13 14:28:53.069  1913  2257 W ActivityTaskManager: MANAGE_ACTIVITY_STACKS is deprecated, please use alternative permission: MANAGE_ACTIVITY_TASKS
+03-13 14:28:53.072  1913  5273 W ActivityTaskManager: MANAGE_ACTIVITY_STACKS is deprecated, please use alternative permission: MANAGE_ACTIVITY_TASKS
+03-13 14:28:53.077  1086  1086 E Diag_Lib: diag: Diag_LSM_DeInit: invoked for pid: 1086
+03-13 14:28:53.077  1086  1086 E Diag_Lib: diag: Diag_LSM_DeInit: done for pid: 1086
+03-13 14:28:53.077  1913  2257 W ActivityTaskManager: MANAGE_ACTIVITY_STACKS is deprecated, please use alternative permission: MANAGE_ACTIVITY_TASKS
+03-13 14:28:53.077  1086  1086 E Diag_Lib: diag: Diag_LSM_DeInit: invoked for pid: 1086
+03-13 14:28:53.077  1086  1086 E Diag_Lib: diag: Diag_LSM_DeInit: done for pid: 1086
+03-13 14:28:53.078  1913  2257 W ActivityTaskManager: MANAGE_ACTIVITY_STACKS is deprecated, please use alternative permission: MANAGE_ACTIVITY_TASKS
+03-13 14:28:53.079  1913  2257 W ActivityTaskManager: MANAGE_ACTIVITY_STACKS is deprecated, please use alternative permission: MANAGE_ACTIVITY_TASKS
+03-13 14:28:53.080  1083  5346 E NxpTml  : _>>>>> Empty packet recieved !!
+03-13 14:28:53.080  4902  5332 E libnfc_nci: [ERROR:nci_hrcv.cc(335)] unknown opcode:0x21
+03-13 14:28:53.080  1913  2257 W ActivityTaskManager: MANAGE_ACTIVITY_STACKS is deprecated, please use alternative permission: MANAGE_ACTIVITY_TASKS
+03-13 14:28:53.084  1913  2257 W ActivityTaskManager: MANAGE_ACTIVITY_STACKS is deprecated, please use alternative permission: MANAGE_ACTIVITY_TASKS
+03-13 14:28:53.086  1913  2257 W ActivityTaskManager: MANAGE_ACTIVITY_STACKS is deprecated, please use alternative permission: MANAGE_ACTIVITY_TASKS
+03-13 14:28:53.087  1913  2257 W ActivityTaskManager: MANAGE_ACTIVITY_STACKS is deprecated, please use alternative permission: MANAGE_ACTIVITY_TASKS
+03-13 14:28:53.090  1913  2257 W ActivityTaskManager: MANAGE_ACTIVITY_STACKS is deprecated, please use alternative permission: MANAGE_ACTIVITY_TASKS
+03-13 14:28:53.090  1913  2257 W ActivityTaskManager: MANAGE_ACTIVITY_STACKS is deprecated, please use alternative permission: MANAGE_ACTIVITY_TASKS
+03-13 14:28:53.093  1913  2257 W ActivityTaskManager: MANAGE_ACTIVITY_STACKS is deprecated, please use alternative permission: MANAGE_ACTIVITY_TASKS
+03-13 14:28:53.278  1496  4025 W Camera3-OutputStream: disconnectLocked: While disconnecting stream 1 from native window, the native window died from under us
+03-13 14:28:53.278  1496  4025 W Camera3-OutputStream: disconnectLocked: While disconnecting stream 2 from native window, the native window died from under us
+03-13 14:28:53.280  1496  1496 W ServiceManager: Permission failure: android.permission.CAMERA from uid=1001 pid=32692
+03-13 14:28:53.281  1496  4025 E CameraService: binderDied: Java client's binder died, removing it from the list of active clients
+03-13 14:28:53.282  1496  4025 W ServiceManager: Permission failure: android.permission.CAMERA from uid=1001 pid=32692
+03-13 14:28:53.712  1083  5346 E NxpTml  : _>>>>> Empty packet recieved !!
+03-13 14:28:53.712  4902  5332 E libnfc_nci: [ERROR:nci_hrcv.cc(335)] unknown opcode:0x21
+03-13 14:28:54.041  1125  4209 E ANDR-PERF-LM: VmRssMeter:: start() 447: Could not find pid, can not collect vmrss data
+03-13 14:28:54.041  1125  4208 E ANDR-PERF-LM: VmRssMeter:: start() 447: Could not find pid, can not collect vmrss data
+03-13 14:28:54.041  1125  4209 E ANDR-PERF-LM: AdaptiveLaunch: writeToDataBase() 64: Meter aborted or could not get meter data for this run
+03-13 14:28:54.047  1913  5273 W ActivityTaskManager: MANAGE_ACTIVITY_STACKS is deprecated, please use alternative permission: MANAGE_ACTIVITY_TASKS
+03-13 14:28:54.348  1083  5346 E NxpTml  : _>>>>> Empty packet recieved !!
+03-13 14:28:54.348  4902  5332 E libnfc_nci: [ERROR:nci_hrcv.cc(335)] unknown opcode:0x21
+03-13 14:28:54.984  1083  5346 E NxpTml  : _>>>>> Empty packet recieved !!
+03-13 14:28:54.984  4902  5332 E libnfc_nci: [ERROR:nci_hrcv.cc(335)] unknown opcode:0x21
+03-13 14:28:55.048  1913  2416 W ActivityTaskManager: MANAGE_ACTIVITY_STACKS is deprecated, please use alternative permission: MANAGE_ACTIVITY_TASKS
+03-13 14:28:55.623  1083  5346 E NxpTml  : _>>>>> Empty packet recieved !!
+03-13 14:28:55.623  4902  5332 E libnfc_nci: [ERROR:nci_hrcv.cc(335)] unknown opcode:0x21
+03-13 14:28:56.021  1913  2416 W ServiceManager: Permission failure: android.permission.HIGH_SAMPLING_RATE_SENSORS from uid=1001 pid=32692
+03-13 14:28:56.049  1913  2416 W ActivityTaskManager: MANAGE_ACTIVITY_STACKS is deprecated, please use alternative permission: MANAGE_ACTIVITY_TASKS
+03-13 14:28:56.229  6376 12149 W libc    : Access denied finding property "net.dns1"
+03-13 14:28:56.229  6376 12149 W libc    : Access denied finding property "net.dns2"
+03-13 14:28:56.231  6376 12153 W libc    : Access denied finding property "net.dns1"
+03-13 14:28:56.231  6376 12153 W libc    : Access denied finding property "net.dns2"
+03-13 14:28:56.256  1083  5346 E NxpTml  : _>>>>> Empty packet recieved !!
+03-13 14:28:56.257  4902  5332 E libnfc_nci: [ERROR:nci_hrcv.cc(335)] unknown opcode:0x21
+03-13 14:28:56.896  1083  5346 E NxpTml  : _>>>>> Empty packet recieved !!
+03-13 14:28:56.897  4902  5332 E libnfc_nci: [ERROR:nci_hrcv.cc(335)] unknown opcode:0x21
+03-13 14:28:57.050  1913  2257 W ActivityTaskManager: MANAGE_ACTIVITY_STACKS is deprecated, please use alternative permission: MANAGE_ACTIVITY_TASKS
+03-13 14:28:57.530  1083  5346 E NxpTml  : _>>>>> Empty packet recieved !!
+03-13 14:28:57.530  4902  5332 E libnfc_nci: [ERROR:nci_hrcv.cc(335)] unknown opcode:0x21
+03-13 14:28:58.051  1913  2416 W ActivityTaskManager: MANAGE_ACTIVITY_STACKS is deprecated, please use alternative permission: MANAGE_ACTIVITY_TASKS
+03-13 14:28:58.165  1083  5346 E NxpTml  : _>>>>> Empty packet recieved !!
+03-13 14:28:58.166  4902  5332 E libnfc_nci: [ERROR:nci_hrcv.cc(335)] unknown opcode:0x21
+03-13 14:28:58.539  1913  2416 W ActivityTaskManager: MANAGE_ACTIVITY_STACKS is deprecated, please use alternative permission: MANAGE_ACTIVITY_TASKS
+03-13 14:28:58.799  1083  5346 E NxpTml  : _>>>>> Empty packet recieved !!
+03-13 14:28:58.800  4902  5332 E libnfc_nci: [ERROR:nci_hrcv.cc(335)] unknown opcode:0x21
+03-13 14:28:59.455  1083  5346 E NxpTml  : _>>>>> Empty packet recieved !!
+03-13 14:28:59.456  4902  5332 E libnfc_nci: [ERROR:nci_hrcv.cc(335)] unknown opcode:0x21
+03-13 14:28:59.540  1913  5596 W ActivityTaskManager: MANAGE_ACTIVITY_STACKS is deprecated, please use alternative permission: MANAGE_ACTIVITY_TASKS
+03-13 14:29:00.036  1913  2257 W ServiceManager: Permission failure: android.permission.HIGH_SAMPLING_RATE_SENSORS from uid=1001 pid=32692
+03-13 14:29:00.103  1083  5346 E NxpTml  : _>>>>> Empty packet recieved !!
+03-13 14:29:00.103  4902  5332 E libnfc_nci: [ERROR:nci_hrcv.cc(335)] unknown opcode:0x21
+03-13 14:29:00.541  1913  2257 W ActivityTaskManager: MANAGE_ACTIVITY_STACKS is deprecated, please use alternative permission: MANAGE_ACTIVITY_TASKS
+03-13 14:29:00.752  1083  5346 E NxpTml  : _>>>>> Empty packet recieved !!
+03-13 14:29:00.753  4902  5332 E libnfc_nci: [ERROR:nci_hrcv.cc(335)] unknown opcode:0x21
+03-13 14:29:01.403  1083  5346 E NxpTml  : _>>>>> Empty packet recieved !!
+03-13 14:29:01.404  4902  5332 E libnfc_nci: [ERROR:nci_hrcv.cc(335)] unknown opcode:0x21
+03-13 14:29:01.543  1913  2416 W ActivityTaskManager: MANAGE_ACTIVITY_STACKS is deprecated, please use alternative permission: MANAGE_ACTIVITY_TASKS
+03-13 14:29:02.052  1083  5346 E NxpTml  : _>>>>> Empty packet recieved !!
+03-13 14:29:02.052  4902  5332 E libnfc_nci: [ERROR:nci_hrcv.cc(335)] unknown opcode:0x21
+03-13 14:29:02.544  1913  5596 W ActivityTaskManager: MANAGE_ACTIVITY_STACKS is deprecated, please use alternative permission: MANAGE_ACTIVITY_TASKS
+03-13 14:29:02.704  1083  5346 E NxpTml  : _>>>>> Empty packet recieved !!
+03-13 14:29:02.704  4902  5332 E libnfc_nci: [ERROR:nci_hrcv.cc(335)] unknown opcode:0x21

@@ -4,11 +4,8 @@ import {useSubScreenStore} from '../../store';
 import IconFA6 from 'react-native-vector-icons/FontAwesome6';
 import {useNavigation} from '@react-navigation/native';
 
-type MenuButtonsProps = {
-  pathPlaning: () => void;
-};
 
-export default function MenuButtons({pathPlaning}: MenuButtonsProps) {
+export default function MenuButtons() {
   const setScreenState = useSubScreenStore(store => store.setScreenState);
   const navigation = useNavigation();
   const styles = StyleSheet.create({
@@ -49,7 +46,6 @@ export default function MenuButtons({pathPlaning}: MenuButtonsProps) {
           name="rocket"
           size={40}
           color="rgba(255,153,51,0.9)"
-          onPress={pathPlaning}
         />
         <Text style={styles.iconText}>火箭</Text>
       </View>

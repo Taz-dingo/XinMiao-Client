@@ -16,6 +16,7 @@ import {
 import {login, msgLogin, sendMsg} from '../../services/api/userService';
 import {Button, Divider, Image, defaultSpacing} from '@rneui/base';
 import {NavigationProp} from '@react-navigation/native';
+import EventSource from 'react-native-sse';
 
 // 目前登录方式有两种：default - 账号密码  msg - 短信
 type State = 'default' | 'msg';

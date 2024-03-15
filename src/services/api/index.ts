@@ -4,7 +4,7 @@
  * 而不是分别从各自的文件中导入，
  * 从而使得导入语句更加整洁，
  * 且当服务模块发生变化时，
- * 只需要在index.js中进行调整即可
+ * 只需要在index.ts中进行调整即可
  **/
 
 export * as UserService from './userService';

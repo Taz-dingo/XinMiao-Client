@@ -5,6 +5,7 @@ import {NavigationContainer} from '@react-navigation/native';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import IndexScreen from './screens/Home/Index';
 import TestScreen from './screens/TestScreen';
+import FaceRecognitionPunch from './screens/Testscreen1';
 import {SafeAreaProvider} from 'react-native-safe-area-context';
 import AuthScreen from './screens/AuthScreen';
 import ForumScreen from './screens/ForumScreen/Index';
@@ -34,6 +35,7 @@ function App() {
             component={IndexScreen}
           />
           <Stack.Screen name="Forum" component={ForumScreen} />
+          <Stack.Screen name="Camera" component={FaceRecognitionPunch} />
         </Stack.Navigator>
       </NavigationContainer>
     </SafeAreaProvider>

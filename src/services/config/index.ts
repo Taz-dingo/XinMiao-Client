@@ -6,8 +6,9 @@
 // export const baseURL : string = "https://mock.apifox.com/m1/4022001-0-default";
 
 // 本地URL
-const IP = "192.168.31.64";
-// const IP = "10.201.12.19";
+// const IP = "192.168.31.64";
+// export const IP = "10.201.14.52";
+export const IP = "localhost";
 
 export const baseURL: string = `http://${IP}:8888`;
 

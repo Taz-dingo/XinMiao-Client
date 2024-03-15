@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title></title>
+    <form>
+      <input id="file" type="file" value="" onchange="getOssClient()" />
+      <input
+        id="upload"
+        value="点击上传"
+        type="button"
+        onclick="uploadFile()" />
+    </form>
+  </head>
+  <body></body>
+  <!-- 如果你没有前端代码运行工具 直接就写全路径就好了 不出意外的话是个浏览器就能玩 -->
+  <script type="text/javascript" src="./aliyun-oss-sdk.js"></script>
+  <script type="text/javascript" src="./aliyun-oss-sdk.min.js"></script>
+  <script type="text/javascript">
+    var params = {
+      accessKeyId: 'STS.NUxVytqn1tURiyYvCGw6qZABi',
+      accessKeySecret: 'GdUSxZP6NeE1w9B1PNHm5BpPwh8xCRrBipc9a55DnUfh',
+      stsToken:
+        'CAIS7wF1q6Ft5B2yfSjIr5bNHcPAnLEQw5e5a1/okkMSe7ldtYTpizz2IHhMeXJpCOgZsv0ym2pZ6P4elqVoRoReREvCWpIots0PAadE7QGY6aKP9rUhpMCPOwr6UmzWvqL7Z+H+U6muGJOEYEzFkSle2KbzcS7YMXWuLZyOj+wMDL1VJH7aCwBLH9BLPABvhdYHPH/KT5aXPwXtn3DbATgD2GM+qxsmtfznnJXNsEKP0g2nlLNOnemrfMj4NfsLFYxkTtK40NZxcqf8yyNK43BIjvwu1PEfoGaf4Y3EXgYLskveb/C48dRqLR+ao2ah+H2SxhqAAWJFN6kIsHfihDKiW6agFF2sLWVWw6oxaTPqvwQ5dRy0sMXD83UJL+SImDW3l5kCf8sfpnbmUXuosAxceLel/eb3fj18Zxi0v0MPPxMjNy6n8yC/mftvRlbXPXDzY7BJWrH7y/ltkULWwSkmLftyS1SkuFVORnQ5rYBKbiXLL4RGIAA=',
+      region: 'oss-cn-hangzhou',
+      bucket: 'newgoodwork',
+    };
+    function getOssClient() {
+      return new OSS({
+        ...params,
+      });
+    }
+    function uploadFile() {
+      let client = getOssClient();
+      var file = document.getElementById('file').files;
+      console.info(file[0].name);
+      console.info(client);
+      //这里是两个参数  var1 = 你的文件全路径（包括文件名）, var2 文件原件
+      var rep = client.put('/web_files/test/' + file[0].name, file[0]);
+      console.info(rep);
+    }
+  </script>
+</html>

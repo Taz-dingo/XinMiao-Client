@@ -1,73 +1,86 @@
 import {View, Text, PermissionsAndroid} from 'react-native';
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import {init, Geolocation} from 'react-native-amap-geolocation';
 import {MapView, MapType, Marker, Polyline, Cluster} from 'react-native-amap3d';
 import {Alert} from 'react-native';
 import {StyleSheet} from 'react-native';
 import {getPathPlaning} from '../../services/api/mapService';
 import TaskScreen from './TaskScreen/Index';
-import {useSubScreenStore} from '../../store';
+import {
+  useCurLocationStore,
+  useDestinationStore,
+  useSubScreenStore,
+  useTaskLocationStore,
+} from '../../store';
 import MenuButtons from './MenuButtons';
 import InfoBar from './InfoBar';
 import {getTaskCoords} from '../../services/api/taskService';
-import {ClusterPoint} from 'react-native-amap3d/lib/src/cluster';
-import {Button} from '@rneui/base';
 
-type point = {latitude: number; longitude: number}[];
+type point = {latitude: number; longitude: number};
+type points = {latitude: number; longitude: number}[];
 
 export default function Amap({children, navigation}: any) {
-  const markers = Array(1000)
-    .fill(0)
-    .map((_, i) => ({
-      position: {
-        latitude: 39.5 + Math.random(),
-        longitude: 116 + Math.random(),
-      },
-      properties: {key: `Marker${i}`},
-    }));
-  // 对于 Android 需要自行根据需要申请权限
-  PermissionsAndroid.requestMultiple([
-    PermissionsAndroid.PERMISSIONS.ACCESS_FINE_LOCATION,
-    PermissionsAndroid.PERMISSIONS.ACCESS_COARSE_LOCATION,
-  ]);
+  const iniMap = () => {
+    // 对于 Android 需要自行根据需要申请权限
+    PermissionsAndroid.requestMultiple([
+      PermissionsAndroid.PERMISSIONS.ACCESS_FINE_LOCATION,
+      PermissionsAndroid.PERMISSIONS.ACCESS_COARSE_LOCATION,
+    ]);
+    // 使用自己申请的高德 App Key 进行初始化
+    init({
+      ios: 'f019fb81b5b31eb6b752adae968cea64',
+      android: 'f019fb81b5b31eb6b752adae968cea64',
+    });
+  };
+  iniMap();
 
-  // 使用自己申请的高德 App Key 进行初始化
-  init({
-    ios: 'f019fb81b5b31eb6b752adae968cea64',
-    android: 'f019fb81b5b31eb6b752adae968cea64',
-  });
-  const Location = {
+  const myLocation = {
     latitude: 0,
     longitude: 0,
   };
 
   Geolocation.watchPosition(({coords}) => {
-    Location.latitude = coords.latitude;
-    Location.longitude = coords.longitude;
-    // console.log(Location);
+    myLocation.latitude = coords.latitude;
   });
 
-  const [lineData, setLineData] = useState<point>([]);
+  useEffect(() => {
+    setCurLocation(myLocation);
+  }, []);
 
-  const [markerData, setMarkerData] = useState<ClusterPoint[]>([]);
+  const [lineData, setLineData] = useState<points>([]);
+
+  const [taskLocation, setTaskLocation] = useTaskLocationStore(store => [
+    store.taskLocation,
+    store.setTaskLocation,
+  ]);
 
   const [screenState, setScreenState, clearScreenState] = useSubScreenStore(
     store => [store.screenState, store.setScreenState, store.clearScreenState],
   );
+  const [destLngLat, setDestLngLat, clearDestLngLat] = useDestinationStore(
+    store => [store.destLngLat, store.setDestLngLat, store.clearDestLngLat],
+  );
+  const [curLocation, setCurLocation] = useCurLocationStore(store => [
+    store.curLocation,
+    store.setCurLocation,
+  ]);
+
   // 步行路径规划
-  const pathPlaning = async () => {
+  const pathPlaning = async ({longitude, latitude}: point) => {
+    console.log(longitude, latitude);
+    console.log('destination' + JSON.stringify(destLngLat));
     const response: any = await getPathPlaning({
-      origin: `${Location.longitude},${Location.latitude}`,
-      destination: '119.580577,31.67414',
+      origin: `${longitude},${latitude}`,
+      destination: `${destLngLat.longitude},${destLngLat.latitude}`,
     });
     console.log('response: ');
     console.log(JSON.stringify(response));
 
     // 提取经纬度点和提示信息
-    const steps = response.route.paths[0].steps;
+    const steps: any = response.route.paths[0].steps;
     const points = [];
 
-    steps.forEach(step => {
+    steps.forEach((step: {polyline: string; instruction: any}) => {
       const polyline = step.polyline.split(';');
       // 遍历所有经纬度点
       polyline.forEach(point => {
@@ -82,7 +95,6 @@ export default function Amap({children, navigation}: any) {
       });
     });
     setLineData(points);
-
     console.log(points);
   };
   // 获取并设置任务点
@@ -111,9 +123,24 @@ export default function Amap({children, navigation}: any) {
       },
     );
     console.log(extractedData);
-    setMarkerData([...extractedData]);
-    console.log(markerData);
+    setTaskLocation([...extractedData]);
   };
+
+  useEffect(() => {
+    // 初值都为-1 更新了才刷新
+    if (destLngLat.latitude !== -1 && destLngLat.longitude !== -1)
+      Geolocation.getCurrentPosition(({coords}) => {
+        console.log(coords);
+        pathPlaning({
+          longitude: coords.longitude,
+          latitude: coords.latitude,
+        });
+      });
+  }, [destLngLat]);
+
+  useEffect(() => {
+    putMarker();
+  }, []);
 
   const styles = StyleSheet.create({
     subScreens: {
@@ -166,7 +193,7 @@ export default function Amap({children, navigation}: any) {
       </View>
       {/* 左边栏 */}
       <View style={styles.leftContainer}>
-        <MenuButtons pathPlaning={pathPlaning} />
+        <MenuButtons  />
       </View>
       {/* 右边栏 */}
       <View style={styles.rightContainer}></View>
@@ -183,7 +210,6 @@ export default function Amap({children, navigation}: any) {
         zoomControlsEnabled={false}
         onLoad={() => {
           console.log('onLoad');
-          putMarker();
         }}
         mapType={MapType.Navi}
         initialCameraPosition={{
@@ -204,7 +230,7 @@ export default function Amap({children, navigation}: any) {
           )}
         /> */}
 
-        {markerData.map(item => {
+        {taskLocation.map(item => {
           return (
             <View key={item.properties.id}>
               <Text
