@@ -3,7 +3,9 @@ import React from 'react';
 import {useSubScreenStore} from '../../store';
 import IconFA6 from 'react-native-vector-icons/FontAwesome6';
 import {Icon} from 'react-native-elements';
-import {useNavigation} from '@react-navigation/native';
+import {StackNavigationState, useNavigation} from '@react-navigation/native';
+
+
 
 export default function MenuButtons() {
   const setScreenState = useSubScreenStore(store => store.setScreenState);

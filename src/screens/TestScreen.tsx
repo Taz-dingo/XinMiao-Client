@@ -91,7 +91,7 @@ export default function TestScreen() {
       <Button
         title={'send'}
         onPress={() => {
-          ws.send('123');
+          // ws.send('123');
           console.log('pressed');
         }}
       />

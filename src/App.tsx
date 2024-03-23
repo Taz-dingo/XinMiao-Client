@@ -15,9 +15,24 @@ import useAuthStore from './store/authStore';
 
 const Stack = createNativeStackNavigator();
 
-const AuthStack = createNativeStackNavigator();
+export type RootStackParamList = {
+  Login: undefined;
+  Auth: undefined;
+  Home: undefined;
+  Forum: undefined;
+  PostDetail: {postId: number};
+  Camera: undefined;
+};
+
+declare global {
+  namespace ReactNavigation {
+    interface RootParamList extends RootStackParamList {}
+  }
+}
+
+const AuthStack = createNativeStackNavigator<RootStackParamList>();
 // ... 定义认证流程的页面
-const AppStack = createNativeStackNavigator();
+const AppStack = createNativeStackNavigator<RootStackParamList>();
 // ... 定义应用主要页面的堆栈
 
 function App() {

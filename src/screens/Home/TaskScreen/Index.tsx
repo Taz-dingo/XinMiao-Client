@@ -3,7 +3,6 @@ import React, {useEffect} from 'react';
 import {shadowStyle} from '../../../style';
 import TaskList from './TaskList';
 import TaskTpyeItem from './TaskTpyeItem';
-import IconEtp from 'react-native-vector-icons/Entypo';
 import IconIon from 'react-native-vector-icons/Ionicons';
 import {
   useShowClosedStore,
@@ -29,17 +28,10 @@ export default function TaskScreen() {
     setShowClosed(showClosed === '0' ? '1' : '0');
   };
   const styles = StyleSheet.create({
-    taskbarContainer: {
-      // 任务栏容器
-      width: '90%',
-      height: '80%',
-      backgroundColor: 'rgba(255,255,255,0.9)',
-      borderRadius: 25,
-      position: 'relative',
-      padding: 10,
-      paddingHorizontal: 20,
-      // alignItems: 'center',
-      ...shadowStyle,
+    divider: {
+      // width: '80%',
+      marginTop: 10,
+      marginBottom: 15,
     },
     icon: {
       marginTop: 10,
@@ -48,22 +40,11 @@ export default function TaskScreen() {
       height: 40,
       // borderWidth: 3,
     },
-    divider: {
-      // width: '80%',
-      marginTop: 10,
-      marginBottom: 15,
-    },
   });
   return (
-    <View style={styles.taskbarContainer}>
+    <>
       {showDetailId === '' ? (
         <>
-          <IconEtp
-            style={styles.icon}
-            name="cross"
-            onPress={() => clearScreenState()}
-            size={30}
-          />
           <TaskTpyeItem></TaskTpyeItem>
 
           {/* <Divider inset={true} insetType="middle" style={styles.divider} /> */}
@@ -88,6 +69,6 @@ export default function TaskScreen() {
           <TaskDetail></TaskDetail>
         </>
       )}
-    </View>
+    </>
   );
 }

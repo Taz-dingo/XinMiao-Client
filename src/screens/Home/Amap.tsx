@@ -6,6 +6,8 @@ import {Alert} from 'react-native';
 import {StyleSheet} from 'react-native';
 import {getPathPlaning} from '../../services/api/mapService';
 import TaskScreen from './TaskScreen';
+import BagScreen from './BagScreen';
+import IconEtp from 'react-native-vector-icons/Entypo';
 import {
   useCurLocationStore,
   useDestinationStore,
@@ -17,6 +19,7 @@ import InfoBar from './InfoBar';
 import {getTaskCoords} from '../../services/api/taskService';
 import useAuthStore from '../../store/authStore';
 import {OSSBaseURL} from '../../services/config';
+import {shadowStyle} from '../../style';
 
 type point = {latitude: number; longitude: number};
 type points = {latitude: number; longitude: number}[];
@@ -100,7 +103,7 @@ export default function Amap({children, navigation}: any) {
 
     // 提取经纬度点和提示信息
     const steps: any = response.route.paths[0].steps;
-    const points = [];
+    const points: React.SetStateAction<points> = [];  // 中间变量
 
     steps.forEach((step: {polyline: string; instruction: any}) => {
       const polyline = step.polyline.split(';');
@@ -160,6 +163,25 @@ export default function Amap({children, navigation}: any) {
   }, []);
 
   const styles = StyleSheet.create({
+    subScreenContainer: {
+      // 任务栏容器
+      width: '90%',
+      height: '80%',
+      backgroundColor: 'rgba(255,255,255,0.9)',
+      borderRadius: 25,
+      position: 'relative',
+      padding: 10,
+      paddingHorizontal: 20,
+      // alignItems: 'center',
+      ...shadowStyle,
+    },
+    icon: {
+      marginTop: 10,
+      left: 0,
+      width: 40,
+      height: 40,
+      // borderWidth: 3,
+    },
     subScreens: {
       // 各种悬浮窗的容器
       justifyContent: 'center', // 居中
@@ -217,8 +239,18 @@ export default function Amap({children, navigation}: any) {
 
       {/* 悬浮窗容器（子屏幕） */}
       <View style={styles.subScreens}>
-        {screenState === 'TaskScreen' && <TaskScreen />}
-        {screenState === 'BagScreen' && <TaskScreen />}
+        {screenState !== '' && (
+          <View style={styles.subScreenContainer}>
+            <IconEtp
+              style={styles.icon}
+              name="cross"
+              onPress={() => clearScreenState()}
+              size={30}
+            />
+            {screenState === 'TaskScreen' && <TaskScreen />}
+            {screenState === 'BagScreen' && <BagScreen />}
+          </View>
+        )}
       </View>
 
       <MapView
