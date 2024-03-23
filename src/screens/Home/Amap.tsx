@@ -5,7 +5,7 @@ import {MapView, MapType, Marker, Polyline, Cluster} from 'react-native-amap3d';
 import {Alert} from 'react-native';
 import {StyleSheet} from 'react-native';
 import {getPathPlaning} from '../../services/api/mapService';
-import TaskScreen from './TaskScreen/Index';
+import TaskScreen from './TaskScreen';
 import {
   useCurLocationStore,
   useDestinationStore,
@@ -15,9 +15,29 @@ import {
 import MenuButtons from './MenuButtons';
 import InfoBar from './InfoBar';
 import {getTaskCoords} from '../../services/api/taskService';
+import useAuthStore from '../../store/authStore';
+import {OSSBaseURL} from '../../services/config';
 
 type point = {latitude: number; longitude: number};
 type points = {latitude: number; longitude: number}[];
+
+interface taskAllInfo {
+  id: number;
+  title: string | null;
+  demand: string | null;
+  ctime: string | null;
+  btime: string | null;
+  dtime: string | null;
+  type: string | null;
+  location: string | null;
+  lngLat: string;
+  name: string;
+  img: string;
+  examplePic: string | null;
+  isAI: number | null;
+  setId: number | null;
+  isMainline: number;
+}
 
 export default function Amap({children, navigation}: any) {
   const iniMap = () => {
@@ -65,6 +85,8 @@ export default function Amap({children, navigation}: any) {
     store.setCurLocation,
   ]);
 
+  const [userInfo] = useAuthStore(store => [store.userInfo]);
+
   // 步行路径规划
   const pathPlaning = async ({longitude, latitude}: point) => {
     console.log(longitude, latitude);
@@ -99,29 +121,24 @@ export default function Amap({children, navigation}: any) {
   };
   // 获取并设置任务点
   const putMarker = async () => {
-    const response = await getTaskCoords({userid: '1111111111'});
+    const response = await getTaskCoords({userid: userInfo.id.toString()});
     console.log(response.data);
-    const extractedData = response.data.map(
-      (item: {
-        lngLat: {split: (arg0: string) => [string, string]};
-        id: string;
-        name: string;
-      }) => {
-        const [longitude, latitude] = item.lngLat.split(',');
-        const lngLatObj = {
-          longitude: parseFloat(longitude),
-          latitude: parseFloat(latitude),
-        };
+    const extractedData = response.data.map((item: taskAllInfo) => {
+      const [longitude, latitude] = item.lngLat.split(',');
+      const lngLatObj = {
+        longitude: parseFloat(longitude),
+        latitude: parseFloat(latitude),
+      };
 
-        return {
-          position: lngLatObj,
-          properties: {
-            id: item.id,
-            name: item.name,
-          },
-        };
-      },
-    );
+      return {
+        position: lngLatObj,
+        properties: {
+          id: item.id,
+          name: item.name,
+          img: item.img,
+        },
+      };
+    });
     console.log(extractedData);
     setTaskLocation([...extractedData]);
   };
@@ -193,7 +210,7 @@ export default function Amap({children, navigation}: any) {
       </View>
       {/* 左边栏 */}
       <View style={styles.leftContainer}>
-        <MenuButtons  />
+        <MenuButtons />
       </View>
       {/* 右边栏 */}
       <View style={styles.rightContainer}></View>
@@ -201,6 +218,7 @@ export default function Amap({children, navigation}: any) {
       {/* 悬浮窗容器（子屏幕） */}
       <View style={styles.subScreens}>
         {screenState === 'TaskScreen' && <TaskScreen />}
+        {screenState === 'BagScreen' && <TaskScreen />}
       </View>
 
       <MapView
@@ -244,11 +262,27 @@ export default function Amap({children, navigation}: any) {
                 {item.properties.name}
               </Text>
               <Marker
-                icon={require('../../assets/fish.jpg')}
+                icon={{
+                  uri: `${OSSBaseURL}/${item.properties.img}`,
+                }}
                 position={{
-                  latitude: item.position.latitude,
-                  longitude: item.position.longitude,
-                }}></Marker>
+                  latitude: parseFloat(item.position.latitude),
+                  longitude: parseFloat(item.position.longitude),
+                }}
+              />
+              <Marker
+                position={{
+                  latitude: parseFloat(item.position.latitude),
+                  longitude: parseFloat(item.position.longitude),
+                }}>
+                <Text
+                  style={{
+                    color: 'black',
+                    height: 45,
+                  }}>
+                  {item.properties.name}
+                </Text>
+              </Marker>
             </View>
           );
         })}

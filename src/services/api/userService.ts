@@ -9,7 +9,7 @@ export interface LoginData {
 }
 export const login = (data: LoginData): any => {
   return instance({
-    url: '/login_idpwd',
+    url: '/login/idpwd',
     method: 'post',
     data: data
   })
@@ -20,12 +20,12 @@ export const login = (data: LoginData): any => {
 interface sendMsgData {
   tel: string
 }
-export const sendMsg = (data: sendMsgData): any => {
+export const sendMsg = (params: sendMsgData): any => {
   return instance({
-    url: '/sendMsg',
-    method: 'post',
-    data: {
-      ...data,
+    url: '/login/sendmsg',
+    method: 'get',
+    params: {
+      ...params,
       code: null
     }
   })
@@ -38,11 +38,9 @@ interface msgLoginData {
 }
 export const msgLogin = (data: msgLoginData): any => {
   return instance({
-    url: '/login_sms',
+    url: '/login/sms',
     method: 'post',
-    data: {
-      ...data,
-    }
+    data: data
   })
 }
 

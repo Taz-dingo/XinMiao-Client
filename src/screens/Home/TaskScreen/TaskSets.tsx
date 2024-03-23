@@ -84,9 +84,8 @@ export default function TaskSets({id, title}: TaskSetsProps) {
       ) : (
         items.map(item => {
           return (
-            <View style={{alignItems: 'center'}}>
+            <View key={item.id} style={{alignItems: 'center'}}>
               <Task
-                key={item.id}
                 id={item.id}
                 title={item.title}
                 demand={item.demand}

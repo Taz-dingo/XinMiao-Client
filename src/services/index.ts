@@ -27,6 +27,12 @@ instance.interceptors.request.use(
 // 响应拦截器
 instance.interceptors.response.use(
   (response: AxiosResponse) => {
+    // 如果有Authorization直接返回response
+    if (response.headers['authorization']) {
+      console.log("响应拦截|Authorization: " + response.headers['authorization']);
+      return response
+    }
+
     // 对响应数据进行处理，例如解析返回的数据
     const data = response.data;
     const status = response.status;

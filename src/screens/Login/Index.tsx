@@ -17,6 +17,7 @@ import {login, msgLogin, sendMsg} from '../../services/api/userService';
 import {Button, Divider, Image, defaultSpacing} from '@rneui/base';
 import {NavigationProp} from '@react-navigation/native';
 import EventSource from 'react-native-sse';
+import useAuthStore from '../../store/authStore';
 
 // 目前登录方式有两种：default - 账号密码  msg - 短信
 type State = 'default' | 'msg';
@@ -35,6 +36,8 @@ export default function LoginScreen({navigation}: LoginScreenProps) {
   // 是否发送了验证码
   const [isSendMsg, setIsSendMsg] = useState(false);
   const [countDown, setCountDown] = useState(60);
+
+  const loginSetToken = useAuthStore(store => store.login);
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -98,7 +101,7 @@ export default function LoginScreen({navigation}: LoginScreenProps) {
         id: username,
         pwd: password,
       });
-      if (response.code !== 200) {
+      if (response.data.code !== 200) {
         Alert.alert('错误', '用户名或密码错误');
         return;
       }
@@ -111,18 +114,21 @@ export default function LoginScreen({navigation}: LoginScreenProps) {
         code: msgCode,
       });
       console.log('response: ' + JSON.stringify(response));
-      if (response.code !== 200) {
+      if (response.data.code !== 200) {
         Alert.alert('错误', '用户名或密码错误');
         return;
       }
     }
-    if (response.code === 200) {
+    if (response.data.code === 200) {
       // 登录成功
       // 1. 跳转页面
       // 2. 设置token
       Alert.alert('登录成功');
       // 跳转认证界面
-      navigation.navigate('Auth');
+      // navigation.navigate('Auth');
+      // console.log(response.headers['Authorization']);
+      console.log(response.headers['authorization']);
+      loginSetToken(response.headers['authorization']);
     }
   };
 

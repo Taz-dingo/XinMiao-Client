@@ -11,6 +11,8 @@
 export const IP = "localhost";
 
 export const baseURL: string = `http://${IP}:8888`;
+// 阿里云OSS配置
+export const OSSBaseURL: string = `https://newgoodwork.oss-cn-hangzhou.aliyuncs.com`;
 
 // 请求超时时间
 export const timeout: number = 10000;

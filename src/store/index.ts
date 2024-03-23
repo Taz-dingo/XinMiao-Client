@@ -42,6 +42,7 @@ type taskPoint = {
     properties: {
         id: string
         name: string
+        img: string // 图片相对地址
     }
 }
 interface TaskLocationState {
@@ -132,12 +133,12 @@ export const useCurLocationStore = create<curLocationState>((set) => ({
 
 // 选中屏幕
 interface ScreenState {
-    screenState: string,
+    screenState: string,    // 'TaskScreen' 任务界面 | 'BagSceen' 背包界面
     setScreenState: (screenState: string) => void
     clearScreenState: () => void
 }
 export const useSubScreenStore = create<ScreenState>((set) => ({
-    screenState: "",
+    screenState: "",    
     setScreenState(newState) {
         set({ screenState: newState }) // 更新选中状态
     },

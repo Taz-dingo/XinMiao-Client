@@ -2,8 +2,8 @@ import {View, Text, StyleSheet} from 'react-native';
 import React from 'react';
 import {useSubScreenStore} from '../../store';
 import IconFA6 from 'react-native-vector-icons/FontAwesome6';
+import {Icon} from 'react-native-elements';
 import {useNavigation} from '@react-navigation/native';
-
 
 export default function MenuButtons() {
   const setScreenState = useSubScreenStore(store => store.setScreenState);
@@ -26,38 +26,66 @@ export default function MenuButtons() {
     },
   });
 
+  const items = [
+    {
+      name: '任务',
+      icon: {
+        name: 'book',
+        type: 'font-awesome',
+        color: 'rgba(255,153,51,0.9)',
+        size: 40,
+      },
+      onPress: () => {
+        // 打开任务栏
+        setScreenState('TaskScreen');
+      },
+    },
+
+    {
+      name: '论坛',
+      icon: {
+        name: 'chat',
+        type: 'Entypo',
+        color: 'rgba(255,153,51,0.9)',
+        size: 40,
+      },
+      onPress: () => {
+        // 打开论坛栏
+        navigation.navigate('Forum');
+      },
+    },
+
+    {
+      name: '背包',
+      icon: {
+        name: 'backpack',
+        type: 'MaterialIcons',
+        color: 'rgba(255,153,51,0.9)',
+        size: 40,
+      },
+      onPress: () => {
+        setScreenState('BagScreen');
+      },
+    },
+  ];
+
   return (
     <View style={styles.iconsContainer}>
-      <View style={styles.icon}>
-        <IconFA6
-          name="book-tanakh"
-          style={{pointerEvents: 'auto'}}
-          onPress={() => {
-            // 打开任务栏
-            setScreenState('TaskScreen');
-          }}
-          size={40}
-          color="rgba(255,153,51,0.9)"
-        />
-        <Text style={styles.iconText}>任务</Text>
-      </View>
-      <View style={styles.icon}>
-        <IconFA6
-          name="rocket"
-          size={40}
-          color="rgba(255,153,51,0.9)"
-        />
-        <Text style={styles.iconText}>火箭</Text>
-      </View>
-      <View style={styles.icon}>
-        <IconFA6
-          name="house"
-          size={40}
-          color="rgba(255,153,51,0.9)"
-          onPress={() => navigation.navigate('Forum')}
-        />
-        <Text style={styles.iconText}>论坛</Text>
-      </View>
+      {items.map((item, index) => {
+        return (
+          <View key={index} style={styles.icon}>
+            <Icon
+              name={item.icon.name}
+              type={item.icon.type}
+              style={{pointerEvents: 'auto'}}
+              onPress={item.onPress}
+              size={40}
+              color="rgba(255,153,51,0.9)"
+            />
+            <Text style={styles.iconText}>{item.name}</Text>
+          </View>
+        );
+      })}
     </View>
   );
 }

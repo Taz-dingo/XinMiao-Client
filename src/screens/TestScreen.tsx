@@ -29,31 +29,31 @@ export default function TestScreen() {
   //   console.log(response);
   // };
 
-  const ws = new WebSocket(
-    // 'ws://10.201.14.52:8888/webSocket',
-    'ws://localhost:9999/webSocket',
-    // 'ws://10.201.18.238:8888/web',
-    // 'ws://echo.websocket.org',
-  );
-  ws.onopen = () => {
-    // connection opened
-    ws.send('connection opened'); // send a message
-  };
+  // const ws = new WebSocket(
+  //   // 'ws://10.201.14.52:8888/webSocket',
+  //   'ws://localhost:9999/webSocket',
+  //   // 'ws://10.201.18.238:8888/web',
+  //   // 'ws://echo.websocket.org',
+  // );
+  // ws.onopen = () => {
+  //   // connection opened
+  //   ws.send('connection opened'); // send a message
+  // };
 
-  ws.onmessage = e => {
-    // a message was received
-    console.log(e.data);
-  };
+  // ws.onmessage = e => {
+  //   // a message was received
+  //   console.log(e.data);
+  // };
 
-  ws.onerror = e => {
-    // an error occurred
-    console.log('error: ' + e.message);
-  };
+  // ws.onerror = e => {
+  //   // an error occurred
+  //   console.log('error: ' + e.message);
+  // };
 
-  ws.onclose = e => {
-    // connection closed
-    console.log(e.code, e.reason);
-  };
+  // ws.onclose = e => {
+  //   // connection closed
+  //   console.log(e.code, e.reason);
+  // };
 
   // useEffect(() => {}, []);
 
