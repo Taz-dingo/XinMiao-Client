@@ -50,7 +50,7 @@ export default function index() {
         style={styles.itemImage}
         source={{uri: `${OSSBaseURL}/${data.item.img}`}}
       />
-      {data.item && <Text>{data.item.name}</Text>}
+      {data.item && <Text style={styles.itemName}>{data.item.name}</Text>}
     </View>
   );
 
@@ -83,37 +83,86 @@ export default function index() {
   }, []);
 
   const styles = StyleSheet.create({
-    itemContainer: {
-      flex: 1,
+    title: {
+      fontSize: 25,
+      fontWeight: 'bold',
+      marginBottom: 10,
+      textAlign: 'center',
+      color: '#333',
+    },
+    infoContainer: {
+      // 介绍物品信息
+      height: 150,
       alignItems: 'center',
       justifyContent: 'center',
-      margin: 5,
+      marginVertical: 5,
+      marginBottom: 20,
       padding: 10,
+      position: 'relative',
       borderWidth: 1,
+      borderRadius: 10,
       borderColor: 'gray',
     },
     itemImage: {
-      width: 50,
-      height: 50,
+      width: 40,
+      height: 40,
       resizeMode: 'contain',
+    },
+    flatList: {
+      borderWidth: 1,
+      borderColor: 'gray',
+      borderRadius: 10,
+      // flex: 1,
+      padding: 5,
+      height: 400,
     },
     item: {
       justifyContent: 'center',
       alignItems: 'center',
       flex: 1,
       aspectRatio: 1, // 保持格子为正方形
-      margin: 1, // 调整格子之间的间距
-      backgroundColor: '#f9c2ff',
-      height: 100, // 可根据需要调整格子的高度
+      backgroundColor: '#ddd',
+      borderWidth: 1,
+      borderColor: 'gray',
+      borderRadius: 5,
+      padding: 1,
+      margin: 2, // 调整格子之间的间距
+    },
+    itemName: {
+      fontSize: 12,
     },
   });
 
   return (
-    <FlatList
-      data={gridsArray}
-      numColumns={5} // 每行显示3列，可以根据需要调整
-      renderItem={({item}) => <ItemComp data={item} />}
-      keyExtractor={item => item.id.toString()}
-    />
+    <View
+      style={
+        {
+          // flex: 1,
+          // borderWidth: 1
+        }
+      }>
+      <Text style={styles.title}>{'背  包'}</Text>
+      <View style={styles.infoContainer}>
+        <Text
+          style={{
+            fontSize: 16,
+            color: '#333',
+            position: 'absolute',
+            top: 0,
+            left: 10,
+            marginVertical: 10,
+            // overflow: 'hidden',
+          }}>
+          这里是物品信息
+        </Text>
+      </View>
+      <FlatList
+        data={gridsArray}
+        numColumns={5} // 每行显示3列，可以根据需要调整
+        renderItem={({item}) => <ItemComp data={item} />}
+        keyExtractor={item => item.id.toString()}
+        style={styles.flatList}
+      />
+    </View>
   );
 }

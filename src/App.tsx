@@ -15,12 +15,25 @@ import useAuthStore from './store/authStore';
 
 const Stack = createNativeStackNavigator();
 
+// 文章详情传参
+interface PostDetailProps {
+  id: string;
+  title: string;
+  content: string;
+  likenum: string;
+  clicknum: string;
+  ctime: string;
+  poster: string;
+  posterId: string;
+  avatarRelativePath: string;
+}
+
 export type RootStackParamList = {
   Login: undefined;
   Auth: undefined;
   Home: undefined;
   Forum: undefined;
-  PostDetail: {postId: number};
+  PostDetail: PostDetailProps;
   Camera: undefined;
 };
 

@@ -1,5 +1,5 @@
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
-import {NavigationContainer} from '@react-navigation/native';
+import {NavigationContainer, useNavigation} from '@react-navigation/native';
 import React, {useState} from 'react';
 import ForumStackScreen from './ForumStackScreen';
 import {Alert, ScrollView, StyleSheet, Text, View} from 'react-native';
@@ -12,6 +12,7 @@ import {postNormal, postTask} from '../../services/api/forumService';
 import useAuthStore from '../../store/authStore';
 import {AxiosResponse} from 'axios';
 import PostList from './PostList';
+import {useForumStore} from '../../store/forumStore';
 
 const TabNavi = createBottomTabNavigator();
 
@@ -64,6 +65,10 @@ const PostScreen = () => {
   const [title, setTitle] = useState('');
   const [content, setContent] = useState('');
   const [userInfo] = useAuthStore(store => [store.userInfo]);
+  const [postItemUpdateSignal, setPostItemUpdateSignal] = useForumStore(
+    store => [store.postListUpdateSignal, store.setPostListUpdateSignal],
+  );
+  const navigation = useNavigation();
 
   const handlePost = async () => {
     // 首先检测是否都填写了
@@ -84,6 +89,14 @@ const PostScreen = () => {
         });
         if (response.code === 200) {
           Alert.alert('发表成功');
+          // 成功后清空表单，并返回首页
+          // 1. 清空表单
+          setSelectedValue('normal');
+          setTitle('');
+          setContent('');
+          // 2. 返回首页、刷新评论列表
+          navigation.navigate('Home');
+          setPostItemUpdateSignal(postItemUpdateSignal + 1);
         } else {
           Alert.alert('发表失败，请稍后再试');
         }
@@ -95,10 +108,6 @@ const PostScreen = () => {
     } catch (e) {
       Alert.alert('发表失败，请稍后再试');
     }
-    // 清空表单，并返回首页
-    setSelectedValue('normal');
-    setTitle('');
-    setContent('');
   };
 
   const styles = StyleSheet.create({

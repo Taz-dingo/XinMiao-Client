@@ -15,6 +15,7 @@ type postItemProps = {
   ctime: string;
   /* ------------------ */
   poster: string;
+  posterId: string;
   avatarRelativePath: string;
 };
 
@@ -26,6 +27,7 @@ export default function PostItem({
   clicknum,
   ctime,
   poster,
+  posterId,
   avatarRelativePath,
 }: postItemProps) {
   const navigation = useNavigation();
@@ -92,6 +94,7 @@ export default function PostItem({
             clicknum: clicknum,
             ctime: ctime,
             poster: poster,
+            posterId: posterId,
             avatarRelativePath: avatarRelativePath,
           });
         }}>

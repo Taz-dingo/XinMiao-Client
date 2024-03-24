@@ -6,6 +6,7 @@ import {
   getUserCollectPosts,
   getUserPosts,
 } from '../../services/api/forumService';
+import {useForumStore} from '../../store/forumStore';
 
 // response.data
 type post = {
@@ -28,7 +29,11 @@ type PostListProps = {
 export default function PostList({type}: PostListProps) {
   const [posts, setPosts] = React.useState<post[]>([]);
   const [msg, setMsg] = React.useState('');
+  const [postListUpdateSignal, setPostListUpdateSignal] = useForumStore(
+    store => [store.postListUpdateSignal, store.setPostListUpdateSignal],
+  );
 
+  
   const updatePosts = async () => {
     try {
       let response;
@@ -57,7 +62,7 @@ export default function PostList({type}: PostListProps) {
 
   useEffect(() => {
     updatePosts();
-  }, []);
+  }, [postListUpdateSignal]);
 
   const styles = StyleSheet.create({
     container: {
@@ -78,6 +83,7 @@ export default function PostList({type}: PostListProps) {
               clicknum={item.clicktnum}
               ctime={item.ctime}
               poster={item.name}
+              posterId={item.creator}
               avatarRelativePath={item.img}
             />
           );

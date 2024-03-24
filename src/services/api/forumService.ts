@@ -136,7 +136,7 @@ interface likePostParams {
 export const likePost = (data: likePostParams) => {
     return instance({
         url: '/post/like',
-        method: 'POST',
+        method: 'put',
         data: data
     })
 }
@@ -194,4 +194,32 @@ export const editPost = (data: editPostParams) => {
 
 
 
+// 发表评论
+/**
+ * {
+    "fa_post": 1,
+    "fa_comment": 1,
+    "creator": 2162810210,
+    "is_facomment":1 ,
+    "reply":"1111111111",
+    "contain":"测试测试"
+}*/
+interface postCommentParams {
+    fa_post: number // 父帖子ID
+    fa_comment: number | null  // 父评论ID
+    // creator: number // 评论者ID
+    is_facomment: number // 是否父评论
+    reply: string    // 发帖人ID
+    contain: string  // 评论内容
+}
+export const postComment = (data: postCommentParams) => {
+    return instance({
+        url: '/comment',
+        method: 'POST',
+        data: {
+            ...data,
+            creator: userInfo.id,
+        }
+    })
+}
 
