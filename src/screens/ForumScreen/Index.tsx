@@ -64,10 +64,12 @@ const PostScreen = () => {
   const [selectedValue, setSelectedValue] = useState('normal');
   const [title, setTitle] = useState('');
   const [content, setContent] = useState('');
+
   const [userInfo] = useAuthStore(store => [store.userInfo]);
-  const [postItemUpdateSignal, setPostItemUpdateSignal] = useForumStore(
+  const [postListUpdateSignal, setPostListUpdateSignal] = useForumStore(
     store => [store.postListUpdateSignal, store.setPostListUpdateSignal],
   );
+
   const navigation = useNavigation();
 
   const handlePost = async () => {
@@ -96,7 +98,7 @@ const PostScreen = () => {
           setContent('');
           // 2. 返回首页、刷新评论列表
           navigation.navigate('Home');
-          setPostItemUpdateSignal(postItemUpdateSignal + 1);
+          setPostListUpdateSignal(postListUpdateSignal + 1);
         } else {
           Alert.alert('发表失败，请稍后再试');
         }

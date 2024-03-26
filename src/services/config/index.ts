@@ -8,7 +8,7 @@
 // 本地URL
 // const IP = "192.168.31.64";
 // export const IP = "10.201.14.52";
-export const IP = "localhost";
+export const IP = "10.201.12.137";
 
 export const baseURL: string = `http://${IP}:8888`;
 // 阿里云OSS配置

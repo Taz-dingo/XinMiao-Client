@@ -37,7 +37,7 @@ export const useShowDetailStore = create<showDetailState>((set) => ({
 }))
 
 // （所有）任务地点坐标信息
-type taskPoint = {
+export type taskPoint = {
     position: location
     properties: {
         id: string
@@ -119,14 +119,18 @@ interface curLocationState {
         longitude: number;
         latitude: number;
     }
+    taskPointsCurIn: taskPoint[];  // （当前位置在任务点范围内的）任务点的集合
     setCurLocation: (newState: { longitude: number; latitude: number; }) => void
+    setTaskPointsCurIn: (newState: taskPoint[]) => void
 }
 export const useCurLocationStore = create<curLocationState>((set) => ({
     curLocation: {
         longitude: -1,
         latitude: -1,
     },
+    taskPointsCurIn: [],
     setCurLocation: (newState) => set({ curLocation: newState }),
+    setTaskPointsCurIn: (newState) => set({ taskPointsCurIn: newState })
 }))
 
 /* ----------------------------------------------------- */
@@ -138,7 +142,7 @@ interface ScreenState {
     clearScreenState: () => void
 }
 export const useSubScreenStore = create<ScreenState>((set) => ({
-    screenState: "",    
+    screenState: "",
     setScreenState(newState) {
         set({ screenState: newState }) // 更新选中状态
     },

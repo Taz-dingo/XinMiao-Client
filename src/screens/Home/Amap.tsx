@@ -1,5 +1,5 @@
 import {View, Text, PermissionsAndroid} from 'react-native';
-import React, {useEffect, useState} from 'react';
+import React, {useEffect, useMemo, useState} from 'react';
 import {init, Geolocation} from 'react-native-amap-geolocation';
 import {MapView, MapType, Marker, Polyline, Cluster} from 'react-native-amap3d';
 import {Alert} from 'react-native';
@@ -9,6 +9,7 @@ import TaskScreen from './TaskScreen';
 import BagScreen from './BagScreen';
 import IconEtp from 'react-native-vector-icons/Entypo';
 import {
+  taskPoint,
   useCurLocationStore,
   useDestinationStore,
   useSubScreenStore,
@@ -20,7 +21,11 @@ import {getTaskCoords} from '../../services/api/taskService';
 import useAuthStore from '../../store/authStore';
 import {OSSBaseURL} from '../../services/config';
 import {shadowStyle} from '../../style';
+// import geolib from 'geolib';
+import {set} from 'lodash';
+import {Button} from 'react-native-elements';
 
+const geolib = require('geolib');
 type point = {latitude: number; longitude: number};
 type points = {latitude: number; longitude: number}[];
 
@@ -41,30 +46,42 @@ interface taskAllInfo {
   setId: number | null;
   isMainline: number;
 }
-
-export default function Amap({children, navigation}: any) {
-  const iniMap = () => {
+const iniMap = async () => {
+  try {
     // 对于 Android 需要自行根据需要申请权限
-    PermissionsAndroid.requestMultiple([
+    const granted = await PermissionsAndroid.requestMultiple([
       PermissionsAndroid.PERMISSIONS.ACCESS_FINE_LOCATION,
       PermissionsAndroid.PERMISSIONS.ACCESS_COARSE_LOCATION,
     ]);
-    // 使用自己申请的高德 App Key 进行初始化
-    init({
-      ios: 'f019fb81b5b31eb6b752adae968cea64',
-      android: 'f019fb81b5b31eb6b752adae968cea64',
-    });
-  };
-  iniMap();
 
+    // 检查权限是否被授予
+    if (
+      granted['android.permission.ACCESS_FINE_LOCATION'] ===
+        PermissionsAndroid.RESULTS.GRANTED &&
+      granted['android.permission.ACCESS_COARSE_LOCATION'] ===
+        PermissionsAndroid.RESULTS.GRANTED
+    ) {
+      // 使用自己申请的高德 App Key 进行初始化
+      init({
+        ios: 'f019fb81b5b31eb6b752adae968cea64',
+        android: 'f019fb81b5b31eb6b752adae968cea64',
+      });
+    } else {
+      // 处理权限未被授予的情况
+      console.log('Location permissions not granted.');
+    }
+  } catch (err) {
+    console.error('Error requesting location permissions:', err);
+  }
+};
+
+iniMap();
+
+export default function Amap({children, navigation}: any) {
   const myLocation = {
     latitude: 0,
     longitude: 0,
   };
-
-  Geolocation.watchPosition(({coords}) => {
-    myLocation.latitude = coords.latitude;
-  });
 
   useEffect(() => {
     setCurLocation(myLocation);
@@ -83,10 +100,13 @@ export default function Amap({children, navigation}: any) {
   const [destLngLat, setDestLngLat, clearDestLngLat] = useDestinationStore(
     store => [store.destLngLat, store.setDestLngLat, store.clearDestLngLat],
   );
-  const [curLocation, setCurLocation] = useCurLocationStore(store => [
-    store.curLocation,
-    store.setCurLocation,
-  ]);
+  const [curLocation, taskPointsCurIn, setCurLocation, setTaskPointsCurIn] =
+    useCurLocationStore(store => [
+      store.curLocation,
+      store.taskPointsCurIn,
+      store.setCurLocation,
+      store.setTaskPointsCurIn,
+    ]);
 
   const [userInfo] = useAuthStore(store => [store.userInfo]);
 
@@ -103,7 +123,7 @@ export default function Amap({children, navigation}: any) {
 
     // 提取经纬度点和提示信息
     const steps: any = response.route.paths[0].steps;
-    const points: React.SetStateAction<points> = [];  // 中间变量
+    const points: React.SetStateAction<points> = []; // 中间变量
 
     steps.forEach((step: {polyline: string; instruction: any}) => {
       const polyline = step.polyline.split(';');
@@ -123,7 +143,7 @@ export default function Amap({children, navigation}: any) {
     console.log(points);
   };
   // 获取并设置任务点
-  const putMarker = async () => {
+  const putTaskMarkers = async () => {
     const response = await getTaskCoords({userid: userInfo.id.toString()});
     console.log(response.data);
     const extractedData = response.data.map((item: taskAllInfo) => {
@@ -146,21 +166,61 @@ export default function Amap({children, navigation}: any) {
     setTaskLocation([...extractedData]);
   };
 
-  useEffect(() => {
-    // 初值都为-1 更新了才刷新
-    if (destLngLat.latitude !== -1 && destLngLat.longitude !== -1)
-      Geolocation.getCurrentPosition(({coords}) => {
-        console.log(coords);
-        pathPlaning({
-          longitude: coords.longitude,
-          latitude: coords.latitude,
-        });
+  const naviCurTask = () => {
+    Geolocation.getCurrentPosition(({coords}) => {
+      console.log(coords);
+      pathPlaning({
+        longitude: coords.longitude,
+        latitude: coords.latitude,
       });
+    });
+  };
+
+  // 监听目标点变化
+  useEffect(() => {
+    // 初值都为-1 更新了才刷新，导航当前任务点
+    if (destLngLat.latitude !== -1 && destLngLat.longitude !== -1) {
+      naviCurTask();
+    }
   }, [destLngLat]);
 
   useEffect(() => {
-    putMarker();
+    putTaskMarkers();
   }, []);
+
+  // 持续获取当前位置（不能存储位置，会引发无限回调，原因暂时不明）
+
+  // 遍历location数组，看是否在任务点中
+  const checkCurInLocs = () => {
+    Geolocation.getCurrentPosition(({coords}) => {
+      // console.log(coords);
+      const taskPoints = taskLocation.filter(item =>
+        geolib.isPointWithinRadius(
+          {latitude: coords.latitude, longitude: coords.longitude},
+          {
+            latitude: parseFloat(item.position.latitude),
+            longitude: parseFloat(item.position.longitude),
+          },
+          5, // 半径（米）
+        ),
+      );
+      // console.log(taskPoints);
+      setTaskPointsCurIn(taskPoints);
+    });
+  };
+
+  // 无奈之举，通过useEffect设置时钟来避免直接setInterval导致的无限回调
+  const [timeSignal, setTimeSignal] = useState(0);
+  useEffect(() => {
+    checkCurInLocs();
+    const timer = setTimeout(() => {
+      setTimeSignal(timeSignal + 1);
+    }, 1000);
+    return () => {
+      clearTimeout(timer);
+    };
+  }, [timeSignal]);
+
 
   const styles = StyleSheet.create({
     subScreenContainer: {
@@ -229,6 +289,8 @@ export default function Amap({children, navigation}: any) {
       {/* 上边栏 */}
       <View style={styles.topContainer}>
         <InfoBar />
+
+        <Button title={'当前位置'} onPress={checkCurInLocs} />
       </View>
       {/* 左边栏 */}
       <View style={styles.leftContainer}>
