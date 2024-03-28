@@ -36,7 +36,6 @@ export default function TaskList() {
       // 获取任务集
       let taskType = taskState === 'mainLine' ? '1' : '0';
       const response = await getTaskSets({
-        userid: '1111111111',
         is_mainline: taskType,
         is_now: showClosed === '1' ? '0' : '1', // 如果展示已结束，那么is_now就为0
       });

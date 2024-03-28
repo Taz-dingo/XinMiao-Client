@@ -1,7 +1,7 @@
 import {View, Text, FlatList, StyleSheet, Image} from 'react-native';
 import React, {useEffect, useState} from 'react';
-import {getBagInfo} from '../../../services/api/personalService';
-import {OSSBaseURL} from '../../../services/config';
+import {getBagInfo} from '../../../services/api/userService';
+import {OSSBaseURL} from '../../../services';
 
 interface item {
   id: number; // 物品id
@@ -56,7 +56,7 @@ export default function index() {
 
   const updateBagData = async () => {
     try {
-      const response = await getBagInfo();
+      const response = await getBagInfo({});
       // 获取到多少个数据，就更新多少个格子的item部分
       // 数组总量保持不变，只更新item部分
       // 这里假设获取到的response.data是一个数组，每个元素是一个item对象

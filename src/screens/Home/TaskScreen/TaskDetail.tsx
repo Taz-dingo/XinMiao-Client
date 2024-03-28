@@ -79,16 +79,20 @@ export default function TaskDetail() {
   const styles = StyleSheet.create({
     container: {
       width: '100%',
-      height: '90%',
+      height: '95%',
       position: 'relative',
-      //   borderWidth: 1,
+      top: 0,
+      // paddingTop: 20,
+      pointerEvents: 'box-none',
+      // borderWidth: 1,
     },
-    titleContainer: {},
     title: {
+      width: '100%',
       fontSize: 24,
       fontWeight: 'bold',
       color: 'black',
       textAlign: 'center',
+      // borderWidth: 1,
     },
     divider: {
       marginVertical: 20,
@@ -113,10 +117,14 @@ export default function TaskDetail() {
     <View style={styles.container}>
       {taskInfo && (
         <>
-          <Text style={styles.title}>
-            任务{taskInfo.id} - {taskInfo.title}
-          </Text>
+          <View style={{alignItems: 'center'}}>
+            <Text style={styles.title}>
+              任务{taskInfo.id} - {taskInfo.title}
+            </Text>
+          </View>
+
           <Divider inset insetType="middle" style={styles.divider} />
+
           <Text style={styles.demand}>
             {'        '}
             {taskInfo.demand}

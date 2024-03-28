@@ -5,7 +5,7 @@ import useAuthStore from "../../store/authStore"
 const storeApi = useAuthStore.getState()
 const userInfo = storeApi.userInfo
 
-// 查询所有帖子（论坛主页）
+/**查询所有帖子（论坛主页） */
 // 暂时不需要参数
 export const getPosts = () => {
     return instance({
@@ -14,11 +14,8 @@ export const getPosts = () => {
     })
 }
 
-// 查询帖子详情
-interface postDetailParams {
-    postid: string
-}
-export const getPostDetail = (params: postDetailParams) => {
+/**查询帖子详情 */
+export const getPostDetail = (params: API.postDetailParams) => {
     return instance({
         url: '/post/detail',
         method: 'GET',
@@ -26,13 +23,8 @@ export const getPostDetail = (params: postDetailParams) => {
     })
 }
 
-// 获取帖子评论列表
-interface postCommentParams {
-    postid: string
-    time_order: string
-    like_order: string
-}
-export const getPostComments = (params: postCommentParams) => {
+/**获取帖子评论列表 */
+export const getPostComments = (params: API.getPostCommentParams) => {
     return instance({
         url: '/comment/list/for-post',
         method: 'GET',
@@ -40,24 +32,8 @@ export const getPostComments = (params: postCommentParams) => {
     })
 }
 
-// 发布任务帖
-/**
-{
-    "creator": "1111111111",
-    "title": "过关攻略",
-    "contain": "先这样再那样",
-    "ctime": "2024-03-05",
-    "taskid": "1"
-}
- */
-interface postTaskParams {
-    creator: string
-    title: string
-    contain: string
-    ctime: string
-    taskid: string
-}
-export const postTask = (data: postTaskParams) => {
+/**发布任务帖 */
+export const postTask = (data: API.postTaskParams) => {
     return instance({
         url: '/post/for-task',
         method: 'POST',
@@ -65,23 +41,8 @@ export const postTask = (data: postTaskParams) => {
     })
 }
 
-// 发布普通帖子
-/**
-{
-    "creator": "1111111111",
-    "title": "常规贴",
-    "contain": "先这样再那样",
-    "ctime": "2024-03-05"
-}
- */
-
-interface postNormalParams {
-    creator: string
-    title: string
-    contain: string
-    ctime: string
-}
-export const postNormal = (data: postNormalParams) => {
+/**发布普通帖子 */
+export const postNormal = (data: API.postNormalParams) => {
     return instance({
         url: '/post/normal',
         method: 'POST',
@@ -89,11 +50,8 @@ export const postNormal = (data: postNormalParams) => {
     })
 }
 
-// 删除选中帖子
-interface deletePostParams {
-    postid: string
-}
-export const deletePost = (data: deletePostParams) => {
+/**删除选中帖子 */
+export const deletePost = (data: API.deletePostParams) => {
     return instance({
         url: '/post',
         method: 'DELETE',
@@ -101,11 +59,8 @@ export const deletePost = (data: deletePostParams) => {
     })
 }
 
-// 获取用户自己的帖子列表
-interface getUserPostParams {
-    // userid: string 
-}
-export const getUserPosts = () => {
+/**获取用户自己的帖子列表 */
+export const getUserPosts = (params: API.getUserPostsParams) => {
     return instance({
         url: '/post/list/for-user',
         method: 'GET',
@@ -115,11 +70,8 @@ export const getUserPosts = () => {
     })
 }
 
-// 获取用户收藏帖子列表
-interface getUserCollectPostParams {
-    // userid: string
-}
-export const getUserCollectPosts = () => {
+/**获取用户收藏帖子列表 */
+export const getUserCollectPosts = (params: API.getUserCollectPostsParams) => {
     return instance({
         url: '/post/list/for-usercollect',
         method: 'GET',
@@ -129,11 +81,8 @@ export const getUserCollectPosts = () => {
     })
 }
 
-// 用户点赞帖子
-interface likePostParams {
-    postid: string
-}
-export const likePost = (data: likePostParams) => {
+/**用户点赞帖子 */
+export const likePost = (data: API.likePostParams) => {
     return instance({
         url: '/post/like',
         method: 'put',
@@ -141,12 +90,8 @@ export const likePost = (data: likePostParams) => {
     })
 }
 
-// 用户收藏帖子
-interface collectPostParams {
-    // userid: string
-    postid: string
-}
-export const collectPost = (data: collectPostParams) => {
+/**用户收藏帖子 */
+export const collectPost = (data: API.collectPostParams) => {
     return instance({
         url: '/post/collect',
         method: 'POST',
@@ -157,11 +102,8 @@ export const collectPost = (data: collectPostParams) => {
     })
 }
 
-// 用户根据关键词搜索帖子
-interface searchPostParams {
-    keyword: string
-}
-export const searchPost = (params: searchPostParams) => {
+/**用户根据关键词搜索帖子 */
+export const searchPost = (params: API.searchPostParams) => {
     return instance({
         url: '/post/list/for-keyword',
         method: 'GET',
@@ -169,7 +111,7 @@ export const searchPost = (params: searchPostParams) => {
     })
 }
 
-// 获取任务攻略帖子列表
+/**获取任务攻略帖子列表 */
 export const getTaskPosts = () => {
     return instance({
         url: '/post/list/for-task',
@@ -177,13 +119,8 @@ export const getTaskPosts = () => {
     })
 }
 
-// 编辑帖子
-interface editPostParams {
-    postid: string
-    title: string
-    contain: string
-}
-export const editPost = (data: editPostParams) => {
+/**编辑帖子 */
+export const editPost = (data: API.editPostParams) => {
     return instance({
         url: '/post/edit',
         method: 'PATCH',
@@ -191,28 +128,8 @@ export const editPost = (data: editPostParams) => {
     })
 }
 
-
-
-
-// 发表评论
-/**
- * {
-    "fa_post": 1,
-    "fa_comment": 1,
-    "creator": 2162810210,
-    "is_facomment":1 ,
-    "reply":"1111111111",
-    "contain":"测试测试"
-}*/
-interface postCommentParams {
-    fa_post: number // 父帖子ID
-    fa_comment: number | null  // 父评论ID
-    // creator: number // 评论者ID
-    is_facomment: number // 是否父评论
-    reply: string    // 发帖人ID
-    contain: string  // 评论内容
-}
-export const postComment = (data: postCommentParams) => {
+/**发表评论 */
+export const postComment = (data: API.postCommentParams) => {
     return instance({
         url: '/comment',
         method: 'POST',

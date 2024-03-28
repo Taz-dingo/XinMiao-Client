@@ -19,7 +19,7 @@ import MenuButtons from './MenuButtons';
 import InfoBar from './InfoBar';
 import {getTaskCoords} from '../../services/api/taskService';
 import useAuthStore from '../../store/authStore';
-import {OSSBaseURL} from '../../services/config';
+import {OSSBaseURL} from '../../services';
 import {shadowStyle} from '../../style';
 // import geolib from 'geolib';
 import {set} from 'lodash';
@@ -191,6 +191,7 @@ export default function Amap({children, navigation}: any) {
   // 持续获取当前位置（不能存储位置，会引发无限回调，原因暂时不明）
 
   // 遍历location数组，看是否在任务点中
+  // 如果数组不为空，发送信息
   const checkCurInLocs = () => {
     Geolocation.getCurrentPosition(({coords}) => {
       // console.log(coords);
@@ -204,7 +205,7 @@ export default function Amap({children, navigation}: any) {
           5, // 半径（米）
         ),
       );
-      // console.log(taskPoints);
+      console.log(taskPoints);
       setTaskPointsCurIn(taskPoints);
     });
   };
@@ -221,7 +222,6 @@ export default function Amap({children, navigation}: any) {
     };
   }, [timeSignal]);
 
-
   const styles = StyleSheet.create({
     subScreenContainer: {
       // 任务栏容器
@@ -233,6 +233,7 @@ export default function Amap({children, navigation}: any) {
       padding: 10,
       paddingHorizontal: 20,
       // alignItems: 'center',
+      // borderWidth: 1,
       ...shadowStyle,
     },
     icon: {

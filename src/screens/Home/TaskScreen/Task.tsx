@@ -3,7 +3,13 @@ import React from 'react';
 import {ListItem} from 'react-native-elements';
 import {useShowDetailStore} from '../../../store';
 
-type TaskProps = {} & Task;
+type TaskProps = {
+  id: number;
+  title: string;
+  demand: string;
+  type: string;
+};
+/**任务组件 */
 export default function Task({id, title, demand, type}: TaskProps) {
   const [showDetailId, setShowDetail] = useShowDetailStore(state => [
     state.showDetailId,

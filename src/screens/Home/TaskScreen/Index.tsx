@@ -34,11 +34,12 @@ export default function TaskScreen() {
       marginBottom: 15,
     },
     icon: {
-      marginTop: 10,
-      left: 0,
+      position: 'absolute',
+      top: -40,
+      // marginTop: 10,
+      right: 0,
       width: 40,
       height: 40,
-      // borderWidth: 3,
     },
   });
   return (
@@ -59,15 +60,15 @@ export default function TaskScreen() {
           />
         </>
       ) : (
-        <>
+        <View style={{position: 'relative', borderWidth: 0}}>
           <IconIon
             name="arrow-back"
             style={styles.icon}
             size={30}
             onPress={() => clearShowDetail()}
           />
-          <TaskDetail></TaskDetail>
-        </>
+          <TaskDetail />
+        </View>
       )}
     </>
   );

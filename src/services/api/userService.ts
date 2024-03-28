@@ -1,13 +1,14 @@
 import instance from '..';
+import useAuthStore from "../../store/authStore"
+
+// 获取用户信息
+const storeApi = useAuthStore.getState()
+const userInfo = storeApi.userInfo
 
 
-// 账号密码登录
+/**账号密码登录 */
 // 发送账号、密码；接受data内容
-export interface LoginData {
-  id: string;
-  pwd: string;
-}
-export const login = (data: LoginData): any => {
+export const login = (data: API.LoginData): any => {
   return instance({
     url: '/login/idpwd',
     method: 'post',
@@ -15,12 +16,9 @@ export const login = (data: LoginData): any => {
   })
 }
 
-
+/**发送验证码 */
 // 发送验证码，传入tel，code为null
-interface sendMsgData {
-  tel: string
-}
-export const sendMsg = (params: sendMsgData): any => {
+export const sendMsg = (params: API.sendMsgData): any => {
   return instance({
     url: '/login/sendmsg',
     method: 'get',
@@ -31,12 +29,8 @@ export const sendMsg = (params: sendMsgData): any => {
   })
 }
 
-// 短信登录
-interface msgLoginData {
-  tel: string,
-  code: string
-}
-export const msgLogin = (data: msgLoginData): any => {
+/**短信登录 */
+export const msgLogin = (data: API.msgLoginData): any => {
   return instance({
     url: '/login/sms',
     method: 'post',
@@ -44,5 +38,13 @@ export const msgLogin = (data: msgLoginData): any => {
   })
 }
 
-
-// FaceRecognitionPunch
+/**获取背包信息 */
+export const getBagInfo = (params: API.getBagInfoParams) => {
+  return instance({
+    url: '/bag_viewall',
+    method: 'GET',
+    params: {
+      userid: userInfo.id,
+    }
+  })
+}

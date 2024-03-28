@@ -1,11 +1,8 @@
 import instance from "..";
 
-type getPathPlaningProps = {
-    origin: string
-    destination: string
-};
-// 高德步行导航API
-export const getPathPlaning = async (props: getPathPlaningProps): Promise<any> => {
+
+/**高德步行导航API */
+export const getPathPlaning = async (props: API.getPathPlaningProps): Promise<any> => {
     return await instance({
         url: "https://restapi.amap.com/v3/direction/walking",
         method: "GET",
@@ -15,3 +12,4 @@ export const getPathPlaning = async (props: getPathPlaningProps): Promise<any> =
         },
     });
 };
+

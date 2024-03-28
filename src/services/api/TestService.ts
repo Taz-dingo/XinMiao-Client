@@ -1,5 +1,5 @@
 import instance from "..";
-import { baseURL } from "../config";
+import { baseURL } from "..";
 
 export const getTestFun = async (params: any) => {
     return await instance({

@@ -1,41 +1,37 @@
 import instance from '..';
+import useAuthStore from "../../store/authStore"
 
+// 获取用户信息
+const storeApi = useAuthStore.getState()
+const userInfo = storeApi.userInfo
 
-// 根据userid查询主线任务taskSets
-interface getTaskSetsParams {
-    userid: string
-    is_mainline: string
-    is_now: string
-}
-export const getTaskSets = (params: getTaskSetsParams) => {
+/**根据userid查询主线任务taskSets */
+export const getTaskSets = (params: API.getTaskSetsParams) => {
     return instance({
         url: '/get/tasksets',
         method: 'GET',
-        params: params
+        params: {
+            ...params,
+            userid: userInfo.id
+        }
     })
 }
 
 
-// 根据setid查询tasks
-interface getTasksParams {
-    setid: string
-    is_now: string
-}
-export const getTasks = (params: getTasksParams) => {
+/**根据setid查询tasks */
+export const getTasks = (params: API.getTasksParams) => {
     return instance({
         url: '/get/tasks',
         method: 'GET',
-        params: params
+        params: {
+            ...params,
+            userid: userInfo.id
+        }
     })
 }
 
-
-
-// 根据taskid查询任务具体信息
-interface getTaskDetailParams {
-    taskid: string
-}
-export const getTasksDetail = (params: getTaskDetailParams) => {
+/**根据taskid查询任务具体信息 */
+export const getTasksDetail = (params: API.getTaskDetailParams) => {
     return instance({
         url: '/get/task',
         method: 'GET',
@@ -43,12 +39,8 @@ export const getTasksDetail = (params: getTaskDetailParams) => {
     })
 }
 
-
-// 根据userid获取所有任务坐标点
-interface getTaskCoordsParams {
-    userid: string
-}
-export const getTaskCoords = (params: getTaskCoordsParams) => {
+/**根据userid获取所有任务坐标点 */
+export const getTaskCoords = (params: API.getTaskCoordsParams) => {
     return instance({
         url: '/get/task-all',
         method: 'GET',
@@ -56,15 +48,19 @@ export const getTaskCoords = (params: getTaskCoordsParams) => {
     })
 }
 
-
-interface confirmAnnData {
-    userid: string,
-    taskid: string,
-    time: string
-}
-export const confirmAnn = (data: confirmAnnData) => {
+/**确定公告任务 */
+export const confirmAnn = (data: API.confirmAnnData) => {
     return instance({
         url: '/task/confirm',
+        method: 'POST',
+        data: data
+    })
+}
+
+/**进入定位点发送位置 */
+export const sendLocIn = (data: API.sendLocInData) => {
+    return instance({
+        url: '/task/location',
         method: 'POST',
         data: data
     })

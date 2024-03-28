@@ -4,7 +4,7 @@ import {Avatar, Divider} from 'react-native-elements';
 import {Button} from '@rneui/base';
 import {useNavigation} from '@react-navigation/native';
 import Iconant from 'react-native-vector-icons/AntDesign';
-import {OSSBaseURL} from '../../services/config';
+import {OSSBaseURL} from '../../services';
 
 type postItemProps = {
   id: string;

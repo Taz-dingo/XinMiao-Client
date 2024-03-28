@@ -33,7 +33,6 @@ export default function PostList({type}: PostListProps) {
     store => [store.postListUpdateSignal, store.setPostListUpdateSignal],
   );
 
-  
   const updatePosts = async () => {
     try {
       let response;
@@ -42,10 +41,10 @@ export default function PostList({type}: PostListProps) {
         response = await getPosts();
       } else if (type === 'userOnly') {
         // 查个人帖子
-        response = await getUserPosts();
+        response = await getUserPosts({});
       } else if (type === 'userCollect') {
         // 查个人收藏的帖子
-        response = await getUserCollectPosts();
+        response = await getUserCollectPosts({});
       }
 
       // 如果返回数据是数组则有数据，
