@@ -28,6 +28,8 @@ import {shadowStyle} from '../../style';
 // import geolib from 'geolib';
 import {set} from 'lodash';
 import {Button} from 'react-native-elements';
+import ProfileScreen from './ProfileScreen';
+import RankScreen from './RankScreen';
 
 const geolib = require('geolib');
 type point = {latitude: number; longitude: number};
@@ -361,6 +363,8 @@ export default function Amap({children, navigation}: any) {
             />
             {screenState === 'TaskScreen' && <TaskScreen />}
             {screenState === 'BagScreen' && <BagScreen />}
+            {screenState === 'ProfileScreen' && <ProfileScreen />}
+            {screenState === 'RankScreen' && <RankScreen />}
           </View>
         )}
       </View>

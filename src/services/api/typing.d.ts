@@ -98,6 +98,31 @@ declare namespace API {
         code: string
     }
 
+    type getPersonalInfoParams = {
+        // userid: string
+    }
+
+    type getPersonalInfoResult = {
+        id: string,
+        classId: string,
+        name: string,
+        pwd: string,
+        sex: string,
+        idcard: string,
+        birthday: string,
+        tel: string,
+        email: string,
+        realname: string,
+        img: string
+    }
+
+    type getRankListResult = {
+        userid: string,
+        img: string,
+        name: string,
+        passnum: string
+    }[]
+
     // taskService ---------------------------
     type getTaskSetsParams = {
         // userid: number

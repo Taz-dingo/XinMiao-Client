@@ -5,8 +5,6 @@ import IconFA6 from 'react-native-vector-icons/FontAwesome6';
 import {Icon} from 'react-native-elements';
 import {StackNavigationState, useNavigation} from '@react-navigation/native';
 
-
-
 export default function MenuButtons() {
   const setScreenState = useSubScreenStore(store => store.setScreenState);
   const navigation = useNavigation();
@@ -67,6 +65,30 @@ export default function MenuButtons() {
       },
       onPress: () => {
         setScreenState('BagScreen');
+      },
+    },
+    {
+      name: '我的',
+      icon: {
+        name: 'user',
+        type: 'font-awesome',
+        color: 'rgba(255,153,51,0.9)',
+        size: 40,
+      },
+      onPress: () => {
+        setScreenState('ProfileScreen');
+      },
+    },
+    {
+      name: '排行榜',
+      icon: {
+        name: 'trophy',
+        type: 'font-awesome',
+        color: 'rgba(255,153,51,0.9)',
+        size: 40,
+      },
+      onPress: () => {
+        setScreenState('RankScreen');
       },
     },
   ];

@@ -10,26 +10,17 @@ import {
 import {confirmAnn, getTaskDetail} from '../../../services/api/taskService';
 import {Button, Divider} from '@rneui/base';
 import IconIon from 'react-native-vector-icons/Ionicons';
-import {getCurrentDateTime} from '../../../utils/getCurrenTimeUtils';
+import {
+  getCurrentDate,
+  getCurrentDateTime,
+} from '../../../utils/getCurrenTimeUtils';
 import {Geolocation} from 'react-native-amap-geolocation';
 import * as geolib from 'geolib';
 import {ScrollText} from '../../../components/ScrollText';
-import {launchCamera, launchImageLibrary} from 'react-native-image-picker';
 import ImagePicker, {Image, ImageOrVideo} from 'react-native-image-crop-picker';
 import {uploadImage} from '../../../services/api/OSSService';
 import {OSSBaseURL} from '../../../services';
-
-type detailDataType = {
-  id: number;
-  title: string;
-  demand: string;
-  ctime: string;
-  btime: string;
-  dtime: string;
-  type: string;
-  location: string;
-  lngLat: string;
-};
+import useAuthStore from '../../../store/authStore';
 
 type buttonType = {
   title: string;
@@ -43,18 +34,12 @@ type buttonsType = {
 };
 
 export default function TaskDetail() {
-  const [screenState, setScreenState, clearScreenState] = useSubScreenStore(
-    store => [store.screenState, store.setScreenState, store.clearScreenState],
-  );
-  const [showDetailId, setShowDetail, clearShowDetail] = useShowDetailStore(
-    store => [store.showDetailId, store.setShowDetail, store.clearShowDetail],
-  );
-  const taskLocation = useTaskLocationStore(store => store.taskLocation);
-  const [destLngLat, setDestLngLat, clearDestLngLat] = useDestinationStore(
-    store => [store.destLngLat, store.setDestLngLat, store.clearDestLngLat],
-  );
-
+  const {screenState, setScreenState, clearScreenState} = useSubScreenStore();
+  const {showDetailId, setShowDetail, clearShowDetail} = useShowDetailStore();
+  const taskLocation = useTaskLocationStore();
+  const {destLngLat, setDestLngLat, clearDestLngLat} = useDestinationStore();
   const {taskInfo, taskLoc, setTaskInfo, setTaskLoc} = useTaskInfoStore();
+  const {userInfo} = useAuthStore();
 
   const Buttons: buttonsType = {
     // 定位打卡
@@ -196,24 +181,41 @@ export default function TaskDetail() {
     clearScreenState();
   };
 
-  const handleTakePhoto = async () => {
-    const result = await launchCamera({
-      mediaType: 'photo',
-      includeBase64: true,
-    });
-    console.log(result.assets ? result.assets[0].base64 : null);
-  };
-  const handleAlbumUpload = () => {
-    ImagePicker.openPicker({
-      compressImageMaxWidth: 500,
+  const handleTakePhoto = () => {
+    ImagePicker.openCamera({
+      compressImageMaxWidth: 2000,
       cropping: true,
       includeBase64: true,
     }).then(async (image: Image) => {
       // 上传图片
       const response = await uploadImage({
-        filename: 'myphoto',
+        filename: `${userInfo.id}_${taskInfo.id}_${getCurrentDate()}`,
         base64: `data:image/png;base64,${image.data}`,
       });
+      if (response.code === 200) {
+        Alert.alert('上传成功', '照片已经成功上传啦');
+      } else {
+        Alert.alert('上传失败', response.msg);
+      }
+    });
+  };
+
+  const handleAlbumUpload = () => {
+    ImagePicker.openPicker({
+      compressImageMaxWidth: 2000,
+      cropping: true,
+      includeBase64: true,
+    }).then(async (image: Image) => {
+      // 上传图片
+      const response = await uploadImage({
+        filename: `${userInfo.id}_${taskInfo.id}_${getCurrentDate()}`,
+        base64: `data:image/png;base64,${image.data}`,
+      });
+      if (response.code === 200) {
+        Alert.alert('上传成功');
+      } else {
+        Alert.alert('上传失败', response.msg);
+      }
     });
   };
 

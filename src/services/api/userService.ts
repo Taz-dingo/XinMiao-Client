@@ -48,3 +48,24 @@ export const getBagInfo = (params: API.getBagInfoParams) => {
     }
   })
 }
+
+/**查看个人信息 */
+export const getPersonalInfo = (params: API.getPersonalInfoParams)
+  : Promise<API.Response<API.getPersonalInfoResult>> => {
+  return instance({
+    url: '/me/check/information',
+    method: 'GET',
+    params: {
+      userid: userInfo.id,
+    }
+  })
+}
+
+/**查看排行榜 */
+export const getRankList = ()
+  : Promise<API.Response<API.getRankListResult>> => {
+  return instance({
+    url: '/sort/finish-task',
+    method: 'GET',
+  });
+}

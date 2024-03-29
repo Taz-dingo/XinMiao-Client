@@ -76,6 +76,7 @@ interface TaskInfoState {
     setTaskInfo: (taskInfo: detailDataType) => void
     setTaskLoc: (taskLoc: location) => void
 }
+/**当前任务信息 */
 export const useTaskInfoStore = create<TaskInfoState>((set) => ({
     taskInfo: {
         id: -1,

@@ -6247,11 +6247,6 @@ react-native-image-crop-picker@^0.40.3:
   resolved "https://mirrors.cloud.tencent.com/npm/react-native-image-crop-picker/-/react-native-image-crop-picker-0.40.3.tgz#a6b135cd1218a33ad126c1a148ec5a1bd01737ff"
   integrity sha512-45PKcTnsnLS+E36YwoXutllQdRSOuOsMN0IRcAcwsFXOuAQIOtugXlAuGGL28JHKb/ATaSSPvqCSrdG65Jv3GA==
 
-react-native-image-picker@^7.1.0:
-  version "7.1.0"
-  resolved "https://mirrors.cloud.tencent.com/npm/react-native-image-picker/-/react-native-image-picker-7.1.0.tgz#1a41cc45ccdc177c2ebf7c7accee0ceadc36abd8"
-  integrity sha512-An0hn2mwqjGAA2mbsXdHRTyoMMklGPT9stIjE2zvkegU7CdoFhowqvVHfnELJNZnfAiSQuIaeY//z0r1R0lsgw==
-
 react-native-ratings@8.0.4:
   version "8.0.4"
   resolved "https://mirrors.cloud.tencent.com/npm/react-native-ratings/-/react-native-ratings-8.0.4.tgz#efd5ebad8acc08bf98d34d39b18fb7a6813ef991"
