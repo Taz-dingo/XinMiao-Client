@@ -17,7 +17,11 @@ import {
 } from '../../store';
 import MenuButtons from './MenuButtons';
 import InfoBar from './InfoBar';
-import {getTaskCoords} from '../../services/api/taskService';
+import {
+  getTaskCoords,
+  sendLocIn,
+  sendLocOut,
+} from '../../services/api/taskService';
 import useAuthStore from '../../store/authStore';
 import {OSSBaseURL} from '../../services';
 import {shadowStyle} from '../../style';
@@ -89,10 +93,7 @@ export default function Amap({children, navigation}: any) {
 
   const [lineData, setLineData] = useState<points>([]);
 
-  const [taskLocation, setTaskLocation] = useTaskLocationStore(store => [
-    store.taskLocation,
-    store.setTaskLocation,
-  ]);
+  const {taskLocation, setTaskLocation} = useTaskLocationStore();
 
   const [screenState, setScreenState, clearScreenState] = useSubScreenStore(
     store => [store.screenState, store.setScreenState, store.clearScreenState],
@@ -188,13 +189,17 @@ export default function Amap({children, navigation}: any) {
     putTaskMarkers();
   }, []);
 
-  // 持续获取当前位置（不能存储位置，会引发无限回调，原因暂时不明）
+  // 持续获取当前位置（不能存储位置状态，会引发无限回调，原因暂时不明）
 
-  // 遍历location数组，看是否在任务点中
-  // 如果数组不为空，发送信息
+  /**
+   * 定时检测当前位置
+   * 检查上一次taskPointsCurIn有值吗 （有值要处理离开情况）
+   * ? 处理进入、离开（之前有值）: 处理进入（之前没有值，只有进入）
+   *
+   */
   const checkCurInLocs = () => {
     Geolocation.getCurrentPosition(({coords}) => {
-      // console.log(coords);
+      // 计算当前坐标点是否在任务点中
       const taskPoints = taskLocation.filter(item =>
         geolib.isPointWithinRadius(
           {latitude: coords.latitude, longitude: coords.longitude},
@@ -202,11 +207,55 @@ export default function Amap({children, navigation}: any) {
             latitude: parseFloat(item.position.latitude),
             longitude: parseFloat(item.position.longitude),
           },
-          5, // 半径（米）
+          50, // 半径（米）
         ),
       );
+      // 处理离开情况
+      // 保存上一次的taskPointsCurIn
+      // 对比两次结果，对于减少的元素,发出离开信号
+      if (taskPointsCurIn.length > 0) {
+        const leavePoints = taskPointsCurIn.filter(
+          item =>
+            !taskPoints.some(
+              item2 =>
+                item2.properties.id === item.properties.id &&
+                item2.position.latitude === item.position.latitude &&
+                item2.position.longitude === item.position.longitude,
+            ),
+        );
+        console.log('leavePoints: ', leavePoints);
+        if (leavePoints.length > 0) {
+          leavePoints.forEach(async item => {
+            console.log('离开点：' + item.properties.id);
+            const response = await sendLocOut({
+              taskid: item.properties.id,
+            });
+          });
+        }
+      }
+
       console.log(taskPoints);
       setTaskPointsCurIn(taskPoints);
+
+      // 每次记录上一次的数组
+      // 找出新增元素，发送信息
+      if (taskPoints.length > 0) {
+        const newPoints = taskPoints.filter(
+          item =>
+            !taskPointsCurIn.some(
+              item2 =>
+                item2.properties.id === item.properties.id &&
+                item2.position.latitude === item.position.latitude &&
+                item2.position.longitude === item.position.longitude,
+            ),
+        );
+        newPoints.forEach(async item => {
+          console.log('新增点：' + item.properties.id);
+          const response = await sendLocIn({
+            taskid: item.properties.id,
+          });
+        });
+      }
     });
   };
 

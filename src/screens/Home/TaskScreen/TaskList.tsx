@@ -6,10 +6,13 @@ import {getTaskSets} from '../../../services/api/taskService';
 import {useShowClosedStore, useTaskStore} from '../../../store';
 
 export type TaskSet = {
-  setId: number;
-  setTitle: string;
+  name: string;
+  applicant: string;
   ctime: string;
   etime: string;
+  isSetDue: string;
+  isMainline: string;
+  setId: string;
 };
 
 // 网络请求，获得task
@@ -39,19 +42,8 @@ export default function TaskList() {
         is_mainline: taskType,
         is_now: showClosed === '1' ? '0' : '1', // 如果展示已结束，那么is_now就为0
       });
-
-      const taskSetsData: TaskSet[] = response.data.map((item: any) => {
-        console.log('item.name: ' + item.name);
-
-        return {
-          setId: item.setId,
-          setTitle: item.name,
-          ctime: item.ctime,
-          etime: item.etime,
-        };
-      });
       // 更新任务集数组
-      setTaskSets(taskSetsData);
+      setTaskSets(response.data);
     } catch (e) {
       console.log(e);
     }
@@ -65,8 +57,13 @@ export default function TaskList() {
     <ScrollView style={styles.container}>
       {taskSets &&
         taskSets.map(item => (
-          <TaskSets key={item.setId} id={item.setId} title={item.setTitle} />
+          <TaskSets
+            key={item.setId}
+            id={parseInt(item.setId)}
+            title={item.name}
+          />
         ))}
     </ScrollView>
   );
 }
+

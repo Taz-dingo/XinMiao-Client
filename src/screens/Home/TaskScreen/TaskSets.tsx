@@ -10,6 +10,7 @@ import {ListItem} from '@rneui/base';
 import {getTasks} from '../../../services/api/taskService';
 import Task from './Task';
 import {useShowClosedStore} from '../../../store';
+import {MyTouchable} from '../../../components/MyTouchable';
 
 type TaskSetsProps = {
   id: number;
@@ -52,6 +53,7 @@ export default function TaskSets({id, title}: TaskSetsProps) {
 
   return (
     <ListItem.Accordion
+      Component={MyTouchable}
       containerStyle={styles.container}
       // 点击折叠与展开
       onPress={() => {

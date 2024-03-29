@@ -1,4 +1,4 @@
-import {View, Text, StyleSheet} from 'react-native';
+import {View, Text, StyleSheet, Alert} from 'react-native';
 import React, {useEffect, useState} from 'react';
 import {
   useDestinationStore,
@@ -7,12 +7,17 @@ import {
   useTaskInfoStore,
   useTaskLocationStore,
 } from '../../../store';
-import {getTasksDetail} from '../../../services/api/taskService';
+import {confirmAnn, getTaskDetail} from '../../../services/api/taskService';
 import {Button, Divider} from '@rneui/base';
 import IconIon from 'react-native-vector-icons/Ionicons';
+import {getCurrentDateTime} from '../../../utils/getCurrenTimeUtils';
+import {Geolocation} from 'react-native-amap-geolocation';
+import * as geolib from 'geolib';
+import {ScrollText} from '../../../components/ScrollText';
+// const geolib = require('geolib');
 
 type detailDataType = {
-  id: string;
+  id: number;
   title: string;
   demand: string;
   ctime: string;
@@ -35,18 +40,77 @@ export default function TaskDetail() {
     store => [store.destLngLat, store.setDestLngLat, store.clearDestLngLat],
   );
 
-  const [taskInfo, taskLoc, setTaskInfo, setTaskLoc] = useTaskInfoStore(
-    store => [
-      store.taskInfo,
-      store.taskLoc,
-      store.setTaskInfo,
-      store.setTaskLoc,
+  const {taskInfo, taskLoc, setTaskInfo, setTaskLoc} = useTaskInfoStore();
+
+  const Buttons = {
+    // 定位打卡
+    LocCheckIn: [
+      {
+        title: '导航任务点',
+        buttonStyle: {borderWidth: 3},
+        icon: <IconIon name="navigate" size={24} />,
+        onPress: () => {
+          handleNavi();
+        },
+      },
+      {
+        title: '定位打卡',
+        buttonStyle: {borderWidth: 3},
+        icon: <IconIon name="arrow-back" size={24} />,
+        onPress: () => {
+          handleLocCheckIn();
+        },
+      },
     ],
-  );
+    // 公告通知
+    AnnConfirm: [
+      {
+        title: '确认',
+        buttonStyle: {borderWidth: 3},
+        icon: <IconIon name="checkmark-circle-outline" size={24} />,
+        onPress: () => {
+          handleConfirm();
+        },
+      },
+    ],
+    // 人脸打卡
+    FaceCheckIn: [
+      {
+        title: '导航任务点',
+        buttonStyle: {borderWidth: 3},
+        icon: <IconIon name="navigate" size={24} />,
+        onPress: () => {
+          handleNavi();
+        },
+      },
+    ],
+    // 照片上传`
+    PhotoUpload: [
+      {
+        title: '上传照片',
+        buttonStyle: {borderWidth: 3},
+        icon: <IconIon name="camera" size={24} />,
+        onPress: () => {
+          console.log('上传照片');
+        },
+      },
+    ],
+  };
+  const getButton = () => {
+    if (taskInfo.type === '定位打卡') {
+      return Buttons['LocCheckIn'];
+    } else if (taskInfo.type === '公告通知') {
+      return Buttons['AnnConfirm'];
+    } else if (taskInfo.type === '人脸打卡') {
+      return Buttons['FaceCheckIn'];
+    } else if (taskInfo.type === '照片上传') {
+      return [];
+    }
+  };
 
   const updateTaskDetail = async () => {
     try {
-      const response = await getTasksDetail({
+      const response = await getTaskDetail({
         taskid: showDetailId,
       });
 
@@ -56,6 +120,47 @@ export default function TaskDetail() {
     }
   };
 
+  // 确认公告
+  const handleConfirm = async () => {
+    try {
+      const response = await confirmAnn({
+        taskid: taskInfo.id.toString(),
+        time: getCurrentDateTime(),
+      });
+      if (response.code === 200) {
+        Alert.alert('确认成功', '公告确认成功');
+        clearShowDetail();
+      } else {
+        Alert.alert('确认失败', response.msg);
+      }
+    } catch (e) {
+      console.log(e);
+    }
+  };
+  // 定位打卡
+  const handleLocCheckIn = () => {
+    // 检查当前位置是否在任务点范围内
+    Geolocation.getCurrentPosition(({coords}) => {
+      const distance = geolib.getDistance(
+        {
+          latitude: coords.latitude,
+          longitude: coords.longitude,
+        },
+        {
+          latitude: parseFloat(taskInfo.lngLat.split(',')[1]),
+          longitude: parseFloat(taskInfo.lngLat.split(',')[0]),
+        },
+      );
+
+      if (distance < 500) {
+        Alert.alert('打卡成功', '定位点在任务点范围内');
+        clearScreenState();
+      } else {
+        Alert.alert('打卡失败', '距离任务点过远，无法定位打卡');
+      }
+    });
+  };
+  // 导航
   const handleNavi = () => {
     /**
      * 1. 设置终点坐标为当前任务坐标
@@ -118,9 +223,13 @@ export default function TaskDetail() {
       {taskInfo && (
         <>
           <View style={{alignItems: 'center'}}>
-            <Text style={styles.title}>
+            {/* <Text style={styles.title}>
               任务{taskInfo.id} - {taskInfo.title}
-            </Text>
+            </Text> */}
+            <ScrollText
+              styles={styles.title}
+              text={`任务${taskInfo.id} - ${taskInfo.title}`}
+            />
           </View>
 
           <Divider inset insetType="middle" style={styles.divider} />
@@ -130,28 +239,23 @@ export default function TaskDetail() {
             {taskInfo.demand}
           </Text>
 
+          <Text>{taskInfo.type}</Text>
+
           <View style={styles.buttonContainer}>
-            <View style={styles.button}>
-              <Button
-                type="outline"
-                radius={10}
-                buttonStyle={{borderWidth: 3}}
-                icon={<IconIon name="navigate" size={24} />}
-                title="导航此任务"
-                onPress={() => {
-                  handleNavi();
-                }}
-              />
-            </View>
-            <View style={styles.button}>
-              <Button
-                type="outline"
-                radius={10}
-                buttonStyle={{borderWidth: 3}}
-                icon={<IconIon name="arrow-back" />}
-                title="提交任务"
-              />
-            </View>
+            <>
+              {getButton()?.map(button => (
+                <Button
+                  key={button.title}
+                  type="outline"
+                  radius={10}
+                  containerStyle={styles.button}
+                  buttonStyle={button.buttonStyle}
+                  icon={button.icon}
+                  title={button.title}
+                  onPress={button.onPress}
+                />
+              ))}
+            </>
           </View>
         </>
       )}

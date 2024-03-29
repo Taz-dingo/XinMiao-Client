@@ -1,4 +1,11 @@
 declare namespace API {
+    type Response<T> = {
+        code: number
+        msg: string
+        data: T
+    }
+
+
     // forumService ---------------------------
     type postDetailParams = {
         postid: string
@@ -97,6 +104,15 @@ declare namespace API {
         is_mainline: string
         is_now: string
     }
+    type getTaskSetsResult = {
+        name: string
+        applicant: string
+        ctime: string
+        etime: string
+        isSetDue: string
+        isMainline: string
+        setId: string
+    }[]
 
     type getTasksParams = {
         setid: string
@@ -108,18 +124,45 @@ declare namespace API {
         taskid: string
     }
 
+    type getTaskDetailResult = {
+        id: number
+        title: string
+        demand: string
+        ctime: string
+        btime: string
+        dtime: string
+        type: string
+        location: string
+        lngLat: string
+        name: string
+        img: string
+        examplePic: string | null
+        isAI: string | null
+        isfinish: string | null
+        isMainline: number
+        setId: number
+    }
+
     type getTaskCoordsParams = {
         userid: string
     }
 
     type confirmAnnData = {
-        userid: string,
+        // userid: string,
         taskid: string,
         time: string
     }
+    type confirmAnnResult = {}
 
     type sendLocInData = {
-        userid: string,
+        // userid: string,
         taskid: string,
     }
+    type sendLocInResult = {}
+
+    type sendLocOutData = {
+        // userid: string,
+        taskid: string,
+    }
+    type sendLocOutResult = {}
 }

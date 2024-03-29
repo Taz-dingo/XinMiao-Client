@@ -56,7 +56,7 @@ export const useTaskLocationStore = create<TaskLocationState>((set) => ({
 
 // 当前任务信息 
 type detailDataType = {
-    id: string;
+    id: number;
     title: string;
     demand: string;
     ctime: string;
@@ -78,7 +78,7 @@ interface TaskInfoState {
 }
 export const useTaskInfoStore = create<TaskInfoState>((set) => ({
     taskInfo: {
-        id: '',
+        id: -1,
         title: '',
         demand: '',
         ctime: '',

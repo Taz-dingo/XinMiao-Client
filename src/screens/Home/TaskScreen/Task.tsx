@@ -1,7 +1,8 @@
-import {View, Text} from 'react-native';
-import React from 'react';
-import {ListItem} from 'react-native-elements';
+
+import React, {Component} from 'react';
+import {Button, ListItem} from 'react-native-elements';
 import {useShowDetailStore} from '../../../store';
+import { MyTouchable } from '../../../components/MyTouchable';
 
 type TaskProps = {
   id: number;
@@ -18,11 +19,13 @@ export default function Task({id, title, demand, type}: TaskProps) {
 
   return (
     <ListItem
+      Component={MyTouchable}
       containerStyle={{
         backgroundColor: 'rgba(255,255,255,0)',
         paddingHorizontal: 5,
         width: '80%',
         marginBottom: 10,
+        // borderWidth: 1,
       }}
       onPress={() => {
         setShowDetail(id.toString());
@@ -37,3 +40,5 @@ export default function Task({id, title, demand, type}: TaskProps) {
     </ListItem>
   );
 }
+
+
