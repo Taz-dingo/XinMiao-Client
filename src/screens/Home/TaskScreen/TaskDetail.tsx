@@ -14,7 +14,10 @@ import {getCurrentDateTime} from '../../../utils/getCurrenTimeUtils';
 import {Geolocation} from 'react-native-amap-geolocation';
 import * as geolib from 'geolib';
 import {ScrollText} from '../../../components/ScrollText';
-// const geolib = require('geolib');
+import {launchCamera, launchImageLibrary} from 'react-native-image-picker';
+import ImagePicker, {Image, ImageOrVideo} from 'react-native-image-crop-picker';
+import {uploadImage} from '../../../services/api/OSSService';
+import {OSSBaseURL} from '../../../services';
 
 type detailDataType = {
   id: number;
@@ -26,6 +29,17 @@ type detailDataType = {
   type: string;
   location: string;
   lngLat: string;
+};
+
+type buttonType = {
+  title: string;
+  buttonStyle: object;
+  icon: any;
+  onPress: () => void;
+};
+
+type buttonsType = {
+  [key: string]: buttonType[];
 };
 
 export default function TaskDetail() {
@@ -42,7 +56,7 @@ export default function TaskDetail() {
 
   const {taskInfo, taskLoc, setTaskInfo, setTaskLoc} = useTaskInfoStore();
 
-  const Buttons = {
+  const Buttons: buttonsType = {
     // 定位打卡
     LocCheckIn: [
       {
@@ -84,29 +98,34 @@ export default function TaskDetail() {
         },
       },
     ],
-    // 照片上传`
+    // 照片上传
     PhotoUpload: [
       {
-        title: '上传照片',
+        title: '拍照上传',
         buttonStyle: {borderWidth: 3},
         icon: <IconIon name="camera" size={24} />,
         onPress: () => {
-          console.log('上传照片');
+          handleTakePhoto();
+        },
+      },
+      {
+        title: '相册上传',
+        buttonStyle: {borderWidth: 3},
+        icon: <IconIon name="image-outline" size={24} />,
+        onPress: () => {
+          handleAlbumUpload();
         },
       },
     ],
   };
-  const getButton = () => {
-    if (taskInfo.type === '定位打卡') {
-      return Buttons['LocCheckIn'];
-    } else if (taskInfo.type === '公告通知') {
-      return Buttons['AnnConfirm'];
-    } else if (taskInfo.type === '人脸打卡') {
-      return Buttons['FaceCheckIn'];
-    } else if (taskInfo.type === '照片上传') {
-      return [];
-    }
-  };
+
+  // 按钮映射
+  const buttonMap = new Map<string, buttonType[]>([
+    ['定位打卡', Buttons['LocCheckIn']],
+    ['公告通知', Buttons['AnnConfirm']],
+    ['人脸打卡', Buttons['FaceCheckIn']],
+    ['照片上传', Buttons['PhotoUpload']],
+  ]);
 
   const updateTaskDetail = async () => {
     try {
@@ -177,6 +196,27 @@ export default function TaskDetail() {
     clearScreenState();
   };
 
+  const handleTakePhoto = async () => {
+    const result = await launchCamera({
+      mediaType: 'photo',
+      includeBase64: true,
+    });
+    console.log(result.assets ? result.assets[0].base64 : null);
+  };
+  const handleAlbumUpload = () => {
+    ImagePicker.openPicker({
+      compressImageMaxWidth: 500,
+      cropping: true,
+      includeBase64: true,
+    }).then(async (image: Image) => {
+      // 上传图片
+      const response = await uploadImage({
+        filename: 'myphoto',
+        base64: `data:image/png;base64,${image.data}`,
+      });
+    });
+  };
+
   useEffect(() => {
     updateTaskDetail();
   }, []);
@@ -223,9 +263,6 @@ export default function TaskDetail() {
       {taskInfo && (
         <>
           <View style={{alignItems: 'center'}}>
-            {/* <Text style={styles.title}>
-              任务{taskInfo.id} - {taskInfo.title}
-            </Text> */}
             <ScrollText
               styles={styles.title}
               text={`任务${taskInfo.id} - ${taskInfo.title}`}
@@ -239,11 +276,17 @@ export default function TaskDetail() {
             {taskInfo.demand}
           </Text>
 
-          <Text>{taskInfo.type}</Text>
+          <Text>{taskInfo.type}123</Text>
+          {/* <Image
+            source={{
+              uri: `${OSSBaseURL}/testbase64/myphoto.jpg.jpg`,
+            }}
+            style={{width: 200, height: 200}}
+          /> */}
 
           <View style={styles.buttonContainer}>
             <>
-              {getButton()?.map(button => (
+              {buttonMap.get(taskInfo.type)?.map(button => (
                 <Button
                   key={button.title}
                   type="outline"

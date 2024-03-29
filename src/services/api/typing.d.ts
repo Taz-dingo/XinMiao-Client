@@ -165,4 +165,13 @@ declare namespace API {
         taskid: string,
     }
     type sendLocOutResult = {}
+
+    // OSSService -----------------------------
+    type uploadImageData = {
+        filename: string,
+        base64: string
+    }
+    type uploadImageResult = {
+        img: string  // 相对路径
+    }
 }

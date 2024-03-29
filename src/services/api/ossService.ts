@@ -1,12 +1,12 @@
 
 import instance from ".."
 
-// 查询所有帖子（论坛主页）
-// 暂时不需要参数
-export const getPosts = (params:any) => {
+/**上传图片 (base64) */
+export const uploadImage = (data: API.uploadImageData)
+    : Promise<API.Response<API.uploadImageResult>> => {
     return instance({
-        url: '/post',
-        method: 'GET',
-        params: params
-    })
+        url: "/uploadfile/base64",
+        method: "POST",
+        data: data
+    });
 }
