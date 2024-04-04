@@ -159,3 +159,15 @@ export const adClick = (params: API.adClickParams)
         }
     })
 }
+
+/** 广告轮播图列表 */
+export const getAdList = ()
+    : Promise<API.Response<API.getAdListResult>> => {
+    return instance({
+        url: '/get/advert',
+        method: 'GET',
+        params: {
+            userid: userInfo.id,
+        }
+    })
+}

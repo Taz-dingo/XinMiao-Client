@@ -105,6 +105,18 @@ declare namespace API {
     }
     type adClickResult = PostItem;
 
+    type AdItem = {
+        id: string,
+        name: string,
+        img: string,
+        url: string,
+        clickNum: string | null,
+        content: string,
+        weight: number,
+        extime: string
+    }
+    type getAdListResult = AdItem[]
+    
     // mapService ----------------------------
     type getPathPlaningProps = {
         origin: string

@@ -15,8 +15,8 @@ type postItemProps = {
   clicknum: string;
   ctime: string;
   /* ------------------ */
-  poster: string;
-  posterId: string;
+  poster: string; // 发布人昵称
+  posterId: string; // 发布人id
   avatarRelativePath: string;
   adid: string;
   is_adpost: number;
