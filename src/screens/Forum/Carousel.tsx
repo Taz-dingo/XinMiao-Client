@@ -1,9 +1,12 @@
 import * as React from 'react';
+import {useState} from 'react';
 import {Dimensions, Text, View} from 'react-native';
 import Carousel from 'react-native-reanimated-carousel';
 
 function App() {
   const width = Dimensions.get('window').width;
+  const [adData, setAdData] = useState([]);
+
   return (
     <View style={{}}>
       <Carousel

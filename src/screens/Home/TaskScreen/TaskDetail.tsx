@@ -156,7 +156,7 @@ export default function TaskDetail() {
         },
       );
 
-      if (distance < 500) {
+      if (distance < 5000) {
         Alert.alert('打卡成功', '定位点在任务点范围内');
         clearScreenState();
       } else {

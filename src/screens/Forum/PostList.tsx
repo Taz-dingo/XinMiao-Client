@@ -8,26 +8,12 @@ import {
 } from '../../services/api/forumService';
 import {useForumStore} from '../../store/forumStore';
 
-// response.data
-type post = {
-  id: string;
-  title: string; // 标题
-  contain: string; // 内容
-  likenum: string;
-  clicktnum: string;
-  ctime: string;
-  /* ------------- */
-  creator: string; // 发帖人id
-  name: string; // 发帖人用户名
-  img: string; // 头像的OSS相对路径
-};
-
 type PostListProps = {
   type: string; // 'all' or 'userOnly'
 };
 
 export default function PostList({type}: PostListProps) {
-  const [posts, setPosts] = React.useState<post[]>([]);
+  const [posts, setPosts] = React.useState<API.PostItem[]>([]);
   const [msg, setMsg] = React.useState('');
   const [postListUpdateSignal, setPostListUpdateSignal] = useForumStore(
     store => [store.postListUpdateSignal, store.setPostListUpdateSignal],
@@ -38,7 +24,11 @@ export default function PostList({type}: PostListProps) {
       let response;
       if (type === 'all') {
         // 查所有
-        response = await getPosts();
+        response = await getPosts({
+          page: 1,
+          pagesize: 5,
+          order: 0,
+        });
       } else if (type === 'userOnly') {
         // 查个人帖子
         response = await getUserPosts({});
@@ -74,7 +64,7 @@ export default function PostList({type}: PostListProps) {
         posts.map(item => {
           return (
             <PostItem
-              key={item.id}
+              key={item.id ? item.id : `${item.adid}_${item.name}`}
               id={item.id}
               title={item.title}
               content={item.contain}
@@ -84,6 +74,8 @@ export default function PostList({type}: PostListProps) {
               poster={item.name}
               posterId={item.creator}
               avatarRelativePath={item.img}
+              adid={item.adid}
+              is_adpost={item.is_adpost}
             />
           );
         })

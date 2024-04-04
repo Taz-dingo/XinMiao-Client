@@ -7,10 +7,10 @@ import IndexScreen from './screens/Home/Index';
 import TestScreen from './screens/TestScreen';
 import FaceRecognitionPunch from './screens/Testscreen1';
 import {SafeAreaProvider} from 'react-native-safe-area-context';
-import AuthScreen from './screens/AuthScreen';
-import ForumScreen from './screens/ForumScreen';
+import AuthScreen from './screens/Auth/AuthScreen';
+import ForumScreen from './screens/Forum';
 import {GestureHandlerRootView} from 'react-native-gesture-handler';
-import PostDetail from './screens/ForumScreen/PostDetail';
+import PostDetail from './screens/Forum/PostDetail';
 import useAuthStore from './store/authStore';
 
 const Stack = createNativeStackNavigator();

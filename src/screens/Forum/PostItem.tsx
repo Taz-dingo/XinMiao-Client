@@ -5,6 +5,7 @@ import {Button} from '@rneui/base';
 import {useNavigation} from '@react-navigation/native';
 import Iconant from 'react-native-vector-icons/AntDesign';
 import {OSSBaseURL} from '../../services';
+import {adClick} from '../../services/api/forumService';
 
 type postItemProps = {
   id: string;
@@ -17,6 +18,8 @@ type postItemProps = {
   poster: string;
   posterId: string;
   avatarRelativePath: string;
+  adid: string;
+  is_adpost: number;
 };
 
 export default function PostItem({
@@ -29,6 +32,8 @@ export default function PostItem({
   poster,
   posterId,
   avatarRelativePath,
+  adid,
+  is_adpost,
 }: postItemProps) {
   const navigation = useNavigation();
 
@@ -85,7 +90,9 @@ export default function PostItem({
         containerStyle={styles.button}
         type="clear"
         onPress={() => {
-          // 1. 跳转到帖子详情页面
+          // 如果是广告,则调用广告详情页面
+          console.log(adClick({ad_id: adid}));
+          // 跳转到帖子详情页面
           navigation.navigate('PostDetail', {
             id: id,
             title: title,
@@ -126,7 +133,9 @@ export default function PostItem({
               <Text>{clicknum}</Text>
             </View>
             <Text style={{position: 'absolute', right: 10}}>
-              {ctime.substring(0, 10) + ' ' + ctime.substring(11, 19)}
+              {ctime
+                ? ctime.substring(0, 10) + ' ' + ctime.substring(11, 19)
+                : ''}
             </Text>
           </View>
         </View>

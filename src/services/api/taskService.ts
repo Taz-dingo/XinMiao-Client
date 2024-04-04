@@ -71,8 +71,8 @@ export const sendLocIn = (data: API.sendLocInData)
         method: 'POST',
         data: {
             ...data,
-            // userid: userInfo.id
-            userid: 2162810210
+            userid: userInfo.id
+            // userid: 2162810210
         }
     })
 }
@@ -85,8 +85,8 @@ export const sendLocOut = (data: API.sendLocOutData)
         method: 'delete',
         data: {
             ...data,
-            // userid: userInfo.id
-            userid: 2162810210
+            userid: userInfo.id
+            // userid: 2162810210
         }
     })
 }

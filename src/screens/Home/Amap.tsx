@@ -410,15 +410,6 @@ export default function Amap({children, navigation}: any) {
                 {item.properties.name}
               </Text>
               <Marker
-                icon={{
-                  uri: `${OSSBaseURL}/${item.properties.img}`,
-                }}
-                position={{
-                  latitude: parseFloat(item.position.latitude),
-                  longitude: parseFloat(item.position.longitude),
-                }}
-              />
-              <Marker
                 position={{
                   latitude: parseFloat(item.position.latitude),
                   longitude: parseFloat(item.position.longitude),
@@ -431,6 +422,16 @@ export default function Amap({children, navigation}: any) {
                   {item.properties.name}
                 </Text>
               </Marker>
+
+              <Marker
+                icon={{
+                  uri: `${OSSBaseURL}/${item.properties.img}`,
+                }}
+                position={{
+                  latitude: parseFloat(item.position.latitude),
+                  longitude: parseFloat(item.position.longitude),
+                }}
+              />
             </View>
           );
         })}

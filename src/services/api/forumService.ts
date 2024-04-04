@@ -1,5 +1,6 @@
 import instance from ".."
 import useAuthStore from "../../store/authStore"
+import { getCurrentDateTime } from "../../utils/getCurrenTimeUtils"
 
 // 获取用户信息
 const storeApi = useAuthStore.getState()
@@ -7,10 +8,15 @@ const userInfo = storeApi.userInfo
 
 /**查询所有帖子（论坛主页） */
 // 暂时不需要参数
-export const getPosts = () => {
+export const getPosts = (params: API.getPostsParams)
+    : Promise<API.Response<API.getPostsResult>> => {
     return instance({
         url: '/post',
         method: 'GET',
+        params: {
+            ...params,
+            userid: userInfo.id,
+        }
     })
 }
 
@@ -140,3 +146,16 @@ export const postComment = (data: API.postCommentParams) => {
     })
 }
 
+/** 广告帖点击详情 */
+export const adClick = (params: API.adClickParams)
+    : Promise<API.Response<API.adClickResult>> => {
+    return instance({
+        url: '/post/addetail',
+        method: 'GET',
+        params: {
+            ...params,
+            userid: userInfo.id,
+            extime: getCurrentDateTime()
+        }
+    })
+}
