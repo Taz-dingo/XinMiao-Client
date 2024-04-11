@@ -21,6 +21,9 @@ import ImagePicker, {Image, ImageOrVideo} from 'react-native-image-crop-picker';
 import {uploadImage} from '../../../services/api/OSSService';
 import {OSSBaseURL} from '../../../services';
 import useAuthStore from '../../../store/authStore';
+import {FlatList} from 'react-native-gesture-handler';
+import {ItemComp} from '../BagScreen';
+import {getBagInfo} from '../../../services/api/userService';
 
 type buttonType = {
   title: string;
@@ -40,6 +43,7 @@ export default function TaskDetail() {
   const {destLngLat, setDestLngLat, clearDestLngLat} = useDestinationStore();
   const {taskInfo, taskLoc, setTaskInfo, setTaskLoc} = useTaskInfoStore();
   const {userInfo} = useAuthStore();
+  const [gridsArray, setGridsArray] = useState<API.gridData[]>([]);
 
   const Buttons: buttonsType = {
     // 定位打卡
@@ -55,7 +59,7 @@ export default function TaskDetail() {
       {
         title: '定位打卡',
         buttonStyle: {borderWidth: 3},
-        icon: <IconIon name="arrow-back" size={24} />,
+        icon: <IconIon name="star" size={24} />,
         onPress: () => {
           handleLocCheckIn();
         },
@@ -96,7 +100,7 @@ export default function TaskDetail() {
       {
         title: '相册上传',
         buttonStyle: {borderWidth: 3},
-        icon: <IconIon name="image-outline" size={24} />,
+        icon: <IconIon name="image" size={24} />,
         onPress: () => {
           handleAlbumUpload();
         },
@@ -117,8 +121,16 @@ export default function TaskDetail() {
       const response = await getTaskDetail({
         taskid: showDetailId,
       });
+      // response.data.reward转化成gridData[]
+      const newGridsArray = response.data.reward.map(item => {
+        return {
+          id: item.id,
+          item: item,
+        };
+      });
 
       setTaskInfo(response.data);
+      setGridsArray(newGridsArray);
     } catch (e) {
       console.log(e);
     }
@@ -229,6 +241,7 @@ export default function TaskDetail() {
       height: '95%',
       position: 'relative',
       top: 0,
+      flexDirection: 'column',
       // paddingTop: 20,
       pointerEvents: 'box-none',
       // borderWidth: 1,
@@ -246,6 +259,8 @@ export default function TaskDetail() {
     },
     demand: {
       fontSize: 18,
+      color: '#333',
+      marginHorizontal: 20,
     },
     buttonContainer: {
       position: 'absolute',
@@ -257,6 +272,23 @@ export default function TaskDetail() {
     },
     button: {
       marginHorizontal: 20,
+    },
+    tag: {
+      fontSize: 18,
+      color: 'white',
+      textAlign: 'center',
+      backgroundColor: '#2db7f5',
+      marginHorizontal: 100,
+      borderRadius: 10,
+      padding: 5,
+      marginBottom: 10,
+    },
+    flatList: {
+      borderWidth: 1,
+      borderColor: 'gray',
+      borderRadius: 10,
+      // flex: 1,
+      padding: 5,
     },
   });
 
@@ -272,19 +304,43 @@ export default function TaskDetail() {
           </View>
 
           <Divider inset insetType="middle" style={styles.divider} />
+          <Text style={styles.tag}>{taskInfo.type}</Text>
 
           <Text style={styles.demand}>
             {'        '}
             {taskInfo.demand}
           </Text>
-
-          <Text>{taskInfo.type}123</Text>
-          {/* <Image
-            source={{
-              uri: `${OSSBaseURL}/testbase64/myphoto.jpg.jpg`,
-            }}
-            style={{width: 200, height: 200}}
-          /> */}
+          {/* 靠下方 */}
+          <View
+            style={{
+              alignItems: 'center',
+              marginTop: 'auto',
+              marginBottom: 100,
+            }}>
+            <Text
+              style={{
+                fontSize: 18,
+                color: 'white',
+                marginHorizontal: 20,
+                padding: 5,
+                marginVertical: 10,
+                borderRadius: 10,
+                backgroundColor: '#d48806',
+              }}>
+              任务奖励
+            </Text>
+            {/* 居中 */}
+            <FlatList
+              data={gridsArray}
+              numColumns={5} // 每行显示n列，可以根据需要调整
+              renderItem={({item}) => <ItemComp data={item} type="reward" />}
+              keyExtractor={item => item.id.toString()}
+              style={[
+                styles.flatList,
+                {width: parseInt(`${gridsArray.length * 70}`)},
+              ]}
+            />
+          </View>
 
           <View style={styles.buttonContainer}>
             <>

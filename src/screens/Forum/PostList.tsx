@@ -13,11 +13,16 @@ type PostListProps = {
 };
 
 export default function PostList({type}: PostListProps) {
-  const [posts, setPosts] = React.useState<API.PostItem[]>([]);
+  const [postData, setPostData] = React.useState<API.PostItem[]>([]);
   const [msg, setMsg] = React.useState('');
-  const [postListUpdateSignal, setPostListUpdateSignal] = useForumStore(
-    store => [store.postListUpdateSignal, store.setPostListUpdateSignal],
-  );
+  const {
+    postListUpdateSignal,
+    setPostListUpdateSignal,
+    curPage,
+    setCurPage,
+    pagesize,
+    clearCurPage,
+  } = useForumStore();
 
   const updatePosts = async () => {
     try {
@@ -25,8 +30,8 @@ export default function PostList({type}: PostListProps) {
       if (type === 'all') {
         // 查所有
         response = await getPosts({
-          page: 1,
-          pagesize: 5,
+          page: curPage,
+          pagesize: pagesize,
           order: 0,
         });
       } else if (type === 'userOnly') {
@@ -40,7 +45,8 @@ export default function PostList({type}: PostListProps) {
       // 如果返回数据是数组则有数据，
       // 否则返回说明字符串信息（为空）
       if (Array.isArray(response?.data)) {
-        setPosts(response?.data);
+        // 加到现有数组后方
+        setPostData([...postData, ...response.data]);
       } else {
         setMsg(response?.data);
       }
@@ -51,7 +57,11 @@ export default function PostList({type}: PostListProps) {
 
   useEffect(() => {
     updatePosts();
-  }, [postListUpdateSignal]);
+  }, [postListUpdateSignal, curPage]);
+
+  useEffect(() => {
+    clearCurPage();
+  }, []);
 
   const styles = StyleSheet.create({
     container: {
@@ -60,8 +70,8 @@ export default function PostList({type}: PostListProps) {
   });
   return (
     <View style={styles.container}>
-      {posts.length > 0 ? (
-        posts.map(item => {
+      {postData.length > 0 ? (
+        postData.map(item => {
           return (
             <PostItem
               key={item.id ? item.id : `${item.adid}_${item.name}`}

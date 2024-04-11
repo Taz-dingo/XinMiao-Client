@@ -12,21 +12,17 @@ import {
 } from '../../../store';
 import {getTaskSets} from '../../../services/api/taskService';
 import {Divider} from '@rneui/base';
-import {CheckBox} from 'react-native-elements';
+import {CheckBox, Icon} from 'react-native-elements';
 import TaskDetail from './TaskDetail';
+import {Tooltip} from '@rneui/themed';
+import IconFontisto from 'react-native-vector-icons/Fontisto';
 
 export default function TaskScreen() {
   const clearScreenState = useSubScreenStore(store => store.clearScreenState);
-  const [showDetailId, setShowDetail, clearShowDetail] = useShowDetailStore(
-    state => [state.showDetailId, state.setShowDetail, state.clearShowDetail],
-  );
-  const [showClosed, setShowClosed] = useShowClosedStore(state => [
-    state.showClosed,
-    state.setShowClosed,
-  ]);
-  const toggleShowClosed = () => {
-    setShowClosed(showClosed === '0' ? '1' : '0');
-  };
+  const {showDetailId, setShowDetail, clearShowDetail} = useShowDetailStore();
+  const {showClosed, setShowClosed} = useShowClosedStore();
+  const [open, setOpen] = React.useState(false);
+
   const styles = StyleSheet.create({
     divider: {
       // width: '80%',
@@ -52,12 +48,51 @@ export default function TaskScreen() {
           <TaskList></TaskList>
 
           {/* <Divider inset={true} insetType="middle" style={styles.divider} /> */}
-          <CheckBox
-            title="显示已关闭任务"
-            checked={showClosed === '0' ? true : false}
-            onPress={toggleShowClosed}
-            containerStyle={{backgroundColor: 'transparent', borderWidth: 0}}
-          />
+          <View style={{flexDirection: 'row', alignItems: 'center'}}>
+            <CheckBox
+              // title="显示已结束任务"
+              checked={showClosed === '1' ? true : false}
+              onPress={() => setShowClosed(showClosed === '0' ? '1' : '0')}
+              containerStyle={{backgroundColor: 'transparent', borderWidth: 0}}
+            />
+            <Tooltip
+              visible={open}
+              containerStyle={{
+                backgroundColor: 'rgba(33,33,33,0.8)',
+                width: 250,
+                // height: 300,
+              }}
+              onOpen={() => setOpen(true)}
+              onClose={() => setOpen(false)}
+              popover={
+                <Text style={{color: '#fff'}}>
+                  包含已完成任务、过期未完成任务
+                </Text>
+              }>
+              {!open ? (
+                <Text style={{color: '#333', fontSize: 16}}>
+                  显示已结束任务
+                </Text>
+              ) : (
+                <Text>{'                            '}</Text>
+              )}
+            </Tooltip>
+            {/* 感叹号 */}
+            <IconFontisto
+              name="question"
+              size={11}
+              style={{
+                borderWidth: 2,
+                width: 20,
+                height: 20,
+                borderColor: 'rgba(33,33,33,0.8)',
+                borderRadius: 50,
+                padding: 5,
+                marginLeft: 10,
+              }}
+            />
+          </View>
+          {/* <Text>showClosed: {showClosed}</Text> */}
         </>
       ) : (
         <View style={{position: 'relative', borderWidth: 0}}>

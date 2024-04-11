@@ -1,10 +1,12 @@
 import {View, Text, StyleSheet} from 'react-native';
-import React from 'react';
+import React, {useState} from 'react';
 import {shadowStyle} from '../../style';
 import {useTaskInfoStore} from '../../store';
+import {Tooltip} from '@rneui/themed';
 
 export default function InfoBar() {
   const taskInfo = useTaskInfoStore(store => store.taskInfo);
+  const [open, setOpen] = useState(false);
 
   const styles = StyleSheet.create({
     container: {
@@ -25,7 +27,26 @@ export default function InfoBar() {
   });
   return (
     <View style={styles.container}>
-      <Text style={styles.infoText}>当前任务：{taskInfo.title}</Text>
+      <Tooltip
+        visible={open}
+        containerStyle={{
+          backgroundColor: 'rgba(33,33,33,0.8)',
+          width: 200,
+          height: 300,
+        }}
+        onOpen={() => setOpen(true)}
+        onClose={() => setOpen(false)}
+        popover={<Text style={{color: '#fff'}}>{taskInfo.demand}</Text>}>
+        {!open && (
+          <>
+            {taskInfo.title !== '' ? (
+              <Text>当前任务： {taskInfo.title}</Text>
+            ) : (
+              <Text>当前无任务噢，快去添加吧！</Text>
+            )}
+          </>
+        )}
+      </Tooltip>
     </View>
   );
 }

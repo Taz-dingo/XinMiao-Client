@@ -342,7 +342,7 @@ export default function Amap({children, navigation}: any) {
       <View style={styles.topContainer}>
         <InfoBar />
 
-        <Button title={'当前位置'} onPress={checkCurInLocs} />
+        {/* <Button title={'当前位置'} onPress={checkCurInLocs} /> */}
       </View>
       {/* 左边栏 */}
       <View style={styles.leftContainer}>

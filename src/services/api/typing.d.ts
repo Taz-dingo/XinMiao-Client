@@ -116,7 +116,7 @@ declare namespace API {
         extime: string
     }
     type getAdListResult = AdItem[]
-    
+
     // mapService ----------------------------
     type getPathPlaningProps = {
         origin: string
@@ -194,6 +194,7 @@ declare namespace API {
         taskid: string
     }
 
+
     type getTaskDetailResult = {
         id: number
         title: string
@@ -209,6 +210,7 @@ declare namespace API {
         examplePic: string | null
         isAI: string | null
         isfinish: string | null
+        reward: rewardItem[]
         isMainline: number
         setId: number
     }
@@ -235,6 +237,26 @@ declare namespace API {
         taskid: string,
     }
     type sendLocOutResult = {}
+
+    type rewardItem = {
+        id: number
+        name: string
+        desc: string
+        creator: string
+        ctime: string
+        dtime: string
+        stackLimit: number
+        img: string
+        ownNum: number
+        userId: string
+        possPk: number
+        base64: string
+        rewardnum: number
+    }
+    type gridData = {
+        id: number;
+        item: API.rewardItem;
+    }
 
     // OSSService -----------------------------
     type uploadImageData = {

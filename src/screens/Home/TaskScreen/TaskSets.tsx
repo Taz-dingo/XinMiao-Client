@@ -5,7 +5,7 @@ import {
   Touchable,
   StyleSheet,
 } from 'react-native';
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import {ListItem} from '@rneui/base';
 import {getTasks} from '../../../services/api/taskService';
 import Task from './Task';
@@ -22,16 +22,18 @@ type Task = {
   title: string;
   demand: string;
   type: string;
+  isfinish: string;
+  dtime: string;
 };
 
 // 任务集，接收Task数组，包含一系列任务
 export default function TaskSets({id, title}: TaskSetsProps) {
   const [isOpen, setIsOpen] = useState(false);
   const [items, setItems] = useState<Task[]>([]); // 任务数组，点击时填充数据
-  const [showClosed] = useShowClosedStore(state => [state.showClosed]);
+  const {showClosed} = useShowClosedStore();
 
-  // 展开任务组，展示任务条
-  const handleOpenSet = async () => {
+  // 展开任务组，更新任务数据
+  const updateSet = async () => {
     const response = await getTasks({
       setid: id.toString(),
       is_now: showClosed === '1' ? '0' : '1',
@@ -51,6 +53,11 @@ export default function TaskSets({id, title}: TaskSetsProps) {
     },
   });
 
+  // 切换勾选时更新任务数据
+  useEffect(() => {
+    updateSet();
+  }, [showClosed]);
+
   return (
     <ListItem.Accordion
       Component={MyTouchable}
@@ -59,7 +66,7 @@ export default function TaskSets({id, title}: TaskSetsProps) {
       onPress={() => {
         // 展开时获取对应的tasks，关闭时不获取
         if (!isOpen) {
-          handleOpenSet();
+          updateSet();
         }
         // 展开任务组
         setIsOpen(!isOpen);
@@ -92,6 +99,8 @@ export default function TaskSets({id, title}: TaskSetsProps) {
                 title={item.title}
                 demand={item.demand}
                 type={item.type}
+                isfinish={item.isfinish}
+                dtime={item.dtime}
               />
             </View>
           );

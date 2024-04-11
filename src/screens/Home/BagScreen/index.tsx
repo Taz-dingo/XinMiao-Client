@@ -3,29 +3,87 @@ import React, {useEffect, useState} from 'react';
 import {getBagInfo} from '../../../services/api/userService';
 import {OSSBaseURL} from '../../../services';
 
-interface item {
-  id: number; // 物品id
-  name: string; // 物品名称
-  desc: string; // 描述
-  creator: string; // 创建者
-  ctime: string; // 创建时间
-  dtime: string; // 到期时间
-  stackLimit: number; // 堆叠上限
-  img: string; // 物品图片
-  ownNum: number; // 物品数量
-  userId: string; // 用户id
-  possPk: number; // 可能的pk
-}
+const styles = StyleSheet.create({
+  title: {
+    fontSize: 25,
+    fontWeight: 'bold',
+    marginBottom: 10,
+    textAlign: 'center',
+    color: '#333',
+  },
+  infoContainer: {
+    // 介绍物品信息
+    height: 150,
+    alignItems: 'center',
+    justifyContent: 'center',
+    marginVertical: 5,
+    marginBottom: 20,
+    padding: 10,
+    position: 'relative',
+    borderWidth: 1,
+    borderRadius: 10,
+    borderColor: 'gray',
+  },
+  itemImage: {
+    width: 40,
+    height: 40,
+    resizeMode: 'contain',
+  },
+  flatList: {
+    borderWidth: 1,
+    borderColor: 'gray',
+    borderRadius: 10,
+    // flex: 1,
+    padding: 5,
+    height: 400,
+  },
+  item: {
+    justifyContent: 'center',
+    alignItems: 'center',
+    width: 60,
+    flex: 1,
+    aspectRatio: 1, // 保持格子为正方形
+    backgroundColor: '#ddd',
+    borderWidth: 1,
+    borderColor: 'gray',
+    borderRadius: 5,
+    padding: 1,
+    margin: 2, // 调整格子之间的间距
+  },
+  itemName: {
+    fontSize: 11,
+  },
+});
 
-interface gridData {
-  id: number;
-  item: item;
-}
+// type = 'own' | 'reward'
+export const ItemComp = ({data, type}: {data: API.gridData; type: string}) => (
+  <View style={styles.item}>
+    <Image
+      style={styles.itemImage}
+      source={{uri: `${OSSBaseURL}/${data.item.img}`}}
+    />
+    {data.item && type === 'own' ? (
+      <Text style={styles.itemName}>
+        {data.item.ownNum > 0 ? (
+          <>
+            {data.item.name} *{data.item.ownNum}
+          </>
+        ) : (
+          ''
+        )}
+      </Text>
+    ) : (
+      <Text style={styles.itemName}>
+        {data.item.name} *{data.item.rewardnum}
+      </Text>
+    )}
+  </View>
+);
 
 export default function index() {
   // const gridsArray: gridData[] =
 
-  const [gridsArray, setGridsArray] = useState<gridData[]>(
+  const [gridsArray, setGridsArray] = useState<API.gridData[]>(
     new Array(30).fill(null).map((_, index) => ({
       id: index + 1,
       item: {
@@ -40,18 +98,10 @@ export default function index() {
         ownNum: 0,
         userId: '',
         possPk: 0,
+        base64: '',
+        rewardnum: 0,
       },
     })),
-  );
-
-  const ItemComp = ({data}: {data: gridData}) => (
-    <View style={styles.item}>
-      <Image
-        style={styles.itemImage}
-        source={{uri: `${OSSBaseURL}/${data.item.img}`}}
-      />
-      {data.item && <Text style={styles.itemName}>{data.item.name}</Text>}
-    </View>
   );
 
   const updateBagData = async () => {
@@ -82,57 +132,6 @@ export default function index() {
     updateBagData();
   }, []);
 
-  const styles = StyleSheet.create({
-    title: {
-      fontSize: 25,
-      fontWeight: 'bold',
-      marginBottom: 10,
-      textAlign: 'center',
-      color: '#333',
-    },
-    infoContainer: {
-      // 介绍物品信息
-      height: 150,
-      alignItems: 'center',
-      justifyContent: 'center',
-      marginVertical: 5,
-      marginBottom: 20,
-      padding: 10,
-      position: 'relative',
-      borderWidth: 1,
-      borderRadius: 10,
-      borderColor: 'gray',
-    },
-    itemImage: {
-      width: 40,
-      height: 40,
-      resizeMode: 'contain',
-    },
-    flatList: {
-      borderWidth: 1,
-      borderColor: 'gray',
-      borderRadius: 10,
-      // flex: 1,
-      padding: 5,
-      height: 400,
-    },
-    item: {
-      justifyContent: 'center',
-      alignItems: 'center',
-      flex: 1,
-      aspectRatio: 1, // 保持格子为正方形
-      backgroundColor: '#ddd',
-      borderWidth: 1,
-      borderColor: 'gray',
-      borderRadius: 5,
-      padding: 1,
-      margin: 2, // 调整格子之间的间距
-    },
-    itemName: {
-      fontSize: 12,
-    },
-  });
-
   return (
     <View
       style={
@@ -158,8 +157,8 @@ export default function index() {
       </View>
       <FlatList
         data={gridsArray}
-        numColumns={5} // 每行显示3列，可以根据需要调整
-        renderItem={({item}) => <ItemComp data={item} />}
+        numColumns={5} // 每行显示n列，可以根据需要调整
+        renderItem={({item}) => <ItemComp type="own" data={item} />}
         keyExtractor={item => item.id.toString()}
         style={styles.flatList}
       />

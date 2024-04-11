@@ -32,6 +32,8 @@ function App() {
       color: 'white',
       backgroundColor: 'rgba(0,0,0,0.5)',
       padding: 10,
+      borderRadius: 10,
+      margin: 5,
     },
   });
 
